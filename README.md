@@ -16,33 +16,14 @@ This project deploys a **self-hosted**, open-source platform for:
 ## 🧩 Architecture Overview
 
 ```mermaid
-+------------------------+
-|    GitHub Pages       | <--- Static SurveyJS frontend (multi-page)
-+----------+------------+
-           |
-           v
-+----------+------------+
-|     n8n (API)         | <--- Receives survey data via webhook
-| Dockerized Workflow   |
-+----------+------------+
-           |
-           v
-+----------+------------+       +-----------------------+
-|  PostgreSQL Database  | <---> |     Metabase          |
-| Stores responses      |       | Admin dashboard       |
-+----------+------------+       +-----------------------+
-           |
-           v
-+------------------------+
-|  R + Quarto (Reports)  | <--- Generates PDF/HTML reports
-+----------+-------------+
-           |
-           v
-+------------------------+
-|      SMTP (Email)      | <--- Sends reports to user
-+------------------------+
+graph TD
+    A[SurveyJS Frontend] --> B[n8n API]
+    B --> C[PostgreSQL Database]
+    B --> D[R + Quarto Report Generator]
+    D --> E[SMTP Email Service]
+    C --> F[Metabase Dashboard]
+    C --> F
 ```
-
 ---
 
 ## ⚙️ Technologies Used
