@@ -6,6 +6,7 @@ This system collects supply chain survey data, generates reports, and delivers t
 ---
 
 ## 🧩 Architecture Overview (All tools from local-ai-packaged)
+
 ```mermaid
 flowchart TD
     A[SurveyJS Frontend] --> B[n8n Workflow]
