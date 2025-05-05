@@ -1,4 +1,4 @@
-````markdown
+
 # 📦 Supply Chain Resilience Survey Platform (Open Source, Self-Hosted)
 
 This project deploys a **self-hosted**, open-source platform for:
