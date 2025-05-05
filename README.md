@@ -8,12 +8,28 @@ This system collects supply chain survey data, generates reports, and delivers t
 ## 🧩 Architecture Overview (All tools from local-ai-packaged)
 ```mermaid
 graph TD
-    A[SurveyJS Frontend] --> B[n8n Workflow]
-    B --> C[Supabase Database]
-    B --> D[Report Generator]
-    D --> E[SMTP Email Service]
-    C --> F[Metabase Dashboard]
+
+%% === FRONTEND SURVEY UI ===
+Survey[SurveyJS Frontend hosted via Traefic] -->|Form Submission| Webhook[n8n Webhook]
+
+%% === BACKEND WORKFLOW ===
+Webhook -->|Store Response| DB[Supabase Postgres]
+Webhook -->|Trigger Report Generation| Report[Quarto Script or CLI Tool]
+Report -->|Generate PDF or HTML| File[Report File]
+File -->|Send to User| Email[SMTP via n8n]
+
+%% === DASHBOARD ===
+DB --> Dashboard[Quarto Dashboard Static HTML]
+
+%% === OPTIONAL ===
+subgraph Optional Future AI Layer
+    Ollama[LLM via Ollama]
+    Qdrant[Vector DB]
+    WebUI[Open WebUI / Flowise]
+    Dashboard --> Ollama
+end
 ```
+
 
 ## ⚙️ Tools Used (All from Local AI Packaged)
 
