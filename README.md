@@ -15,7 +15,7 @@ This project deploys a **self-hosted**, open-source platform for:
 
 ## 🧩 Architecture Overview
 
-```
+```mermaid
 +------------------------+
 |    GitHub Pages       | <--- Static SurveyJS frontend (multi-page)
 +----------+------------+
