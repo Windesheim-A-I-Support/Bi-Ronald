@@ -1,4 +1,4 @@
-````markdown
+
 # Supply Chain Resilience Survey Platform (Integrated with Local AI Stack)
 
 This system collects supply chain survey data, generates reports, and delivers them via email — fully self-hosted using components from the [local-ai-packaged](https://github.com/coleam00/local-ai-packaged) stack.
