@@ -6,38 +6,29 @@ This system collects supply chain survey data, generates reports, and delivers t
 ---
 
 ## 🧩 Architecture Overview (All tools from local-ai-packaged)
+```mermaid
+flowchart TD
+    A[SurveyJS Frontend] --> B[n8n Workflow]
+    B --> C[Supabase Database]
+    B --> D[Report Generator Script or Quarto]
+    D --> E[SMTP Email Service]
+    C --> F[Metabase Dashboard]
 
-```text
-+------------------------+
-|    SurveyJS Frontend  | <- Static HTML/JS hosted via Caddy
-+----------+------------+
-           |
-           v
-+----------+------------+
-|     n8n (API)         | <- Webhook receives survey data
-| Workflow Orchestration|
-+----------+------------+
-           |
-           v
-+----------+------------+       +-----------------------+
-| Supabase (PostgreSQL) | <-->  |     Metabase*         |
-| Stores responses      |       | (optional dashboard)  |
-+----------+------------+       +-----------------------+
-           |
-           v
-+------------------------+
-|  Python / Shell Script | <- Generates HTML/PDF report
-| (run from n8n node)    |
-+----------+-------------+
-           |
-           v
-+------------------------+
-|      SMTP (via n8n)    | <- Sends report to user
-+------------------------+
+    subgraph User Interaction
+        A
+        E
+    end
+
+    subgraph Core Logic
+        B
+        C
+        D
+    end
+
+    subgraph Optional Analytics
+        F
+    end
 ```
-
----
-
 ## ⚙️ Tools Used (All from Local AI Packaged)
 
 | Component            | Tool                  |
