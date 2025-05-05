@@ -6,30 +6,15 @@ This system collects supply chain survey data, generates reports, and delivers t
 ---
 
 ## 🧩 Architecture Overview (All tools from local-ai-packaged)
-
 ```mermaid
-flowchart TD
+graph TD
     A[SurveyJS Frontend] --> B[n8n Workflow]
     B --> C[Supabase Database]
-    B --> D[Report Generator Script or Quarto]
+    B --> D[Report Generator]
     D --> E[SMTP Email Service]
     C --> F[Metabase Dashboard]
-
-    subgraph User Interaction
-        A
-        E
-    end
-
-    subgraph Core Logic
-        B
-        C
-        D
-    end
-
-    subgraph Optional Analytics
-        F
-    end
 ```
+
 ## ⚙️ Tools Used (All from Local AI Packaged)
 
 | Component            | Tool                  |
