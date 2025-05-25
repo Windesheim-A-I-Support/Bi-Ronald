@@ -144,7 +144,7 @@
     "href": "dash03.html",
     "title": "Embedding visualisations in a generic webpage",
     "section": "",
-    "text": "Of course, you can also just embed visualisations in a generic Quarto html document, without using their dashboard layout. There are some great options available when working with the article layout option, that can allow you to create an engaging and interactive data story."
+    "text": "Ofcourse we can just embed visualisations"
   },
   {
     "objectID": "dash03.html#source-data",
