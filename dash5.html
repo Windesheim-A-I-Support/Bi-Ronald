@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.23">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Highcharter Dashboard – Better basic dashboards</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-7271f29f9498218151f3120baddb7363.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-226bd0f977fa82dfae4534cac220d79a.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-7110a493b8813e9034e0d0c0f1785205.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-7110a493b8813e9034e0d0c0f1785205.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-7110a493b8813e9034e0d0c0f1785205.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-dashboard/quarto-dashboard.js"></script>
+<script src="site_libs/quarto-dashboard/stickythead.js"></script>
+<script src="site_libs/quarto-dashboard/datatables.min.js" kdttablesentinel="true"></script>
+<script src="site_libs/quarto-dashboard/pdfmake.min.js" kdttablesentinel="true"></script>
+<script src="site_libs/quarto-dashboard/vfs_fonts.js" kdttablesentinel="true"></script>
+<script src="site_libs/quarto-dashboard/web-components.js" type="module"></script>
+<script src="site_libs/quarto-dashboard/components.js"></script>
+<link href="site_libs/quarto-dashboard/datatables.min.css" rel="stylesheet" kdttablesentinel="true">
+<link href="site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link href="site_libs/selectize-0.15.2/css/selectize.bootstrap3.css" rel="stylesheet">
+
+<script src="site_libs/selectize-0.15.2/js/selectize.min.js"></script>
+
+<script src="site_libs/selectize-0.15.2/accessibility/js/selectize-plugin-a11y.min.js"></script>
+
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
+
+<script src="site_libs/proj4js-2.3.15/proj4.js"></script>
+
+<link href="site_libs/highcharts-9.3.1/css/motion.css" rel="stylesheet">
+
+<script src="site_libs/highcharts-9.3.1/highcharts.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/highcharts-3d.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/highcharts-more.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/stock.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/map.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/data.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/exporting.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/offline-exporting.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/drilldown.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/item-series.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/overlapping-datalabels.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/annotations.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/export-data.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/funnel.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/heatmap.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/treemap.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/sankey.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/dependency-wheel.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/organization.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/solid-gauge.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/streamgraph.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/sunburst.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/vector.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/wordcloud.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/xrange.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/tilemap.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/venn.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/gantt.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/timeline.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/parallel-coordinates.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/bullet.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/coloraxis.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/dumbbell.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/lollipop.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/series-label.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/plugins/motion.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/custom/reset.js"></script>
+
+<script src="site_libs/highcharts-9.3.1/modules/boost.js"></script>
+
+<script src="site_libs/highchart-binding-0.9.4/highchart.js"></script>
+
+
+
+</head>
+
+<body class="quarto-dashboard nav-fixed dashboard-fill fullcontent quarto-light">
+
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <div id="quarto-announcement" data-announcement-id="198d89d1f91018c95cb562763dbae2f0" class="alert alert-info hidden"><i class="bi bi-info-circle quarto-announcement-icon"></i><div class="quarto-announcement-content">
+<p><strong>Under Construction</strong> - this resource is still a draft, please be aware content is not final.</p>
+</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Better basic dashboards</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./dash01.html"> 
+<span class="menu-text">Dashboard 1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./dash02.html"> 
+<span class="menu-text">Dashboard 2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./dash03.html"> 
+<span class="menu-text">Dashboard 3</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Dash04.html"> 
+<span class="menu-text">Dashboard 4</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./dash5.html" aria-current="page"> 
+<span class="menu-text">dash5</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./ExampleDash01.html"> 
+<span class="menu-text">Example Dash 1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./ExampleDash02.html"> 
+<span class="menu-text">Example Dash 2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./ExampleDash03.html"> 
+<span class="menu-text">Example Dash 3</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">Getting Started</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./using-quarto.html"> 
+<span class="menu-text">Guidance for Quarto</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+<header id="quarto-dashboard-header">
+<nav class="navbar navbar-expand-md slim" data-bs-theme="dark">
+  <div class="navbar-container container-fluid">
+    <button class="navbar-toggler hidden" type="button" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-controls="dashboard-collapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>    
+
+
+    <div class="navbar-brand-container">       
+
+      <div class="navbar-title">
+        <div class="navbar-title-text"><a href="#">Highcharter Dashboard</a></div>
+        
+        
+      </div>
+    </div>
+</div>
+</nav>
+</header></header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-layout-custom page-navbar quarto-dashboard-content bslib-gap-spacing html-fill-container bslib-page-fill">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+<!-- main -->
+
+<div class="bslib-grid-item html-fill-item bslib-grid" data-layout="fill" style="display: grid; grid-template-rows: minmax(3em, 10fr) minmax(3em, 90fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="card cell bslib-card html-fill-container" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<div class="cell-output-display html-fill-item html-fill-container no-overflow-x">
+<div class="form-group shiny-input-container html-fill-item html-fill-container">
+<label class="control-label" id="selected_company-label" for="selected_company">Choose a company:</label>
+<div class="html-fill-item html-fill-container">
+<select id="selected_company" class="shiny-input-select"><option value="Vattenfall" selected="">Vattenfall</option>
+<option value="The Coca-Cola Company">The Coca-Cola Company</option>
+<option value="Suplacon">Suplacon</option>
+<option value="Scania Logistics NL">Scania Logistics NL</option>
+<option value="Rituals">Rituals</option>
+<option value="NEDTECH">NEDTECH</option>
+<option value="Livin' Spas">Livin' Spas</option>
+<option value="Corbion (1)">Corbion (1)</option>
+<option value="Broshuis B.V.">Broshuis B.V.</option>
+<option value="Brink Climate Systems">Brink Climate Systems</option>
+<option value="Bosch Thermotechniek B.V.">Bosch Thermotechniek B.V.</option>
+<option value="Bidfood">Bidfood</option>
+<option value="AVMC">AVMC</option>
+<option value="Avebe">Avebe</option>
+<option value="Ales Metaaltechniek">Ales Metaaltechniek</option>
+<option value="Meubelgoedkoop">Meubelgoedkoop</option>
+<option value="Evofenedex">Evofenedex</option>
+<option value="My-Max">My-Max</option>
+<option value="Mundo Recreatie">Mundo Recreatie</option>
+<option value="Jansen2wielers">Jansen2wielers</option>
+<option value="AWL-Techniek">AWL-Techniek</option>
+<option value="Shangle">Shangle</option>
+<option value="Fonteyn Outdoor Living Mall">Fonteyn Outdoor Living Mall</option>
+<option value="Van Wolfswinkel wonen">Van Wolfswinkel wonen</option>
+<option value="Meubelcare.nl">Meubelcare.nl</option>
+<option value="Bruinhorst Tegels Online">Bruinhorst Tegels Online</option>
+<option value="Hermie.com">Hermie.com</option>
+<option value="Norvixx">Norvixx</option>
+<option value="Coltby">Coltby</option>
+<option value="Blue Sky Inn">Blue Sky Inn</option>
+<option value="Kees Smit tuinmeubelen">Kees Smit tuinmeubelen</option>
+<option value="AP Nederland B.V.">AP Nederland B.V.</option>
+<option value="Teijin Aramid">Teijin Aramid</option>
+<option value="FrieslandCampina">FrieslandCampina</option>
+<option value="Rollecate B.V.">Rollecate B.V.</option>
+<option value="ME-AT Leeuwarden B.V.">ME-AT Leeuwarden B.V.</option>
+<option value="Hiab (Frameworks)">Hiab (Frameworks)</option>
+<option value="De Marne’s Fabrieken B.V.">De Marne’s Fabrieken B.V.</option>
+<option value="Perfetti van Melle">Perfetti van Melle</option>
+<option value="Heuver Bandengroothandel B.V.">Heuver Bandengroothandel B.V.</option>
+<option value="Vadain">Vadain</option>
+<option value="Kruitbosch">Kruitbosch</option>
+<option value="Swinkels Family Brewers">Swinkels Family Brewers</option>
+<option value="Givaudan">Givaudan</option>
+<option value="Spectrum Brands">Spectrum Brands</option>
+<option value="Henkel Global Supply Chain">Henkel Global Supply Chain</option>
+<option value="Vandaglas">Vandaglas</option>
+<option value="Dun Agro B.V.">Dun Agro B.V.</option>
+<option value="Upfield">Upfield</option>
+<option value="Cosun Beet Company">Cosun Beet Company</option>
+<option value="Denkavit">Denkavit</option>
+<option value="Freudenberg Performance Materials">Freudenberg Performance Materials</option>
+<option value="Danone">Danone</option>
+<option value="J&amp;J">J&amp;J</option>
+<option value="LyondellBasell">LyondellBasell</option>
+<option value="CORAM">CORAM</option>
+<option value="Schaeffler Nederland BV">Schaeffler Nederland BV</option>
+<option value="Agrifac Machinery B.V.">Agrifac Machinery B.V.</option>
+<option value="Lightwell B.V.">Lightwell B.V.</option>
+<option value="Radboudumc">Radboudumc</option>
+<option value="Fibrant">Fibrant</option>
+<option value="Axalta Coating Systems GmbH">Axalta Coating Systems GmbH</option>
+<option value="Celanese">Celanese</option>
+<option value="Teleon Surgical">Teleon Surgical</option>
+<option value="Alfa Laval Nijmegen">Alfa Laval Nijmegen</option>
+<option value="Royal Koopmans">Royal Koopmans</option>
+<option value="Reginox B.V.">Reginox B.V.</option>
+<option value="Fast Forward Wheels bv">Fast Forward Wheels bv</option>
+<option value="Kyocera">Kyocera</option>
+<option value="Dow">Dow</option>
+<option value="Samsung Electronics">Samsung Electronics</option>
+<option value="Monta">Monta</option>
+<option value="Vanclaes">Vanclaes</option>
+<option value="Dr. Oetker">Dr. Oetker</option>
+<option value="Pneutec">Pneutec</option>
+<option value="Foot Locker">Foot Locker</option>
+<option value="Directbouw Productie BV">Directbouw Productie BV</option>
+<option value="Medco EP Natuna">Medco EP Natuna</option>
+<option value="BWS Sumatera IV Batam">BWS Sumatera IV Batam</option>
+<option value="Pt Berdikari Karyatama Engineering">Pt Berdikari Karyatama Engineering</option>
+<option value="Mitsubishi power">Mitsubishi power</option>
+<option value="PT Nusantara Regas">PT Nusantara Regas</option>
+<option value="PT. Sam Adi Karya">PT. Sam Adi Karya</option>
+<option value="PT Ineos Aromatics Indonesia">PT Ineos Aromatics Indonesia</option>
+<option value="KPN">KPN</option>
+<option value="Petrokimia Gresik">Petrokimia Gresik</option>
+<option value="PT PETROKIMIA GRESIK">PT PETROKIMIA GRESIK</option>
+<option value="PT Petrokimia Gresik">PT Petrokimia Gresik</option>
+<option value="Henkel">Henkel</option>
+<option value="[Technology Company]">[Technology Company]</option>
+<option value="ZiuZ">ZiuZ</option>
+<option value="Diversey">Diversey</option>
+<option value="Nobian Industrial Chemicals BV">Nobian Industrial Chemicals BV</option>
+<option value="Nissan">Nissan</option>
+<option value="Black Sea Container Lines">Black Sea Container Lines</option>
+<option value="Groupe SEB - WMF">Groupe SEB - WMF</option>
+<option value="Ferroglobe">Ferroglobe</option>
+<option value="Distribuidora">Distribuidora</option>
+<option value="MariAlro">MariAlro</option>
+<option value="Involvation">Involvation</option>
+<option value="Royal Talens">Royal Talens</option>
+<option value="BouWatch">BouWatch</option>
+<option value="Aako B.V.">Aako B.V.</option>
+<option value="DSM Firmenich">DSM Firmenich</option>
+<option value="yongmalogis">yongmalogis</option>
+<option value="lotte global logistics">lotte global logistics</option>
+<option value="AGV International B.V.">AGV International B.V.</option>
+<option value="C. van Heezik">C. van Heezik</option>
+<option value="RHI Magnesita">RHI Magnesita</option>
+<option value="Nexperia Germany">Nexperia Germany</option>
+<option value="Woody International">Woody International</option>
+<option value="ASSA ABLOY Opening Solutions EMEIA">ASSA ABLOY Opening Solutions EMEIA</option>
+<option value="CPS">CPS</option>
+<option value="Recofarma Ind. do Amazonas Ltda.">Recofarma Ind. do Amazonas Ltda.</option>
+<option value="Coca-Cola Philippines">Coca-Cola Philippines</option>
+<option value="Coca-Cola CPS Chile">Coca-Cola CPS Chile</option>
+<option value="Southerly Change Drinks">Southerly Change Drinks</option>
+<option value="Coca-Cola Korea Company">Coca-Cola Korea Company</option>
+<option value="The Coca-Cola Company - In house KO production">The Coca-Cola Company - In house KO production</option>
+<option value="Cola-cola china">Cola-cola china</option>
+<option value="Abbott">Abbott</option>
+<option value="meiji university">meiji university</option>
+<option value="European Aerosols">European Aerosols</option>
+<option value="Auping">Auping</option>
+<option value="Global logistics ag">Global logistics ag</option>
+<option value="Dasko Koel- en Vriestransporten B.V.">Dasko Koel- en Vriestransporten B.V.</option>
+<option value="Alpla Zwolle B.V.">Alpla Zwolle B.V.</option>
+<option value="Hiab Benelux">Hiab Benelux</option>
+<option value="BBA Pompen en Buizen">BBA Pompen en Buizen</option>
+<option value="BBA pompen en buizen">BBA pompen en buizen</option>
+<option value="VDL Apparatenbouw">VDL Apparatenbouw</option>
+<option value="Fabory">Fabory</option>
+<option value="Tyson Food Europe">Tyson Food Europe</option>
+<option value="Saxion Test">Saxion Test</option>
+<option value="Barentsz Ontdekkingshuizen">Barentsz Ontdekkingshuizen</option>
+<option value="Alphatronics BV">Alphatronics BV</option>
+<option value="Outbound BV">Outbound BV</option>
+<option value="Power-Sonic EMEA BV">Power-Sonic EMEA BV</option>
+<option value="Verhoef Access Technology">Verhoef Access Technology</option>
+<option value="Eurosort Systems BV">Eurosort Systems BV</option>
+<option value="Highlite International BV">Highlite International BV</option>
+<option value="Imbema">Imbema</option>
+<option value="C.J. Vianen Flowerexport B.V.">C.J. Vianen Flowerexport B.V.</option>
+<option value="ESKA BV">ESKA BV</option>
+<option value="Schoonheidssalon@Christel">Schoonheidssalon@Christel</option>
+<option value="Applied Medical">Applied Medical</option>
+<option value="CoxGeelen BV">CoxGeelen BV</option>
+<option value="Legrand">Legrand</option>
+<option value="Go-Tan">Go-Tan</option>
+<option value="Bribus BV">Bribus BV</option>
+<option value="Curium Pharma">Curium Pharma</option>
+<option value="HVC Groep">HVC Groep</option>
+<option value="Karl Lagerfeld">Karl Lagerfeld</option>
+<option value="Eichholtz">Eichholtz</option>
+<option value="Stamhuis">Stamhuis</option>
+<option value="spirotech bv">spirotech bv</option>
+<option value="Van Heck Badkamers">Van Heck Badkamers</option>
+<option value="Dresz International BV">Dresz International BV</option>
+<option value="Isero BV">Isero BV</option>
+<option value="Allied Motion">Allied Motion</option>
+<option value="Jumbo Supermarkten">Jumbo Supermarkten</option>
+<option value="Quooker">Quooker</option>
+<option value="Zuiver BV">Zuiver BV</option>
+<option value="VlastuinCDI">VlastuinCDI</option>
+<option value="Allied Motion Dordrecht B.V.">Allied Motion Dordrecht B.V.</option>
+<option value="Isero. B.V.">Isero. B.V.</option>
+<option value="Orbia Building &amp; Infrastructure (Wavin)">Orbia Building &amp; Infrastructure (Wavin)</option>
+<option value="Boermarke">Boermarke</option>
+<option value="Heer en meester">Heer en meester</option>
+<option value="Klaas licht en lampen">Klaas licht en lampen</option>
+<option value="Hans Grohe ESS">Hans Grohe ESS</option>
+<option value="Mondria advies">Mondria advies</option>
+<option value="Form International">Form International</option>
+<option value="Unibouw">Unibouw</option>
+<option value="E.J.Bos diervoeding">E.J.Bos diervoeding</option>
+<option value="Hooghoudt B.V.">Hooghoudt B.V.</option>
+<option value="Holland and barrett">Holland and barrett</option>
+<option value="Tempress">Tempress</option>
+<option value="Paardekooper">Paardekooper</option>
+<option value="Njoy">Njoy</option>
+<option value="Viatris">Viatris</option>
+<option value="CelaVIta / McCain">CelaVIta / McCain</option>
+<option value="Van Remmen UV Technology">Van Remmen UV Technology</option>
+<option value="Easy Drain Sanitary Solutions">Easy Drain Sanitary Solutions</option>
+<option value="bol.">bol.</option>
+<option value="Scapino Retail BV">Scapino Retail BV</option>
+<option value="Aarnink Kunststof kozijnen fabriek">Aarnink Kunststof kozijnen fabriek</option>
+<option value="JDE Peets">JDE Peets</option>
+<option value="Loohuis Installatiegroep">Loohuis Installatiegroep</option>
+<option value="Somers Kantoor- en Garderobemeubilair B.V.">Somers Kantoor- en Garderobemeubilair B.V.</option>
+<option value="ESS">ESS</option>
+<option value="Somers Kantoor- en Garderobemeubilair BV">Somers Kantoor- en Garderobemeubilair BV</option>
+<option value="KME. Netherlands BV">KME. Netherlands BV</option>
+<option value="Farm Frites International B.V.">Farm Frites International B.V.</option>
+<option value="DSV Zaden">DSV Zaden</option>
+<option value="Tectum Group">Tectum Group</option>
+<option value="Louwman Group">Louwman Group</option>
+<option value="O'Neill Europe BV">O'Neill Europe BV</option>
+<option value="Royal FloraHolland">Royal FloraHolland</option>
+<option value="Dille&amp;Kamille">Dille&amp;Kamille</option>
+<option value="Shell Chemicals">Shell Chemicals</option>
+<option value="Bme">Bme</option>
+<option value="Alfen">Alfen</option>
+<option value="Dsg">Dsg</option>
+<option value="UC Group">UC Group</option>
+<option value="Bejo Zaden">Bejo Zaden</option>
+<option value="Moonen Packaging">Moonen Packaging</option>
+<option value="Sunshine Group">Sunshine Group</option>
+<option value="Vibrantz  Color Solutions Europe BV">Vibrantz  Color Solutions Europe BV</option>
+<option value="DNP">DNP</option>
+<option value="TANITA Europe B.V.">TANITA Europe B.V.</option>
+<option value="Thetford">Thetford</option>
+<option value="hbm machines">hbm machines</option>
+<option value="Thermo Fisher Scientific">Thermo Fisher Scientific</option>
+<option value="Vreugdenhil Diary Foods">Vreugdenhil Diary Foods</option>
+<option value="Nunhems">Nunhems</option>
+<option value="NSK EDC B.V.">NSK EDC B.V.</option>
+<option value="Seabourne Logistics">Seabourne Logistics</option>
+<option value="Terra Natura International">Terra Natura International</option>
+<option value="Coca-Cola Europacific Partners">Coca-Cola Europacific Partners</option>
+<option value="Leolux Furniture Group">Leolux Furniture Group</option>
+<option value="GBfoods/GranFood">GBfoods/GranFood</option>
+<option value="MSD BV">MSD BV</option>
+<option value="Koppert BV">Koppert BV</option>
+<option value="Farm Frites">Farm Frites</option>
+<option value="Natec">Natec</option>
+<option value="Blink Charging">Blink Charging</option>
+<option value="Mosadex">Mosadex</option>
+<option value="Curium Netherlands B.V.">Curium Netherlands B.V.</option>
+<option value="CleanLease">CleanLease</option>
+<option value="SushiPoint Harderwijk">SushiPoint Harderwijk</option>
+<option value="GE Healthcare">GE Healthcare</option>
+<option value="Amgen">Amgen</option>
+<option value="Fujifilm Europe B.V.">Fujifilm Europe B.V.</option>
+<option value="Bonduelle">Bonduelle</option>
+<option value="Abbott labs">Abbott labs</option>
+<option value="yer">yer</option>
+<option value="aristeio">aristeio</option>
+<option value="PS">PS</option>
+<option value="Uve Fruits">Uve Fruits</option>
+<option value="Ms Supply Chain Support">Ms Supply Chain Support</option>
+<option value="HAVI">HAVI</option>
+<option value="Harbe B.V.">Harbe B.V.</option>
+<option value="Promeco">Promeco</option>
+<option value="ACN">ACN</option>
+<option value="Tribus">Tribus</option>
+<option value="GC">GC</option>
+<option value="FUJIFILM Europe B.V.">FUJIFILM Europe B.V.</option>
+<option value="Fujifilm Healthcare Europe GmbH">Fujifilm Healthcare Europe GmbH</option>
+<option value="Royal Brinkman">Royal Brinkman</option>
+<option value="Magna Tyres">Magna Tyres</option>
+<option value="Thales">Thales</option>
+<option value="Renolit">Renolit</option>
+<option value="NVT">NVT</option>
+<option value="Port of Twente Logistic Association">Port of Twente Logistic Association</option>
+<option value="BOS GmbH &amp; Co. KG">BOS GmbH &amp; Co. KG</option>
+<option value="ForFarmers">ForFarmers</option>
+<option value="The Greenery">The Greenery</option>
+<option value="TCCC SCR2 EMEA 2024 TEAM4">TCCC SCR2 EMEA 2024 TEAM4</option>
+<option value="TCCC SCR2 EMEA 2024 Team4">TCCC SCR2 EMEA 2024 Team4</option>
+<option value="Flier Systems">Flier Systems</option>
+<option value="TESTING Company">TESTING Company</option>
+<option value="TESTING Company9">TESTING Company9</option>
+<option value="VDL ETG Almelo">VDL ETG Almelo</option>
+<option value="Applied Medical Europe b.v.">Applied Medical Europe b.v.</option>
+<option value="Xilontech Pvt Ltd">Xilontech Pvt Ltd</option>
+<option value="Corbion (2)">Corbion (2)</option>
+<option value="Teijin Aramid BV">Teijin Aramid BV</option>
+<option value="Teijin Aramid B.V.">Teijin Aramid B.V.</option>
+<option value="ESC">ESC</option>
+<option value="Welkoop">Welkoop</option>
+<option value="Retus">Retus</option>
+<option value="SHPP">SHPP</option>
+<option value="MSD Animal Health">MSD Animal Health</option>
+<option value="MSD">MSD</option>
+<option value="c. steenvoorden b.v.">c. steenvoorden b.v.</option>
+<option value="AbbVie">AbbVie</option>
+<option value="Abbvie">Abbvie</option>
+<option value="Banks Holdings Ltd.">Banks Holdings Ltd.</option>
+<option value="Merck">Merck</option>
+<option value="De Monchy International BV">De Monchy International BV</option>
+<option value="Pon.Bike">Pon.Bike</option>
+<option value="BSH huishoudapparaten BV">BSH huishoudapparaten BV</option>
+<option value="Ikazia ziekenhuis">Ikazia ziekenhuis</option>
+<option value="technische unie">technische unie</option>
+<option value="Pon.bike">Pon.bike</option>
+<option value="Vecos Europe BV">Vecos Europe BV</option>
+<option value="BSH Huishoudapparaten BV">BSH Huishoudapparaten BV</option>
+<option value="Fastenal Europe">Fastenal Europe</option>
+<option value="Dedeman">Dedeman</option>
+<option value="Vecos">Vecos</option>
+<option value="Kelly Deli">Kelly Deli</option>
+<option value="Ames">Ames</option>
+<option value="Modula">Modula</option>
+<option value="Atos">Atos</option>
+<option value="24 ICE">24 ICE</option>
+<option value="enercon">enercon</option>
+<option value="Morgan Sindall Construction">Morgan Sindall Construction</option>
+<option value="RPP Group">RPP Group</option>
+<option value="PersoneelSelectief">PersoneelSelectief</option>
+<option value="ASML">ASML</option>
+<option value="The Pod Company">The Pod Company</option>
+<option value="Deutsche Bahn Cargo Romania">Deutsche Bahn Cargo Romania</option>
+<option value="Bluesolution SRL">Bluesolution SRL</option>
+<option value="Districon">Districon</option>
+<option value="Tap &amp; van Hoff notarissen">Tap &amp; van Hoff notarissen</option>
+<option value="Vepa">Vepa</option>
+<option value="Huisartsenpraktijk Vechtrijk">Huisartsenpraktijk Vechtrijk</option>
+<option value="Salsa Shop">Salsa Shop</option>
+<option value="van wijk nederland bv">van wijk nederland bv</option>
+<option value="Huisartsenpraktijk Vechtrijk b.v.">Huisartsenpraktijk Vechtrijk b.v.</option>
+<option value="Boot groningen">Boot groningen</option>
+<option value="-">-</option>
+<option value="Radboud Universiteit">Radboud Universiteit</option>
+<option value="Enercon">Enercon</option>
+<option value="AGILEA">AGILEA</option>
+<option value="All Round shipping BV">All Round shipping BV</option>
+<option value="Grundfos">Grundfos</option>
+<option value="TECO CDC B.V">TECO CDC B.V</option></select>
+<script type="application/json" data-for="selected_company" data-nonempty="">{"plugins":["selectize-plugin-a11y"]}</script>
+</div>
+</div>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div>
+<div class="bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card tabset bslib-card html-fill-container" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header dashboard-card-no-title bslib-navs-card-title">
+
+<ul class="nav nav-tabs card-header-tabs" role="tablist" data-tabsetid="card-tabset-2"><li class="nav-item" role="presentation"><a href="#card-tabset-2-1" role="tab" data-toggle="tab" data-bs-toggle="tab" data-value="Resilience Score Gauge" aria-selected="true" class="nav-link active">Resilience Score Gauge</a></li><li class="nav-item" role="presentation"><a href="#card-tabset-2-2" role="tab" data-toggle="tab" data-bs-toggle="tab" data-value="All Companies Overview" aria-selected="false" class="nav-link">All Companies Overview</a></li></ul></div>
+
+
+
+
+<div id="3ade8a4a-fb1d-4a6c-8409-ac45482d5fc9" class="hidden">
+
+</div>
+<div class="tab-content html-fill-item html-fill-container" data-tabset-id="card-tabset-2"><div class="tab-pane active show html-fill-item html-fill-container" role="tabpanel" id="card-tabset-2-1"><div class="card-body html-fill-item html-fill-container" data-title="Resilience Score Gauge">
+<div class="cell-output-display html-fill-item html-fill-container">
+<div class="highchart html-widget html-widget-output shiny-report-size html-fill-item html-fill-container" id="out37aa49c674e1a1ef" style="width:100%;height:400px;"></div>
+</div>
+</div></div><div class="tab-pane html-fill-item html-fill-container" role="tabpanel" id="card-tabset-2-2"><div class="card-body html-fill-item html-fill-container" data-title="All Companies Overview">
+<div class="cell-output-display html-fill-item html-fill-container">
+<div class="highchart html-widget html-widget-output shiny-report-size html-fill-item html-fill-container" id="out67557f4873b5bb06" style="width:100%;height:400px;"></div>
+</div>
+</div></div></div><bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div>
+
+
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/Value-Chain-Hackers\.github\.io\/Bi-Ronald\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Copyright 2025, Christiaan Verhoef</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>This website is built with <i class="fa-solid fa-heart" title="a heart" aria-label="heart"></i>, <a href="https://github.com/murphyqm/better-basic-dashboards" target="_blank"><i class="fa-brands fa-github" title="GitHub octocat logo" aria-label="github"></i></a>, and <a href="https://quarto.org/" target="_blank">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (_event) {
+  if (window.bslib.Card) {
+    window.bslib.Card.initializeAllCards();
+  }
+}); 
+</script>
+  
+
+
+
+</body></html>
