@@ -23,44 +23,72 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Building Better Dashboards for Resilience Projects",
+    "title": "Building Better Dashboards for Resilience Work",
     "section": "",
-    "text": "Interactive dashboards are an increasingly powerful way to share insights from sustainability and resilience research. With tools like Quarto, we can integrate R and Python seamlessly to deliver rich, interactive, and reproducible visualizations. However, turning research data into accessible, user-friendly dashboards comes with its own set of challenges.\n\n\n\nResearchers are not trained UI/UX designers. Decisions about layout, navigation, and color schemes are often improvised.\n\nAccessibility best practices are rarely covered in standard tutorials or framework documentation, leaving important aspects of inclusive design overlooked.\n\nTools like R and Python offer great analytical power but aren’t natively built for designing web interfaces, making accessibility customization (e.g., keyboard navigation, color contrast) harder to implement.\nApplying a consistent theme (using CSS or SCSS) across different tools like Shiny, Dash, or Streamlit is error-prone and often tool-specific, making uniform branding across dashboards difficult.\nHosting interactive apps can be prohibitively expensive, especially with cloud-based pay-as-you-go pricing models.\nNavigation within dynamic dashboards can break browser behaviors (like the back and forward buttons), leading to usability issues.\n\nAlthough these limitations can be solved with custom HTML and CSS, our goal here is to simplify that process for those building clean, accessible dashboards for resilience data — without needing to become full-stack developers.\n\n\n\n\n\n\nWho Should Use This\n\n\n\nThis guide is for: - Researchers building their first Quarto dashboard and unsure how to manage layout, theming, or responsiveness. - Teams who need to maintain visual consistency across multiple dashboards or reports, even when switching between R and Python. - Educators and applied scientists working with supply chain, sustainability, or policy-related data who want to focus on analysis — not front-end code.\nWe focus first on static and semi-interactive dashboards that can be hosted freely, and later show how to scale to full interactive apps with Shiny or Python backends. Future updates will explore how to containerize these dashboards for scalable, version-controlled deployment."
+    "text": "As researchers, we’re often deep in the data — spotting patterns, testing theories, and building knowledge that can drive real-world change. But when it comes to communicating that work clearly and interactively, we’re often stuck improvising. I’m Christiaan Verhoef, a researcher at Windesheim focused on supply chain resilience, and I know firsthand how tricky it can be to go from analysis to accessible, actionable insights.\nThat’s where dashboards come in — and where they often fall short.\n\n\n\nMost of us aren’t designers. Decisions about layout, structure, color use, and interaction are often gut feelings — not guided by user experience principles.\n\nAccessibility often gets overlooked, not because we don’t care — but because it’s just not built into the tutorials or the default tools we’re using.\n\nFrameworks like R and Python are brilliant for analysis — but let’s be honest, they weren’t made for web design. That means even simple changes like customizing color contrast or responsive layout require digging deep into documentation.\nIf you’re working in a research group or multi-stakeholder network, keeping visual consistency across different dashboards (using Streamlit, Dash, Shiny, etc.) becomes a branding nightmare.\nHosting is another pain point — pricing models are opaque, and it’s hard to budget when costs scale based on interaction or traffic.\nInteractive dashboards break a lot of standard web navigation. Try pressing “Back” in a multi-tab dashboard — it doesn’t work the way people expect.\n\nStill, I believe dashboards can be simple, powerful, and human-centered — especially when used to communicate sustainability work that affects policy, education, and everyday decision-making.\n\n\n\n\n\n\nWho This Is For\n\n\n\nThis guide is for anyone trying to: - Build their first real dashboard using Quarto (or streamline a messy one). - Maintain visual consistency and clarity across multiple projects or teams — whether you’re using R, Python, or both. - Make your work not just visible, but understandable to collaborators, decision-makers, and students.\nI’m especially focused on dashboards that can be rendered statically (and freely hosted), but this will grow into a framework for fully interactive, containerized apps that we can deploy and maintain without needing cloud subscriptions.\nThis isn’t about being perfect. It’s about being clear — and helping the work speak for itself."
   },
   {
-    "objectID": "index.html#common-challenges-in-dashboard-design",
-    "href": "index.html#common-challenges-in-dashboard-design",
-    "title": "Building Better Dashboards for Resilience Projects",
+    "objectID": "index.html#common-struggles-in-dashboard-design",
+    "href": "index.html#common-struggles-in-dashboard-design",
+    "title": "Building Better Dashboards for Resilience Work",
     "section": "",
-    "text": "Researchers are not trained UI/UX designers. Decisions about layout, navigation, and color schemes are often improvised.\n\nAccessibility best practices are rarely covered in standard tutorials or framework documentation, leaving important aspects of inclusive design overlooked.\n\nTools like R and Python offer great analytical power but aren’t natively built for designing web interfaces, making accessibility customization (e.g., keyboard navigation, color contrast) harder to implement.\nApplying a consistent theme (using CSS or SCSS) across different tools like Shiny, Dash, or Streamlit is error-prone and often tool-specific, making uniform branding across dashboards difficult.\nHosting interactive apps can be prohibitively expensive, especially with cloud-based pay-as-you-go pricing models.\nNavigation within dynamic dashboards can break browser behaviors (like the back and forward buttons), leading to usability issues.\n\nAlthough these limitations can be solved with custom HTML and CSS, our goal here is to simplify that process for those building clean, accessible dashboards for resilience data — without needing to become full-stack developers.\n\n\n\n\n\n\nWho Should Use This\n\n\n\nThis guide is for: - Researchers building their first Quarto dashboard and unsure how to manage layout, theming, or responsiveness. - Teams who need to maintain visual consistency across multiple dashboards or reports, even when switching between R and Python. - Educators and applied scientists working with supply chain, sustainability, or policy-related data who want to focus on analysis — not front-end code.\nWe focus first on static and semi-interactive dashboards that can be hosted freely, and later show how to scale to full interactive apps with Shiny or Python backends. Future updates will explore how to containerize these dashboards for scalable, version-controlled deployment."
+    "text": "Most of us aren’t designers. Decisions about layout, structure, color use, and interaction are often gut feelings — not guided by user experience principles.\n\nAccessibility often gets overlooked, not because we don’t care — but because it’s just not built into the tutorials or the default tools we’re using.\n\nFrameworks like R and Python are brilliant for analysis — but let’s be honest, they weren’t made for web design. That means even simple changes like customizing color contrast or responsive layout require digging deep into documentation.\nIf you’re working in a research group or multi-stakeholder network, keeping visual consistency across different dashboards (using Streamlit, Dash, Shiny, etc.) becomes a branding nightmare.\nHosting is another pain point — pricing models are opaque, and it’s hard to budget when costs scale based on interaction or traffic.\nInteractive dashboards break a lot of standard web navigation. Try pressing “Back” in a multi-tab dashboard — it doesn’t work the way people expect.\n\nStill, I believe dashboards can be simple, powerful, and human-centered — especially when used to communicate sustainability work that affects policy, education, and everyday decision-making.\n\n\n\n\n\n\nWho This Is For\n\n\n\nThis guide is for anyone trying to: - Build their first real dashboard using Quarto (or streamline a messy one). - Maintain visual consistency and clarity across multiple projects or teams — whether you’re using R, Python, or both. - Make your work not just visible, but understandable to collaborators, decision-makers, and students.\nI’m especially focused on dashboards that can be rendered statically (and freely hosted), but this will grow into a framework for fully interactive, containerized apps that we can deploy and maintain without needing cloud subscriptions.\nThis isn’t about being perfect. It’s about being clear — and helping the work speak for itself."
   },
   {
-    "objectID": "dash03.html",
-    "href": "dash03.html",
-    "title": "Embedding visualisations in a generic webpage",
+    "objectID": "ExampleDash02.html",
+    "href": "ExampleDash02.html",
+    "title": "Plots",
     "section": "",
-    "text": "Of course, you can also just embed visualisations in a generic Quarto html document, without using their dashboard layout. There are some great options available when working with the article layout option, that can allow you to create an engaging and interactive data story."
+    "text": "+— title: “Embedding html figures” format: dashboard: scrolling: true theme: - litera - custom.scss —"
   },
   {
-    "objectID": "dash03.html#source-data",
-    "href": "dash03.html#source-data",
-    "title": "Embedding visualisations in a generic webpage",
-    "section": "Source data",
-    "text": "Source data\nThis data is from the paper Reconciling fast and slow cooling during planetary formation as recorded in the main group pallasites, Earth and Planetary Science Letters, Volume 618, 2023, by M. Murphy Quinlan, A.M. Walker, and C.J. Davies"
+    "objectID": "ExampleDash02.html#row",
+    "href": "ExampleDash02.html#row",
+    "title": "Plots",
+    "section": "Row",
+    "text": "Row\n\nThe Bokeh library allows you to save figures as html files, with limited in-browser interactivity. These figures can be saved as html output, which can then be included as a figure in your Quarto document or dashboard as an iframe component. While this is not ideal for fluid layout (it can be challenging to resize the iframe and embedded content correctly in order to fit these nicely), it does allow for inclusion of alternative text within the iframe tag."
   },
   {
-    "objectID": "dash03.html#embedded-html-figures",
-    "href": "dash03.html#embedded-html-figures",
-    "title": "Embedding visualisations in a generic webpage",
-    "section": "Embedded html figures",
-    "text": "Embedded html figures\n\n\n\n\nThis is an embedded html figure built with Bokeh\n\n\n\nInteractive html figures, for example those made with the Bokeh library can be embedded as figures. Make sure to set the figure width and height when exporting from Bokeh, and to use sensible dimensions when adding the figure. The figure above is set into a column environment."
+    "objectID": "ExampleDash02.html#row-1",
+    "href": "ExampleDash02.html#row-1",
+    "title": "Plots",
+    "section": "Row",
+    "text": "Row"
   },
   {
-    "objectID": "dash03.html#using-libraries-to-create-figures-embedded-in-the-document",
-    "href": "dash03.html#using-libraries-to-create-figures-embedded-in-the-document",
-    "title": "Embedding visualisations in a generic webpage",
-    "section": "Using libraries to create figures embedded in the document",
-    "text": "Using libraries to create figures embedded in the document\nYou can also create plots on render with libraries such as Plotly Express which again allow limited interactivity without the need of a server. The main difference between using the Quarto website layout instead of a dashboard layout is that by default, the website will show the code being used.\nFor example:\n\nPlotData\n\n\n\nfig = px.scatter(data, x=\"avg_r\", y=\"actual_volume\",color=\"Result\",symbol=\"Result\",\n                marginal_x=\"histogram\",marginal_y=\"rug\",log_y=True,\n                color_discrete_sequence=px.colors.qualitative.Vivid, opacity=0.5,\n                labels={\n                     \"avg_r\": \"Mean intrusion radius (m)\",\n                     \"actual_volume\": \"Intrusion volume (m^3)\",\n                     \"Result\": \"Model result\"\n                 },).update_layout(\n    template='plotly_white'\n)\n\nfig.show()\n\n        \n        \n        \n\n\n                            \n                                            \n\n\n\n\n\nshow(display_data, lengthMenu=[10, 20, 50, 100])\n\n\n\n    \n    \n    \n        \n        \n        \n        \n        \n        \n        \n        \n    \n    \n   \n    \n      \n  \n        \n    \n    \n  \n        \n    \n    \n  \n        \n    \n      \n  \n        \n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n        \n    \n\n\n    Loading ITables v2.4.0 from the internet...\n    (need help?)\n    \n\n\n\n\n\n\n\nIn the case of wanting to share a finished piece of data communication, this might not be desirable. This is easily remedied by passing the argument #| echo: false to the code block. This can also be set for the entire page, leading to output like below:\n\nPlotData\n\n\n\n\n                            \n                                            \n\n\n\n\n\n\n\n\n    \n    \n    \n        \n        \n        \n        \n        \n        \n        \n        \n    \n    \n   \n    \n      \n  \n        \n    \n    \n  \n        \n    \n    \n  \n        \n    \n      \n  \n        \n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n        \n    \n\n\n    Loading ITables v2.4.0 from the internet...\n    (need help?)\n    \n\n\n\n\n\n\n\n\nPros and Cons\nThis might not have the usual look of organised cards as you have come to expect from a dashboard, but can give a very clean and professional appearance to your data story relatively quickly. Certain features are only available through the dashboard layout option, such as the value cards in Example Dash 2: Data breakdown\nYou might need to do some experimentation to discover what layout best suits your data and the message you are trying to convey.\n\nDo you expect users to mainly visit the site via computer or mobile phone?\nHow much interactivity do you require vs. how much text content do you anticipate?\nWhat format are your figures in, and are they better showcased by either layout?\nWhich layout allows you to follow better accessibility practice?"
+    "objectID": "ExampleDash02.html#row-2",
+    "href": "ExampleDash02.html#row-2",
+    "title": "Plots",
+    "section": "Row",
+    "text": "Row\n\ndict(\n  icon = \"rulers\",\n  color = \"primary\",\n  value = mean_radius\n)\n\n{'icon': 'rulers', 'color': 'primary', 'value': '106m'}\n\n\n\ndict(\n  icon = \"thermometer-half\",\n  color = \"primary\",\n  value = mean_bg_temp\n)\n\n{'icon': 'thermometer-half', 'color': 'primary', 'value': '954K'}\n\n\n\ndict(\n  icon = \"pie-chart-fill\",\n  color = \"info\",\n  value = mean_rounded\n)\n\n{'icon': 'pie-chart-fill', 'color': 'info', 'value': '70 vol.%'}\n\n\n\ndict(\n  icon = \"pie-chart-fill\",\n  color = \"info\",\n  value = mean_zoned\n)\n\n{'icon': 'pie-chart-fill', 'color': 'info', 'value': '36 vol.%'}"
+  },
+  {
+    "objectID": "ExampleDash02.html#row-3",
+    "href": "ExampleDash02.html#row-3",
+    "title": "Plots",
+    "section": "Row",
+    "text": "Row\n\nshow(data, lengthMenu=[10, 20, 50, 100])\n\n\n\n    \n    \n    \n        \n        \n        \n        \n        \n        \n        \n        \n    \n    \n   \n    \n      \n  \n        \n    \n    \n  \n        \n    \n    \n  \n        \n    \n      \n  \n        \n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n        \n    \n\n\n    Loading ITables v2.4.0 from the internet...\n    (need help?)"
+  },
+  {
+    "objectID": "Dashboard.html",
+    "href": "Dashboard.html",
+    "title": "Simple Dashboard Layout",
+    "section": "",
+    "text": "plot(cars$speed, type = \"l\", main = \"Line Plot of Speed\")\n\n\n\n\n\n\n\n\n\n\n\n\nbarplot(table(cut(cars$speed, 5)), main = \"Barplot of Speed Bins\")"
+  },
+  {
+    "objectID": "Dashboard.html#row",
+    "href": "Dashboard.html#row",
+    "title": "Simple Dashboard Layout",
+    "section": "",
+    "text": "plot(cars$speed, type = \"l\", main = \"Line Plot of Speed\")\n\n\n\n\n\n\n\n\n\n\n\n\nbarplot(table(cut(cars$speed, 5)), main = \"Barplot of Speed Bins\")"
+  },
+  {
+    "objectID": "Dashboard.html#row-1",
+    "href": "Dashboard.html#row-1",
+    "title": "Simple Dashboard Layout",
+    "section": "Row",
+    "text": "Row\n\nColumn\n\nhist(cars$speed, main = \"Histogram of Speed\", col = \"skyblue\")\n\n\n\n\n\n\n\n\n\nboxplot(cars$speed, main = \"Boxplot of Speed\")\n\n\n\n\n\n\n\n\n\nplot(density(cars$speed), main = \"Density of Speed\")\n\n\n\n\n\n\n\n\n\n\nColumn\n\nplot(cars$speed, cars$dist, main = \"Speed vs Distance\", pch = 19)"
   },
   {
     "objectID": "analysis/plotly_plotting.html",
@@ -133,25 +161,60 @@
     "text": "import numpy as np\nimport matplotlib.pyplot as plt\nimport pandas as pd\nimport seaborn as sns\nimport plotly.express as px\n\n\n# Load in the data\ndata = pd.read_csv(\"data_raw/results_raw.csv\")\ndata = data[data.identifier == \"random\"]\n\n# Calculate rough background temp\ndata[\"mantle_temp\"] = (data[\"temp_top\"] + data[\"temp_bottom\"])/2\n\n# Calculate aspect ratio of intrusion shapes\ndata[\"r_z/r_x\"] = data[\"r_z\"]/data[\"r_x\"]\ndata[\"r_y/r_x\"] = data[\"r_y\"]/data[\"r_x\"]\ndata[\"unique/non-unique\"] = data[\"r_z/r_x\"]\ndata.loc[data.orientation == \"x=z\", \"unique/non-unique\"] = data[\"r_y/r_x\"]\n\ndata[\"avg_r\"] = (data[\"r_x\"] + data[\"r_y\"] + data[\"r_z\"])/3\ndata[\"non-uni\"] = data[\"r_x\"]\ndata[\"uni\"] = data[\"r_z\"]\ndata.loc[data.orientation == \"x=z\", \"uni\"] = data[\"r_y\"]\n\n\ndata.columns\n\nIndex(['Unnamed: 0.1', 'index', 'Unnamed: 0', 'ext_temp', 'temp_top',\n       'temp_bottom', 'int_temp', 'sample_time', 'identifier', 'r_x', 'r_y',\n       'r_z', 'metal_fraction', 'job_no', 'id', 'which_iter', 'boundary_cond',\n       'Nx', 'Ny', 'Nz', 'Lx', 'Ly', 'Lz', 'x_mid', 'y_mid', 'z_mid', 'T_L',\n       'T_S', 'cond_metal_s', 'cond_metal_l', 'cond_olivine', 'dens_liq_metal',\n       'dens_solid_metal', 'dens_olivine', 'heat_cap_liq_metal',\n       'heat_cap_solid_metal', 'heat_cap_ol', 'latent_heat', 'dt',\n       'iterations', 'save_iter', 'iteration_list', 'orientation', 'model_id',\n       'percent_rounded', 'percent_geochem_preserved', 'expected_vol',\n       'actual_volume', 'mean_it0', 'mean_it1', 'mean_it2', 'mean_it3',\n       'mantle_temp', 'r_z/r_x', 'r_y/r_x', 'unique/non-unique', 'avg_r',\n       'non-uni', 'uni'],\n      dtype='object')\n\n\n\nnew_data = data[[\"percent_rounded\", \"percent_geochem_preserved\", \"actual_volume\", \"avg_r\", 'non-uni', 'uni', 'mantle_temp','int_temp','mean_it3']]\n\n\nnew_data.to_csv(\"filtered_data.csv\")"
   },
   {
-    "objectID": "Dashboard.html",
-    "href": "Dashboard.html",
-    "title": "Simple Dashboard Layout",
+    "objectID": "dash03.html",
+    "href": "dash03.html",
+    "title": "Embedding visualisations in a generic webpage",
     "section": "",
-    "text": "plot(cars$speed, type = \"l\", main = \"Line Plot of Speed\")\n\n\n\n\n\n\n\n\n\n\n\n\nbarplot(table(cut(cars$speed, 5)), main = \"Barplot of Speed Bins\")"
+    "text": "Of course, you can also just embed visualisations in a generic Quarto html document, without using their dashboard layout. There are some great options available when working with the article layout option, that can allow you to create an engaging and interactive data story."
   },
   {
-    "objectID": "Dashboard.html#row",
-    "href": "Dashboard.html#row",
-    "title": "Simple Dashboard Layout",
-    "section": "",
-    "text": "plot(cars$speed, type = \"l\", main = \"Line Plot of Speed\")\n\n\n\n\n\n\n\n\n\n\n\n\nbarplot(table(cut(cars$speed, 5)), main = \"Barplot of Speed Bins\")"
+    "objectID": "dash03.html#source-data",
+    "href": "dash03.html#source-data",
+    "title": "Embedding visualisations in a generic webpage",
+    "section": "Source data",
+    "text": "Source data\nThis data is from the paper Reconciling fast and slow cooling during planetary formation as recorded in the main group pallasites, Earth and Planetary Science Letters, Volume 618, 2023, by M. Murphy Quinlan, A.M. Walker, and C.J. Davies"
   },
   {
-    "objectID": "Dashboard.html#row-1",
-    "href": "Dashboard.html#row-1",
-    "title": "Simple Dashboard Layout",
-    "section": "Row",
-    "text": "Row\n\nColumn\n\nhist(cars$speed, main = \"Histogram of Speed\", col = \"skyblue\")\n\n\n\n\n\n\n\n\n\nboxplot(cars$speed, main = \"Boxplot of Speed\")\n\n\n\n\n\n\n\n\n\nplot(density(cars$speed), main = \"Density of Speed\")\n\n\n\n\n\n\n\n\n\n\nColumn\n\nplot(cars$speed, cars$dist, main = \"Speed vs Distance\", pch = 19)"
+    "objectID": "dash03.html#embedded-html-figures",
+    "href": "dash03.html#embedded-html-figures",
+    "title": "Embedding visualisations in a generic webpage",
+    "section": "Embedded html figures",
+    "text": "Embedded html figures\n\n\n\n\nThis is an embedded html figure built with Bokeh\n\n\n\nInteractive html figures, for example those made with the Bokeh library can be embedded as figures. Make sure to set the figure width and height when exporting from Bokeh, and to use sensible dimensions when adding the figure. The figure above is set into a column environment."
+  },
+  {
+    "objectID": "dash03.html#using-libraries-to-create-figures-embedded-in-the-document",
+    "href": "dash03.html#using-libraries-to-create-figures-embedded-in-the-document",
+    "title": "Embedding visualisations in a generic webpage",
+    "section": "Using libraries to create figures embedded in the document",
+    "text": "Using libraries to create figures embedded in the document\nYou can also create plots on render with libraries such as Plotly Express which again allow limited interactivity without the need of a server. The main difference between using the Quarto website layout instead of a dashboard layout is that by default, the website will show the code being used.\nFor example:\n\nPlotData\n\n\n\nfig = px.scatter(data, x=\"avg_r\", y=\"actual_volume\",color=\"Result\",symbol=\"Result\",\n                marginal_x=\"histogram\",marginal_y=\"rug\",log_y=True,\n                color_discrete_sequence=px.colors.qualitative.Vivid, opacity=0.5,\n                labels={\n                     \"avg_r\": \"Mean intrusion radius (m)\",\n                     \"actual_volume\": \"Intrusion volume (m^3)\",\n                     \"Result\": \"Model result\"\n                 },).update_layout(\n    template='plotly_white'\n)\n\nfig.show()\n\n        \n        \n        \n\n\n                            \n                                            \n\n\n\n\n\nshow(display_data, lengthMenu=[10, 20, 50, 100])\n\n\n\n    \n    \n    \n        \n        \n        \n        \n        \n        \n        \n        \n    \n    \n   \n    \n      \n  \n        \n    \n    \n  \n        \n    \n    \n  \n        \n    \n      \n  \n        \n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n        \n    \n\n\n    Loading ITables v2.4.0 from the internet...\n    (need help?)\n    \n\n\n\n\n\n\n\nIn the case of wanting to share a finished piece of data communication, this might not be desirable. This is easily remedied by passing the argument #| echo: false to the code block. This can also be set for the entire page, leading to output like below:\n\nPlotData\n\n\n\n\n                            \n                                            \n\n\n\n\n\n\n\n\n    \n    \n    \n        \n        \n        \n        \n        \n        \n        \n        \n    \n    \n   \n    \n      \n  \n        \n    \n    \n  \n        \n    \n    \n  \n        \n    \n      \n  \n        \n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n        \n    \n\n\n    Loading ITables v2.4.0 from the internet...\n    (need help?)\n    \n\n\n\n\n\n\n\n\nPros and Cons\nThis might not have the usual look of organised cards as you have come to expect from a dashboard, but can give a very clean and professional appearance to your data story relatively quickly. Certain features are only available through the dashboard layout option, such as the value cards in Example Dash 2: Data breakdown\nYou might need to do some experimentation to discover what layout best suits your data and the message you are trying to convey.\n\nDo you expect users to mainly visit the site via computer or mobile phone?\nHow much interactivity do you require vs. how much text content do you anticipate?\nWhat format are your figures in, and are they better showcased by either layout?\nWhich layout allows you to follow better accessibility practice?"
+  },
+  {
+    "objectID": "ExampleDash03.html",
+    "href": "ExampleDash03.html",
+    "title": "Embedding visualisations in a generic webpage",
+    "section": "",
+    "text": "Of course, you can also just embed visualisations in a generic Quarto html document, without using their dashboard layout. There are some great options available when working with the article layout option, that can allow you to create an engaging and interactive data story."
+  },
+  {
+    "objectID": "ExampleDash03.html#source-data",
+    "href": "ExampleDash03.html#source-data",
+    "title": "Embedding visualisations in a generic webpage",
+    "section": "Source data",
+    "text": "Source data\nThis data is from the paper Reconciling fast and slow cooling during planetary formation as recorded in the main group pallasites, Earth and Planetary Science Letters, Volume 618, 2023, by M. Murphy Quinlan, A.M. Walker, and C.J. Davies"
+  },
+  {
+    "objectID": "ExampleDash03.html#embedded-html-figures",
+    "href": "ExampleDash03.html#embedded-html-figures",
+    "title": "Embedding visualisations in a generic webpage",
+    "section": "Embedded html figures",
+    "text": "Embedded html figures\n\n\n\n\nThis is an embedded html figure built with Bokeh\n\n\n\nInteractive html figures, for example those made with the Bokeh library can be embedded as figures. Make sure to set the figure width and height when exporting from Bokeh, and to use sensible dimensions when adding the figure. The figure above is set into a column environment."
+  },
+  {
+    "objectID": "ExampleDash03.html#using-libraries-to-create-figures-embedded-in-the-document",
+    "href": "ExampleDash03.html#using-libraries-to-create-figures-embedded-in-the-document",
+    "title": "Embedding visualisations in a generic webpage",
+    "section": "Using libraries to create figures embedded in the document",
+    "text": "Using libraries to create figures embedded in the document\nYou can also create plots on render with libraries such as Plotly Express which again allow limited interactivity without the need of a server. The main difference between using the Quarto website layout instead of a dashboard layout is that by default, the website will show the code being used.\nFor example:\n\nPlotData\n\n\n\nfig = px.scatter(data, x=\"avg_r\", y=\"actual_volume\",color=\"Result\",symbol=\"Result\",\n                marginal_x=\"histogram\",marginal_y=\"rug\",log_y=True,\n                color_discrete_sequence=px.colors.qualitative.Vivid, opacity=0.5,\n                labels={\n                     \"avg_r\": \"Mean intrusion radius (m)\",\n                     \"actual_volume\": \"Intrusion volume (m^3)\",\n                     \"Result\": \"Model result\"\n                 },).update_layout(\n    template='plotly_white'\n)\n\nfig.show()\n\n        \n        \n        \n\n\n                            \n                                            \n\n\n\n\n\nshow(display_data, lengthMenu=[10, 20, 50, 100])\n\n\n\n    \n    \n    \n        \n        \n        \n        \n        \n        \n        \n        \n    \n    \n   \n    \n      \n  \n        \n    \n    \n  \n        \n    \n    \n  \n        \n    \n      \n  \n        \n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n        \n    \n\n\n    Loading ITables v2.4.0 from the internet...\n    (need help?)\n    \n\n\n\n\n\n\n\nIn the case of wanting to share a finished piece of data communication, this might not be desirable. This is easily remedied by passing the argument #| echo: false to the code block. This can also be set for the entire page, leading to output like below:\n\nPlotData\n\n\n\n\n                            \n                                            \n\n\n\n\n\n\n\n\n    \n    \n    \n        \n        \n        \n        \n        \n        \n        \n        \n    \n    \n   \n    \n      \n  \n        \n    \n    \n  \n        \n    \n    \n  \n        \n    \n      \n  \n        \n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n        \n    \n\n\n    Loading ITables v2.4.0 from the internet...\n    (need help?)\n    \n\n\n\n\n\n\n\n\nPros and Cons\nThis might not have the usual look of organised cards as you have come to expect from a dashboard, but can give a very clean and professional appearance to your data story relatively quickly. Certain features are only available through the dashboard layout option, such as the value cards in Example Dash 2: Data breakdown\nYou might need to do some experimentation to discover what layout best suits your data and the message you are trying to convey.\n\nDo you expect users to mainly visit the site via computer or mobile phone?\nHow much interactivity do you require vs. how much text content do you anticipate?\nWhat format are your figures in, and are they better showcased by either layout?\nWhich layout allows you to follow better accessibility practice?"
   },
   {
     "objectID": "resources.html",
