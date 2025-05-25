@@ -1,0 +1,111 @@
+--- 
+title: "Embedding html figures"
+format:
+    dashboard:
+        scrolling: true 
+        theme: 
+        - litera
+        - custom.scss
+--- 
+
+# Plots
+
+## Row {height=170px}
+
+::: {.card title="Embedding html graphics"}
+
+The [Bokeh library](https://bokeh.org/) allows you to save figures as html files, with limited in-browser interactivity. These figures can be saved as html output, which can then be included as a figure in your Quarto document or dashboard as an `iframe` component. While this is not ideal for fluid layout (it can be challenging to resize the `iframe` and embedded content correctly in order to fit these nicely), it does allow for inclusion of alternative text within the `iframe` tag.
+
+:::
+
+## Row {height=540px}
+
+::: {.card}
+# Reconciling fast and slow cooling in pallasite meteorites
+
+<iframe width="1100px" height="450px" src="./figs/three_panel_plot.html">
+Alt text: three scatterplot graphs.</iframe>
+
+:::
+
+::: {.card width=30% title="Data source"}
+
+This data is from the paper *Reconciling fast and slow cooling during planetary formation as recorded in the main group pallasites*, Earth and Planetary Science Letters, Volume 618, 2023, by M. Murphy Quinlan, A.M. Walker, and C.J. Davies
+
+[![](https://zenodo.org/badge/DOI/10.1016/j.epsl.2023.118284.svg)](https://doi.org/10.1016/j.epsl.2023.118284)
+
+You can find the tabulated data in the [data breakdown section](#data-breakdown).
+
+:::
+
+
+# Data breakdown
+
+```{python}
+#| echo: false
+from itables import show
+import pandas as pd
+data = pd.read_csv("figs/filtered_data.csv")
+columns={"percent_rounded": "Vol. % rounded", 'percent_geochem_preserved': "Vol. % zoned",
+        'actual_volume': "Volume (m$^3$)", 'avg_r': "Mean radius (m)",
+        'mantle_temp': "Mean initial background mantle temp. (K)", 
+        'int_temp': "Mean initial intrusion temp. (K)"}
+
+data = data.rename(columns=columns, errors="raise")
+
+data = data[["Vol. % rounded", "Vol. % zoned", "Volume (m$^3$)", "Mean radius (m)", "Mean initial background mantle temp. (K)", "Mean initial intrusion temp. (K)"]]
+
+
+mean_radius = f"{int(data["Mean radius (m)"].mean())}m"
+mean_bg_temp = f"{int(data["Mean initial background mantle temp. (K)"].mean())}K"
+mean_rounded = f"{int(data["Vol. % rounded"].mean())} vol.%"
+mean_zoned = f"{int(data["Vol. % zoned"].mean())} vol.%"
+```
+
+## Row {height=200px}
+
+```{python}
+#| content: valuebox
+#| title: "Mean intrusion radius"
+dict(
+  icon = "rulers",
+  color = "primary",
+  value = mean_radius
+)
+```
+
+```{python}
+#| content: valuebox
+#| title: "Mean mantle temperature"
+dict(
+  icon = "thermometer-half",
+  color = "primary",
+  value = mean_bg_temp
+)
+```
+
+```{python}
+#| content: valuebox
+#| title: "Mean proportion of the intrusion with rounded olivine"
+dict(
+  icon = "pie-chart-fill",
+  color = "info",
+  value = mean_rounded
+)
+```
+
+```{python}
+#| content: valuebox
+#| title: "Mean proportion of the intrusion with zoned olivine"
+dict(
+  icon = "pie-chart-fill",
+  color = "info",
+  value = mean_zoned
+)
+```
+
+## Row {height=400px}
+
+```{python}
+show(data, lengthMenu=[10, 20, 50, 100])
+```

@@ -1,0 +1,36 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Better basic dashboards"
+  navbar:
+    left:
+      - href: about.qmd
+        text: Getting Started
+      - href: using-quarto.qmd
+        text: Guidance for Quarto
+      - href: resources.qmd
+        text: Resources
+      - href: dash01.qmd
+        text: Example Dash 1
+      - href: dash02.qmd
+        text: Example Dash 2
+      - href: dash03.qmd
+        text: Example Dash 3
+  page-footer:
+    background: secondary
+    left: Copyright 2025, Christiaan Verhoef
+    right: This website is built with {{< fa heart title="a heart" >}}, [{{< fa brands github title="GitHub octocat logo" >}}](https://github.com/murphyqm/better-basic-dashboards){target=_blank}, and [Quarto](https://quarto.org/){target=_blank}
+  announcement: 
+    icon: info-circle
+    dismissable: true
+    content: "**Under Construction** - this resource is still a draft, please be aware content is not final."
+    type: info
+
+format:
+  html:
+    theme: 
+      - litera
+      - custom.scss
+    toc: true

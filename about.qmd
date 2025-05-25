@@ -1,0 +1,70 @@
+# Getting Started
+
+Webapps and dashboards are becoming an ever more popular way to present and share the results of data science projects. While dashboards can be a great way to communicate findings, they also present a range of challenges when it comes to accessible UI design.
+
+## Web accessibility
+
+To start off, I'd really recommend you read [this brief blogpost](https://www.jumpingrivers.com/blog/importance-accessibility-standards-shiny-web/) on web accessibility standards from [Jumping Rivers](https://www.jumpingrivers.com/blog).
+
+Once you've scrolled through, [this website](https://www.w3.org/WAI/fundamentals/) provides you with much more detailed information, including introductory videos. This resource contains a slightly overwhelming amount of information, so I would recommend dipping in and out.
+
+Ok, so what does this mean for you? Well, many web apps built with common R and Python libraries **do not meet WCAG standards out-of-the-box**. How can you test this? If you've built a web app, you can toss the URL into a tool like [WAVE](https://wave.webaim.org/) and see how many error messages you get.
+
+## Accessibility concerns
+
+Ok, so what does this mean for you?
+
+1. By default, without customising css and html content, it is likely your Python or R webapp does not meet accessibility guidelines (see this great [deep dive into RShiny accessibility](https://www.jumpingrivers.com/blog/accessible-shiny-standards-wcag/) again from Jumping Rivers).
+2. This means that some visitors to your website, particularly those using a screen reader, may not be able to parse your content.
+3. It also might mean that your webapp displays poorly, with low contrast, and too-small text font, making it difficult to navigate by sight.
+
+We should be building a web that is accessible and inclusive to all. You are likely building your webapp because you want to share the results of your research: don't cut off a cohort of your audience by forgetting accessibility! Also, it's very likely that you are breaching your institution or funders requirements by producing web output that is not accessible!
+
+::: {.column-margin}
+
+## Quick start
+
+If you already have a webapp, use [WAVE](https://wave.webaim.org/)
+to assess it's current accessibility. 
+
+If you haven't a webapp yet, read the [UK Government Design Principles](https://www.gov.uk/guidance/government-design-principles)
+before you start designing one. Then, head over to  [the Guidance page](using-quarto.qmd).
+
+:::
+
+## Branding and theming
+
+Webapps can often look amateurish as researchers are not UI/UX designers. One way to improve the appearance of a specific research group's webapps is to implement a standard style guide that applies across all apps.
+
+This can be as simple as:
+
+- Defining what theme should be used as standard across all apps (for example, [Bootswatch](https://bootswatch.com/) themes are available across RShiny, Shiny for Python, and Dash apps), which quickly provides a cohesive appearance and outsources design choices.
+- Providing custom scss and css theming files to build on top of the default base theme, for example pulling in branding colours. For example, you may want the navigation bar to always have a white background, so that your logo can be placed on it while adhering to branding guidelines.
+- Providing a footer template with correct copyright and license notices.
+
+# A new way of thinking about webapps
+
+Webapps are frequently used as they allow for interactivity with research data. However, webapps also often contain a lot of text and other contextual material that does not depend on the interactivity aspects of the app.
+
+- Is it possible to migrate this information to an easier-to-navigate simple website, and instead embed some of the interactive parts (e.g. an embedded interactive map within a website)?
+- Might the interactivity be possible to render in-browser without the costly requirements of hosting an entire webapp (for example on Azure)?
+
+## Where to begin?
+
+::: {.callout-note collapse="true"}
+## I already have a webapp that I want to improve
+
+Use the [WAVE](https://wave.webaim.org/) tool to assess your webapp's accessibility.
+
+Fixing these issus can be a challenge: different libraries and frameworks for building apps will have different ways of accessing and modifying things like HTML tags. Again, see this [deep dive into RShiny accessibility](https://www.jumpingrivers.com/blog/accessible-shiny-standards-wcag/) to see how you might want to approach this.
+
+:::
+
+::: {.callout-note collapse="true"}
+## I'm building a new webapp
+
+Then you're the ideal audience for this resource.
+
+First, read through the [UK Government Design Principles](https://www.gov.uk/guidance/government-design-principles) and think about how this could be applied to your prospective webapp. Then, head over to [Guidance](using-quarto.qmd) to see our step-by-step guide.
+:::
+

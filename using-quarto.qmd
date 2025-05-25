@@ -1,0 +1,152 @@
+# How to build a static dashboard and website with quarto
+
+The [Quarto docs](https://quarto.org/docs/websites/) are a great resource, so instead of just reinventing the wheel here, I will discuss how to customise the settings available, and combine both the website and dashboard layout options.
+
+## 1. Basic website setup
+
+In addition to the general set-up guidance for building a website with Quarto, there are some things you'll want to add to your configuration in order to ensure theming across your website and dashboard is consistent.
+
+* First: pick a default [Bootswatch theme](https://bootswatch.com/) to modify.
+* Then, pick the colour scheme you want to use (see [Resources](resources.qmd) for a list of tools to help with this).
+* Pick the default font you want to use, for example from [Google Fonts](https://fonts.google.com/).
+
+Once you've made your decision with all the above, you can start to add these to your custom style files. To do this, you need:
+
+* The hex codes of your chosen colours.
+* The "embed code" of your chosen font (you can find this on Google fonts by clicking "Get font" and then "embed").
+* An scss file.
+
+See [these lecture slides](https://ucsb-meds.github.io/customizing-quarto-websites/) for an in-depth discussion of how to create custom style files for more information.
+
+For example, I've picked the ["Nunito" font](https://fonts.google.com/specimen/Nunito?query=nunito), and the following colour scheme (plus white and grey):
+
+<!-- Coolors Palette Widget -->
+<script data-id="047752929704321745">new CoolorsPaletteWidget("047752929704321745", ["64286f","2b7043","125f70","D9831F","7c3689"]); </script>
+
+
+My scss file needs to include both the font (this is at the very top of the file, starting with `@import`) and the colour codes to form my default palette. Again, read [these lecture slides](https://ucsb-meds.github.io/customizing-quarto-websites/) for more context. Click below to see the style file for this website.
+
+::: {.callout-note appearance="simple" collapse="true"}
+# `custom.scss` file
+
+```scss
+
+/*-- scss:defaults --*/
+
+// Import Google fonts
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+$font-family-sans-serif: "Nunito";
+$font-family-serif: "Nunito";
+$font-size-root: "16px";
+
+
+// scss-docs-start theme-color-variables
+$primary:       #64286f !default;
+$secondary:     #FFF !default;
+$success:       #2b7043 !default;
+$info:          #125f70 !default;
+$warning:       #D9831F !default;
+$danger:        #7c3689 !default;
+$light:         #e9dded !default;
+$dark:          #4c1b56 !default;
+// scss-docs-end theme-color-variables
+
+// scss-docs-start theme-colors-map
+$theme-colors: (
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark
+) !default;
+
+// colors
+
+$navbar-bg: $secondary;
+$navbar-fg: $primary;
+
+$link-color: $info;
+$hover-color: lighten($info, 40%);
+
+/*-- scss:rules --*/
+.card-header {
+  background-color: lighten($danger, 40%);
+}
+
+.nav-item > a:hover {
+  color: $info;
+}
+
+.nav-link {
+  color: $danger;
+}
+
+.tabset .nav-link {
+  color: $danger;
+}
+
+
+```
+
+:::
+
+In your configuration file, `_quarto.yml`, you will need to point to the scss file. Click below to see the config file for this website.
+
+::: {.callout-note appearance="simple" collapse="true"}
+
+## `_quarto.yml` file
+
+```yml
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Better basic dashboards"
+  navbar:
+    left:
+      - href: about.qmd
+        text: Getting Started
+      - href: using-quarto.qmd
+        text: Guidance for Quarto
+      - href: resources.qmd
+        text: Resources
+  page-footer:
+    background: secondary
+    left: Copyright 2024, Maeve Murphy Quinlan
+    right: This website is built with {{< fa heart title="a heart" >}}, [{{< fa brands github title="GitHub octocat logo" >}}](https://github.com/murphyqm/better-basic-dashboards){target=_blank}, and [Quarto](https://quarto.org/){target=_blank}
+
+
+format:
+  html:
+    theme: 
+      - litera
+      - custom.scss
+    toc: true
+
+
+```
+
+:::
+
+
+## 2. Create your dashboard
+
+Quarto now provides a very basic [dashboard-building functionality](https://quarto.org/docs/dashboards/).
+While the functionality is quite limited, the fact it 1. works with a selection of different languages
+(Python, R, Julia, and Observable), 2. with a selection of different components and libraries
+(Plotly, Leaflet, Jupyter Widgets, htmlwidgets; static graphics (Matplotlib, Seaborn, ggplot2, etc.)),
+and 3. separates out web design from data visualisation makes it a very useful tool.
+
+Dashboards can be built from Jupyter notebooks or plain `.qmd` files. The following is the workflow I've found
+to work well for Python dashboards; this is just personal opinion!
+
+1. Create a Python environment with Jupyter and all my required Python libraries (Numpy, Plotly, Pandas, itables etc.). I've been giving [Pixi](https://pixi.sh/latest/) a go recently, but use your favourite package manager.
+2. Develop the visualisations and data tables etc. that you want to show in your Jupyter notebook.
+3. When you're ready to build the dashboard, copy your Python snippets across to a `.qmd` file with your dashboard layout commands ([see the docs](https://quarto.org/docs/dashboards/)). I migrate from Jupyter notebook so that: 1. I don't have to add the `--execute` command when I render the webapp, and 2. for more streamlined version control.
+4. Try rendering your dashboard on its own to check that it works: `quarto render dashboard-name.qmd`.
+5. Add it to the navigation menu list in your `_quarto.yml` file. When you use `quarto render` in the project directory (*from your active Python environment with all required libraries installed*) you should return a website including a page that holds your dashboard, themed to match the rest of your website.

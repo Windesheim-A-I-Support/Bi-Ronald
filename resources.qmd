@@ -1,0 +1,35 @@
+# Resources and reading
+
+## Accessibility Tools
+
+These are just a small selection of the tools I use very regularly; many many more exist, and my choice of the following is purely personal preference.
+
+### Accessibility checks
+
+- [WAVE](https://wave.webaim.org/): this web accessibility evaluation tool allows you to simply plug in a URL and see potential errors and issues. It's also available as a [browser plugin](https://wave.webaim.org/extension/).
+- [Chrome developer tools](https://developer.chrome.com/docs/devtools) (also opened from Chrome with *ctrl+shift+i*): the mobile layout preview is particularly useful for checking any layout issues in your app. Similar tools [exist for Firefox](https://firefox-source-docs.mozilla.org/devtools-user/), I just haven't used these for website/webapp testing.
+
+### Colour for data viz
+
+- [Viz palette](https://projects.susielu.com/viz-palette), a tool to assess your colour choices. This [explanatory article](https://medium.com/@Elijah_Meeks/viz-palette-for-data-visualization-color-8e678d996077) is worth a read too.
+- [Colorgorical](https://gramaz.io/colorgorical/), a tool for creating colour palettes, and the associated [paper](http://vrl.cs.brown.edu/color/pdf/colorgorical.pdf?v=5dd92af6d1e6c5584236275adc769e82).
+- [Chroma.js Color Palette Helper](https://gka.github.io/palettes/#/9|s|00429d,96ffea,ffffe0|ffffe0,ff005e,93003a|1|1)
+
+## Guides to using Quarto
+
+While the [Quarto documentation](https://quarto.org/docs/guide/) is fantastic, I found the following resources really
+useful when figuring out how to use Quarto as a basis for custom websites and static dashboards.
+
+- [Lecture slides: "Customizing Quarto Websites"](https://ucsb-meds.github.io/customizing-quarto-websites/). These slides walk you through practicalities like setting up custom fonts from Google Fonts, and delves into Sass, CSS, and HTML5.
+
+## General UI/UX design articles
+
+- [Color in UI Design: A (Practical) Framework](https://www.learnui.design/blog/color-in-ui-design-a-practical-framework.html)
+
+## Other colour tools
+
+Please note that good, accessible colour palettes for web design are not always going to be the same as
+good, accessible colour palettes for data visualisation!
+
+- [Data color picker](https://www.learnui.design/tools/data-color-picker.html#palette)
+- [Accessible color palette generator](https://venngage.com/tools/accessible-color-palette-generator)

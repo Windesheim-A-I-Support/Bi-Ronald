@@ -1,0 +1,79 @@
+--- 
+title: "Example test dashboard"
+format:
+    dashboard:
+        theme: 
+        - litera
+        - custom.scss
+--- 
+
+# Plotting with Plotly
+
+```{python}
+
+#| echo: false
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
+import plotly.express as px
+from itables import show
+
+data = pd.read_csv("figs/filtered_data.csv")
+display_data = pd.read_csv("figs/filtered_data.csv")
+data["Unique/Non-unique axis"] = data['uni']/data["non-uni"]
+
+zoning_bins = [-np.inf, 89.5, np.inf]
+zoning_labels = ["Fail", "Pass"]
+data["zoning"] = pd.cut(data.percent_geochem_preserved,zoning_bins, labels=zoning_labels)
+
+rounding_bins = [-np.inf, 39.5, np.inf]
+rounding_labels = ["Fail", "Pass"]
+data["rounding"] = pd.cut(data.percent_rounded,rounding_bins, labels=zoning_labels)
+
+data["Result"] = (data["zoning"]=="Pass") * (data["rounding"]=="Pass")
+data.Result= data.Result.replace({True: "Pass", False: "Fail"})
+```
+
+## Row {height=100%}
+
+::: {.card title="Building dashboards with Python" width=30%}
+
+This dashboard uses the [Plotly Express](https://plotly.com/python/plotly-express/) in Python to create figures that are built at the time of rendering, and then offer a limited amount of interactivity when published as a static html website.
+
+This data is from the paper *Reconciling fast and slow cooling during planetary formation as recorded in the main group pallasites*, Earth and Planetary Science Letters, Volume 618, 2023, by M. Murphy Quinlan, A.M. Walker, and C.J. Davies
+
+[![](https://zenodo.org/badge/DOI/10.1016/j.epsl.2023.118284.svg)](https://doi.org/10.1016/j.epsl.2023.118284)
+
+:::
+
+
+```{python}
+
+fig = px.scatter(data, x="avg_r", y="actual_volume",color="Result",symbol="Result",
+                marginal_x="histogram",marginal_y="rug",log_y=True,
+                color_discrete_sequence=px.colors.qualitative.Vivid, opacity=0.5,
+                labels={
+                     "avg_r": "Mean intrusion radius (m)",
+                     "actual_volume": "Intrusion volume (m^3)",
+                     "Result": "Model result"
+                 },).update_layout(
+    template='plotly_white'
+)
+
+fig.show()
+```
+
+
+
+# Underlying data
+
+
+
+::: {.card }
+
+```{python}
+show(display_data, lengthMenu=[10, 20, 50, 100])
+```
+
+:::

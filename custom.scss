@@ -1,0 +1,57 @@
+/*-- scss:defaults --*/
+
+// Import Google fonts
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+$font-family-sans-serif: "Nunito";
+$font-family-serif: "Nunito";
+$font-size-root: "16px";
+
+
+// scss-docs-start theme-color-variables
+$primary:       #64286f !default;
+$secondary:     #FFF !default;
+$success:       #2b7043 !default;
+$info:          #125f70 !default;
+$warning:       #D9831F !default;
+$danger:        #7c3689 !default;
+$light:         #e9dded !default;
+$dark:          #4c1b56 !default;
+// scss-docs-end theme-color-variables
+
+// scss-docs-start theme-colors-map
+$theme-colors: (
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark
+) !default;
+
+// colors
+
+$navbar-bg: $secondary;
+$navbar-fg: $primary;
+
+$link-color: $info;
+$hover-color: lighten($info, 40%);
+
+/*-- scss:rules --*/
+.card-header {
+  background-color: lighten($danger, 40%);
+}
+
+.nav-item > a:hover {
+  color: $info;
+}
+
+.nav-link {
+  color: $danger;
+}
+
+.tabset .nav-link {
+  color: $danger;
+}

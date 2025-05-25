@@ -1,5 +1,51 @@
 ---
-title: "Dashboard"
-format: dashboard
+title: "Simple Dashboard Layout"
+format: 
+  html: 
+    dashboard: 
+      orientation: columns
+      vertical_layout: fill
+
 ---
 
+## Row {height=60%}
+
+### Column
+
+```{r}
+#| title: Line Plos
+plot(cars$speed, type = "l", main = "Line Plot of Speed")
+```
+
+### Column
+
+```{r}
+#| title: Bar Plot
+barplot(table(cut(cars$speed, 5)), main = "Barplot of Speed Bins")
+```
+
+## Row {height=40%}
+
+### Column {.tabset}
+
+```{r}
+#| title: Histogram
+hist(cars$speed, main = "Histogram of Speed", col = "skyblue")
+```
+
+```{r}
+#| title: Boxplot
+boxplot(cars$speed, main = "Boxplot of Speed")
+```
+
+```{r}
+#| title: Density
+plot(density(cars$speed), main = "Density of Speed")
+```
+
+### Column
+
+```{r}
+#| title: Scatterplot
+plot(cars$speed, cars$dist, main = "Speed vs Distance", pch = 19)
+```

@@ -1,0 +1,26 @@
+# Building better dashboards
+
+Webapps and dashboards are becoming an ever more popular way to present and share the results of data science projects. While dashboards can be a great way to communicate findings, they also present a range of challenges when it comes to accessible UI design.
+
+## Common issues with webapp design
+
+* Researchers are not web/UX designers, and have to "muddle through" when it comes to making decisions about colour schemes and navigation.
+    + Web accessibility requirements and how to implement features that meet these requirements are often not covered in framework documentation or tutorials.
+* Frameworks designed to allow easy porting of research analysis into webapps often use languages not specifically designed for web design (e.g. Python, R), making it sometimes difficult to customise variables required for good web accessibility.
+* Implementation of custom theming and css files can be varied across different frameworks (Shiny for R and Python, Dash, Streamlit), making it challenging to enforce a standard theme across a range of different web apps (for example, from a single research group).
+* Hosting of interactive webapps is expensive and difficult to budget for due to cloud subscription models.
+* Navigation of interactive webapps is more chalenging that a static web page as often times *back* and *forward* browser keys do not work as intended.
+
+While almost every issue around branding and accessibility can be met with some custom css and html, I wanted to put together some easy-to-implement tools for people building simple webapps in order to make customising appearance that little bit easier.
+
+::: {.callout-note icon=false}
+
+## Who is this useful for
+
+Hopefully this resource will be useful to you if you are building your first webapp, or if you have built a simple webapp before and struggled to apply consistent theming to it with custom css.
+
+Additionally, this should be useful to anyone (or any group) that needs to produce multiple web apps with a similar look/branding, but is using a range of different tools (so both R and Python, for example).
+
+So far, this resource mainly deals with basic webapps that can be rendered statically (so some minor interactivity in-browser); however, Quarto allows for fully-developed interactivity with packages like Shiny, so in the future I might develop this further to show how you can build a full dashboard/webapp and containerise it for hosting.
+
+:::
