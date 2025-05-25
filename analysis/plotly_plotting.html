@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.23">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>plotly_plotting – Better basic dashboards</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-226bd0f977fa82dfae4534cac220d79a.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-d43a2984dbd2709f2f155cabbf9425d1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <div id="quarto-announcement" data-announcement-id="198d89d1f91018c95cb562763dbae2f0" class="alert alert-info hidden"><i class="bi bi-info-circle quarto-announcement-icon"></i><div class="quarto-announcement-content">
+<p><strong>Under Construction</strong> - this resource is still a draft, please be aware content is not final.</p>
+</div><i class="bi bi-x-lg quarto-announcement-action"></i></div>
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Better basic dashboards</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">Getting Started</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../using-quarto.html"> 
+<span class="menu-text">Guidance for Quarto</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../dash01.html"> 
+<span class="menu-text">Example Dash 1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../dash02.html"> 
+<span class="menu-text">Example Dash 2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../dash03.html"> 
+<span class="menu-text">Example Dash 3</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<div id="dfbc3676" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cc66c841" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load in the data</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"filtered_data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="59ea6296" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+<pre><code>Index(['Unnamed: 0', 'percent_rounded', 'percent_geochem_preserved',
+       'actual_volume', 'avg_r', 'non-uni', 'uni', 'mantle_temp', 'int_temp',
+       'mean_it3'],
+      dtype='object')</code></pre>
+</div>
+</div>
+<div id="180a51cb" class="cell" data-execution_count="57">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"Unique/Non-unique axis"</span>] <span class="op">=</span> data[<span class="st">'uni'</span>]<span class="op">/</span>data[<span class="st">"non-uni"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="c9c71716" class="cell" data-execution_count="58">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>zoning_bins <span class="op">=</span> [<span class="op">-</span>np.inf, <span class="fl">89.5</span>, np.inf]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>zoning_labels <span class="op">=</span> [<span class="st">"Fail"</span>, <span class="st">"Pass"</span>]</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"zoning"</span>] <span class="op">=</span> pd.cut(data.percent_geochem_preserved,zoning_bins, labels<span class="op">=</span>zoning_labels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="003c308f" class="cell" data-execution_count="59">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>rounding_bins <span class="op">=</span> [<span class="op">-</span>np.inf, <span class="fl">39.5</span>, np.inf]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>rounding_labels <span class="op">=</span> [<span class="st">"Fail"</span>, <span class="st">"Pass"</span>]</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"rounding"</span>] <span class="op">=</span> pd.cut(data.percent_rounded,rounding_bins, labels<span class="op">=</span>zoning_labels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="e6417f77" class="cell" data-execution_count="60">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">"Result"</span>] <span class="op">=</span> (data[<span class="st">"zoning"</span>]<span class="op">==</span><span class="st">"Pass"</span>) <span class="op">*</span> (data[<span class="st">"rounding"</span>]<span class="op">==</span><span class="st">"Pass"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="f69a249c" class="cell" data-execution_count="61">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>zone_comp <span class="op">=</span> data[<span class="st">"zoning"</span>]<span class="op">==</span><span class="st">"Pass"</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>rounding_comp <span class="op">=</span> data[<span class="st">"rounding"</span>]<span class="op">==</span><span class="st">"Pass"</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="op">=</span> data[zone_comp <span class="op">&amp;</span> rounding_comp]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="398fbf8c" class="cell" data-execution_count="62">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data.Result<span class="op">=</span> data.Result.replace({<span class="va">True</span>: <span class="st">"Pass"</span>, <span class="va">False</span>: <span class="st">"Fail"</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="f781df5d" class="cell" data-execution_count="63">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> px.histogram(data, x<span class="op">=</span><span class="st">"avg_r"</span>, color<span class="op">=</span><span class="st">"Result"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>                            <div id="6cc4166d-8d3d-4059-bc10-90d53157b64e" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("6cc4166d-8d3d-4059-bc10-90d53157b64e")) {                    Plotly.newPlot(                        "6cc4166d-8d3d-4059-bc10-90d53157b64e",                        [{"alignmentgroup":"True","bingroup":"x","hovertemplate":"Result=Fail\u003cbr\u003eavg_r=%{x}\u003cbr\u003ecount=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Fail","marker":{"color":"#636efa","pattern":{"shape":""}},"name":"Fail","offsetgroup":"Fail","orientation":"v","showlegend":true,"x":[183.33333333333331,84.66666666666667,54.66666666666666,72.0,88.0,48.66666666666666,150.66666666666666,151.33333333333334,75.33333333333333,98.66666666666669,119.33333333333331,144.66666666666666,190.66666666666663,96.0,106.0,99.33333333333331,75.33333333333333,120.66666666666669,134.66666666666666,64.0,79.33333333333333,101.33333333333331,78.66666666666667,153.33333333333334,139.33333333333334,52.0,134.66666666666666,89.33333333333333,18.666666666666668,142.0,62.0,144.66666666666666,149.33333333333334,144.0,59.333333333333336,84.66666666666667,143.33333333333334,35.333333333333336,121.33333333333331,144.66666666666666,134.66666666666666,75.33333333333333,59.333333333333336,154.66666666666666,92.66666666666669,109.33333333333331,154.66666666666666,32.666666666666664,112.0,177.33333333333334,132.66666666666666,64.0,146.66666666666666,29.33333333333333,97.33333333333331,182.66666666666663,119.33333333333331,133.33333333333334,156.0,126.66666666666669,170.0,166.0,93.33333333333331,98.66666666666669,113.33333333333331,84.66666666666667,176.66666666666666,132.0,156.66666666666666,138.0,88.0,141.33333333333334,188.0,118.0,150.0,132.0,99.33333333333331,118.66666666666669,90.0,60.66666666666666,91.33333333333331,119.33333333333331,96.0,128.66666666666666,113.33333333333331,139.33333333333334,54.66666666666666,91.33333333333331,100.66666666666669,104.66666666666669,41.333333333333336,100.66666666666669,140.66666666666666,140.66666666666666,94.66666666666669,126.0,60.0,44.66666666666666,74.66666666666667,103.33333333333331,186.66666666666663,48.0,110.0,126.0,78.0,46.66666666666666,147.33333333333334,134.0,135.33333333333334,146.66666666666666,126.66666666666669,128.0,63.333333333333336,135.33333333333334,172.0,82.66666666666667,149.33333333333334,141.33333333333334,183.33333333333331,150.0,104.0,168.66666666666666,135.33333333333334,152.66666666666666,170.0,116.66666666666669,112.66666666666669,176.0,84.66666666666667,47.333333333333336,168.0,93.33333333333331,105.33333333333331,108.66666666666669,76.0,108.66666666666669,163.33333333333334,122.66666666666669,178.0,76.0,82.0,171.33333333333334,138.66666666666666,110.0,106.66666666666669,82.66666666666667,86.66666666666667,124.66666666666669,90.0,82.66666666666667,64.0,82.66666666666667,181.33333333333331,122.0,103.33333333333331,161.33333333333334,138.0,147.33333333333334,134.0,116.66666666666669,127.33333333333331,110.66666666666669,88.0,46.0,86.66666666666667,76.66666666666667,80.0,128.66666666666666,90.66666666666669,46.66666666666666,44.0,132.0,52.0,70.66666666666667,100.66666666666669,148.0,82.0,145.33333333333334,160.0,107.33333333333331,164.66666666666666,170.66666666666666,92.66666666666669,138.0,109.33333333333331,136.0,136.66666666666666,122.0,80.66666666666667,70.0,106.66666666666669,168.66666666666666,160.66666666666666,131.33333333333334,108.0,163.33333333333334,102.66666666666669,70.0,83.33333333333333,46.66666666666666,120.66666666666669,85.33333333333333,122.0,185.33333333333331,110.0,132.0,129.33333333333334,114.66666666666669,174.0,145.33333333333334,178.66666666666666,154.66666666666666,62.66666666666666,110.0,102.0,100.0,46.66666666666666,156.0,140.66666666666666,103.33333333333331,89.33333333333333,113.33333333333331,75.33333333333333,116.0,95.33333333333331,44.0,124.0,65.33333333333333,114.66666666666669,94.66666666666669,180.66666666666663,150.66666666666666,33.333333333333336,51.333333333333336,124.66666666666669,84.0,169.33333333333334,64.0,86.0,120.0,22.666666666666668,73.33333333333333,49.333333333333336,167.33333333333334,79.33333333333333,82.66666666666667,151.33333333333334,146.0,113.33333333333331,170.0,61.333333333333336,150.66666666666666,58.0,104.0,108.0,142.66666666666666,179.33333333333334,30.666666666666668,47.333333333333336,154.0,64.0,78.66666666666667,65.33333333333333,134.0,71.33333333333333,151.33333333333334,189.33333333333331,160.0,84.66666666666667,51.333333333333336,124.0,134.0,78.0,148.0,26.0,81.33333333333333,124.66666666666669,152.0,37.333333333333336,94.66666666666669,56.66666666666666,158.0,94.0,110.66666666666669,157.33333333333334,40.0,120.66666666666669,64.66666666666667,99.33333333333331,108.0,119.33333333333331,93.33333333333331,82.66666666666667,140.66666666666666,184.66666666666663,88.0,119.33333333333331,149.33333333333334,111.33333333333331,54.66666666666666,129.33333333333334,184.66666666666663,94.66666666666669,86.66666666666667,103.33333333333331,68.0,132.66666666666666,54.0,114.66666666666669,150.0,96.0,123.33333333333331,154.66666666666666,40.0,24.666666666666668,99.33333333333331,84.66666666666667,195.33333333333331,125.33333333333331,81.33333333333333,112.0,100.0,107.33333333333331,154.66666666666666,131.33333333333334,106.66666666666669,130.66666666666666,148.0,110.0,17.333333333333332,68.0,114.0,76.66666666666667,58.66666666666666,97.33333333333331,155.33333333333334,136.0,91.33333333333331,162.0,98.0,84.66666666666667,52.66666666666666,86.0,125.33333333333331,86.0,183.33333333333331,172.66666666666666,43.333333333333336,126.0,106.0,144.0,152.0,107.33333333333331,28.666666666666668,53.333333333333336,123.33333333333331,89.33333333333333,121.33333333333331,100.66666666666669,135.33333333333334,153.33333333333334,194.66666666666663,61.333333333333336,156.0,37.333333333333336,147.33333333333334,127.33333333333331,166.0,80.66666666666667,135.33333333333334,68.0,60.66666666666666,84.0,75.33333333333333,110.66666666666669,180.0,55.333333333333336,102.66666666666669,157.33333333333334,125.33333333333331,108.0,183.33333333333331,156.0,171.33333333333334,162.66666666666666,34.666666666666664,144.66666666666666,68.0,101.33333333333331,177.33333333333334,148.66666666666666,98.66666666666669,59.333333333333336,78.66666666666667,32.0,113.33333333333331,124.0,64.66666666666667,127.33333333333331,86.66666666666667,120.66666666666669,90.66666666666669,102.0,144.66666666666666,127.33333333333331,25.33333333333333,43.333333333333336,148.66666666666666,173.33333333333334,167.33333333333334,138.0,102.0,139.33333333333334,85.33333333333333,122.66666666666669,148.0,52.0,24.666666666666668,148.0,103.33333333333331,174.66666666666666,120.0,131.33333333333334,137.33333333333334,37.333333333333336,105.33333333333331,104.66666666666669,91.33333333333331,125.33333333333331,121.33333333333331,177.33333333333334,140.66666666666666,140.66666666666666,140.0,135.33333333333334,124.0,149.33333333333334,48.0,48.0,139.33333333333334,106.66666666666669,133.33333333333334,27.33333333333333,158.66666666666666,128.0,72.66666666666667],"xaxis":"x","yaxis":"y","type":"histogram"},{"alignmentgroup":"True","bingroup":"x","hovertemplate":"Result=Pass\u003cbr\u003eavg_r=%{x}\u003cbr\u003ecount=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Pass","marker":{"color":"#EF553B","pattern":{"shape":""}},"name":"Pass","offsetgroup":"Pass","orientation":"v","showlegend":true,"x":[61.333333333333336,82.66666666666667,109.33333333333331,99.33333333333331,78.0,59.333333333333336,72.0,48.0,85.33333333333333,51.333333333333336,59.333333333333336,36.0,76.0,64.66666666666667,37.333333333333336,71.33333333333333,59.333333333333336,48.0,68.66666666666667,44.66666666666666,42.0,77.33333333333333,66.66666666666667,36.66666666666666,112.0,56.66666666666666,37.333333333333336,36.0,50.66666666666666,30.666666666666668,59.333333333333336,56.0,135.33333333333334,30.0,77.33333333333333,35.333333333333336,67.33333333333333,58.0,80.0,46.66666666666666,66.0,91.33333333333331,88.66666666666667,53.333333333333336,82.66666666666667,45.333333333333336,63.333333333333336,116.66666666666669,104.66666666666669,90.66666666666669,64.0,121.33333333333331,73.33333333333333,79.33333333333333],"xaxis":"x","yaxis":"y","type":"histogram"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmapgl":[{"type":"heatmapgl","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermapbox":[{"type":"scattermapbox","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05},"mapbox":{"style":"light"}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"avg_r"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"count"}},"legend":{"title":{"text":"Result"},"tracegroupgap":0},"margin":{"t":60},"barmode":"relative"},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('6cc4166d-8d3d-4059-bc10-90d53157b64e');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+</div>
+</div>
+<div id="76c91b59" class="cell" data-execution_count="95">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> px.scatter(data, x<span class="op">=</span><span class="st">"avg_r"</span>, y<span class="op">=</span><span class="st">"actual_volume"</span>,color<span class="op">=</span><span class="st">"Result"</span>,symbol<span class="op">=</span><span class="st">"Result"</span>,</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                marginal_x<span class="op">=</span><span class="st">"histogram"</span>,marginal_y<span class="op">=</span><span class="st">"rug"</span>,log_y<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                color_discrete_sequence<span class="op">=</span>px.colors.qualitative.Vivid, opacity<span class="op">=</span><span class="fl">0.5</span>,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                labels<span class="op">=</span>{</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"avg_r"</span>: <span class="st">"Mean intrusion radius (m)"</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"actual_volume"</span>: <span class="st">"Intrusion volume (m^3)"</span>,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"Result"</span>: <span class="st">"Model result"</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>                 },).update_layout(</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    template<span class="op">=</span><span class="st">'plotly_white'</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>                            <div id="0cbc3da7-2a7d-44f4-a894-316ceb367540" class="plotly-graph-div" style="height:525px; width:100%;"></div>            <script type="text/javascript">                require(["plotly"], function(Plotly) {                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById("0cbc3da7-2a7d-44f4-a894-316ceb367540")) {                    Plotly.newPlot(                        "0cbc3da7-2a7d-44f4-a894-316ceb367540",                        [{"hovertemplate":"Model result=Fail\u003cbr\u003eMean intrusion radius (m)=%{x}\u003cbr\u003eIntrusion volume (m^3)=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Fail","marker":{"color":"rgb(229, 134, 6)","opacity":0.5,"symbol":"circle"},"mode":"markers","name":"Fail","orientation":"v","showlegend":true,"x":[183.33333333333331,84.66666666666667,54.66666666666666,72.0,88.0,48.66666666666666,150.66666666666666,151.33333333333334,75.33333333333333,98.66666666666669,119.33333333333331,144.66666666666666,190.66666666666663,96.0,106.0,99.33333333333331,75.33333333333333,120.66666666666669,134.66666666666666,64.0,79.33333333333333,101.33333333333331,78.66666666666667,153.33333333333334,139.33333333333334,52.0,134.66666666666666,89.33333333333333,18.666666666666668,142.0,62.0,144.66666666666666,149.33333333333334,144.0,59.333333333333336,84.66666666666667,143.33333333333334,35.333333333333336,121.33333333333331,144.66666666666666,134.66666666666666,75.33333333333333,59.333333333333336,154.66666666666666,92.66666666666669,109.33333333333331,154.66666666666666,32.666666666666664,112.0,177.33333333333334,132.66666666666666,64.0,146.66666666666666,29.33333333333333,97.33333333333331,182.66666666666663,119.33333333333331,133.33333333333334,156.0,126.66666666666669,170.0,166.0,93.33333333333331,98.66666666666669,113.33333333333331,84.66666666666667,176.66666666666666,132.0,156.66666666666666,138.0,88.0,141.33333333333334,188.0,118.0,150.0,132.0,99.33333333333331,118.66666666666669,90.0,60.66666666666666,91.33333333333331,119.33333333333331,96.0,128.66666666666666,113.33333333333331,139.33333333333334,54.66666666666666,91.33333333333331,100.66666666666669,104.66666666666669,41.333333333333336,100.66666666666669,140.66666666666666,140.66666666666666,94.66666666666669,126.0,60.0,44.66666666666666,74.66666666666667,103.33333333333331,186.66666666666663,48.0,110.0,126.0,78.0,46.66666666666666,147.33333333333334,134.0,135.33333333333334,146.66666666666666,126.66666666666669,128.0,63.333333333333336,135.33333333333334,172.0,82.66666666666667,149.33333333333334,141.33333333333334,183.33333333333331,150.0,104.0,168.66666666666666,135.33333333333334,152.66666666666666,170.0,116.66666666666669,112.66666666666669,176.0,84.66666666666667,47.333333333333336,168.0,93.33333333333331,105.33333333333331,108.66666666666669,76.0,108.66666666666669,163.33333333333334,122.66666666666669,178.0,76.0,82.0,171.33333333333334,138.66666666666666,110.0,106.66666666666669,82.66666666666667,86.66666666666667,124.66666666666669,90.0,82.66666666666667,64.0,82.66666666666667,181.33333333333331,122.0,103.33333333333331,161.33333333333334,138.0,147.33333333333334,134.0,116.66666666666669,127.33333333333331,110.66666666666669,88.0,46.0,86.66666666666667,76.66666666666667,80.0,128.66666666666666,90.66666666666669,46.66666666666666,44.0,132.0,52.0,70.66666666666667,100.66666666666669,148.0,82.0,145.33333333333334,160.0,107.33333333333331,164.66666666666666,170.66666666666666,92.66666666666669,138.0,109.33333333333331,136.0,136.66666666666666,122.0,80.66666666666667,70.0,106.66666666666669,168.66666666666666,160.66666666666666,131.33333333333334,108.0,163.33333333333334,102.66666666666669,70.0,83.33333333333333,46.66666666666666,120.66666666666669,85.33333333333333,122.0,185.33333333333331,110.0,132.0,129.33333333333334,114.66666666666669,174.0,145.33333333333334,178.66666666666666,154.66666666666666,62.66666666666666,110.0,102.0,100.0,46.66666666666666,156.0,140.66666666666666,103.33333333333331,89.33333333333333,113.33333333333331,75.33333333333333,116.0,95.33333333333331,44.0,124.0,65.33333333333333,114.66666666666669,94.66666666666669,180.66666666666663,150.66666666666666,33.333333333333336,51.333333333333336,124.66666666666669,84.0,169.33333333333334,64.0,86.0,120.0,22.666666666666668,73.33333333333333,49.333333333333336,167.33333333333334,79.33333333333333,82.66666666666667,151.33333333333334,146.0,113.33333333333331,170.0,61.333333333333336,150.66666666666666,58.0,104.0,108.0,142.66666666666666,179.33333333333334,30.666666666666668,47.333333333333336,154.0,64.0,78.66666666666667,65.33333333333333,134.0,71.33333333333333,151.33333333333334,189.33333333333331,160.0,84.66666666666667,51.333333333333336,124.0,134.0,78.0,148.0,26.0,81.33333333333333,124.66666666666669,152.0,37.333333333333336,94.66666666666669,56.66666666666666,158.0,94.0,110.66666666666669,157.33333333333334,40.0,120.66666666666669,64.66666666666667,99.33333333333331,108.0,119.33333333333331,93.33333333333331,82.66666666666667,140.66666666666666,184.66666666666663,88.0,119.33333333333331,149.33333333333334,111.33333333333331,54.66666666666666,129.33333333333334,184.66666666666663,94.66666666666669,86.66666666666667,103.33333333333331,68.0,132.66666666666666,54.0,114.66666666666669,150.0,96.0,123.33333333333331,154.66666666666666,40.0,24.666666666666668,99.33333333333331,84.66666666666667,195.33333333333331,125.33333333333331,81.33333333333333,112.0,100.0,107.33333333333331,154.66666666666666,131.33333333333334,106.66666666666669,130.66666666666666,148.0,110.0,17.333333333333332,68.0,114.0,76.66666666666667,58.66666666666666,97.33333333333331,155.33333333333334,136.0,91.33333333333331,162.0,98.0,84.66666666666667,52.66666666666666,86.0,125.33333333333331,86.0,183.33333333333331,172.66666666666666,43.333333333333336,126.0,106.0,144.0,152.0,107.33333333333331,28.666666666666668,53.333333333333336,123.33333333333331,89.33333333333333,121.33333333333331,100.66666666666669,135.33333333333334,153.33333333333334,194.66666666666663,61.333333333333336,156.0,37.333333333333336,147.33333333333334,127.33333333333331,166.0,80.66666666666667,135.33333333333334,68.0,60.66666666666666,84.0,75.33333333333333,110.66666666666669,180.0,55.333333333333336,102.66666666666669,157.33333333333334,125.33333333333331,108.0,183.33333333333331,156.0,171.33333333333334,162.66666666666666,34.666666666666664,144.66666666666666,68.0,101.33333333333331,177.33333333333334,148.66666666666666,98.66666666666669,59.333333333333336,78.66666666666667,32.0,113.33333333333331,124.0,64.66666666666667,127.33333333333331,86.66666666666667,120.66666666666669,90.66666666666669,102.0,144.66666666666666,127.33333333333331,25.33333333333333,43.333333333333336,148.66666666666666,173.33333333333334,167.33333333333334,138.0,102.0,139.33333333333334,85.33333333333333,122.66666666666669,148.0,52.0,24.666666666666668,148.0,103.33333333333331,174.66666666666666,120.0,131.33333333333334,137.33333333333334,37.333333333333336,105.33333333333331,104.66666666666669,91.33333333333331,125.33333333333331,121.33333333333331,177.33333333333334,140.66666666666666,140.66666666666666,140.0,135.33333333333334,124.0,149.33333333333334,48.0,48.0,139.33333333333334,106.66666666666669,133.33333333333334,27.33333333333333,158.66666666666666,128.0,72.66666666666667],"xaxis":"x","y":[25783768,2530520,637672,152520,2446952,351096,12484552,11878104,1187608,1928520,7118136,9710168,29011304,2845864,3776792,2800312,1746552,5612024,10157000,404136,2082456,3738984,518888,14438408,10614072,54984,9454344,2175592,25504,10930136,243560,12222936,13515944,7404840,191624,2480888,10893752,180600,7437928,10349080,10190344,1782264,392504,15438536,2381400,5458984,15454696,44248,1309352,23333960,9253880,133512,9472968,70200,3119080,25527432,6168120,6939144,15538472,7536264,19230328,17340248,3306840,3701704,5861992,2541248,22929784,9331400,16019096,8367928,2613032,4014464,27790920,5348920,13954104,9573560,3698520,3151560,1878296,797816,1612568,5759784,2391096,8598616,4513384,11183608,563088,2223384,2369240,1959280,161656,4258104,9921848,10401240,3241704,4961656,123496,368696,1520840,1277368,27243560,454056,5388760,8377960,1527128,248488,12698136,10013016,6240664,12623656,6947688,7547656,208168,10010104,21016296,868424,13720200,11524296,25741624,14019032,3406792,20073368,9218352,14729144,20284568,6640952,5973528,22755208,2260632,92600,18525160,3348136,2953704,5227896,1558632,3538520,15438936,6406120,23474904,1799944,622744,20072824,5917512,5487192,3429096,1917448,1018600,8080888,1413840,2115880,133512,1786408,24303368,6716568,3820664,15132648,4092088,13239128,8787544,5995480,5768312,5093960,2811688,47672,1577576,1365624,1768968,5202968,3003016,423976,249416,9635720,541224,499528,3477080,10774920,2175544,9641544,16944552,5177368,18611864,20663784,3104280,10527544,5364648,10029800,6782520,7578184,400680,560152,4636584,20080152,17061016,2657296,3217928,16366136,3720872,1421752,2422448,386312,6970712,2578088,5225368,26597512,5480120,6085896,8986152,3868648,21928344,12833128,23684360,14328456,579368,3644760,3735672,4166472,406792,15833992,11557816,4395576,2976416,5848488,1205976,5813160,2392440,316360,7202568,825576,6030440,2125032,24651832,14242088,99768,533864,5787896,2465512,20156392,1050600,1377336,6238088,46712,199880,495720,19597976,1967448,788648,13628152,12969336,6064840,19230328,561824,13941800,471000,1122536,4280648,11338408,23983512,105240,415400,11662392,1096520,625544,1041672,9578136,78424,12192912,28361064,16604552,2496408,385720,4251784,4818424,1930392,13065160,67600,470552,8102744,14641960,205672,2676072,531288,12398616,1554352,4266472,14983432,113072,6425368,1099160,2195704,3827368,7115480,1643552,1548200,10771416,26247992,2342664,7075192,13031400,5351640,206520,7564168,26247992,2491784,2517896,4275752,374808,4713656,647128,4401928,13447416,3361128,6292280,15105992,40424,60712,3218616,2283256,31214712,7161000,2242568,1309352,4068168,3736376,10719560,4157336,4636584,7945960,13512296,1060504,16808,991848,5140936,1628744,349448,2591368,11485464,10419720,1232368,14776056,3921560,616536,302488,2547224,8056136,2420952,25123128,21404696,148792,8043272,2013680,12478664,13725032,5068536,47096,81416,7845208,2894248,6029256,3428504,9868888,15000712,30881512,283416,15538472,213624,9371384,7178904,19022776,465800,2239864,1300840,881272,1328328,160600,4052200,24348040,473336,4503704,12061384,8162600,3639400,25755256,12607592,19859992,14744008,121304,10349080,1126152,3576360,23091496,13290584,3376264,574744,2031648,81112,5921960,7319016,213512,8611512,2575016,6860368,2520104,4274584,11843320,8646104,59896,327064,13507832,21445096,19368984,2332536,4440504,11248376,2050024,6519496,13508840,530784,44600,13136680,1602256,22199528,3228360,8542160,10329000,153144,2953480,3806072,2366616,7611528,4714600,23240872,11206424,5862680,7371848,10379192,7319016,13515944,410920,426872,10509144,3693576,9849896,84376,16459496,8774904,1606200],"yaxis":"y","type":"scatter"},{"alignmentgroup":"True","bingroup":"x","hovertemplate":"Model result=Fail\u003cbr\u003eMean intrusion radius (m)=%{x}\u003cbr\u003ecount=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Fail","marker":{"color":"rgb(229, 134, 6)"},"name":"Fail","offsetgroup":"Fail","opacity":0.5,"showlegend":false,"x":[183.33333333333331,84.66666666666667,54.66666666666666,72.0,88.0,48.66666666666666,150.66666666666666,151.33333333333334,75.33333333333333,98.66666666666669,119.33333333333331,144.66666666666666,190.66666666666663,96.0,106.0,99.33333333333331,75.33333333333333,120.66666666666669,134.66666666666666,64.0,79.33333333333333,101.33333333333331,78.66666666666667,153.33333333333334,139.33333333333334,52.0,134.66666666666666,89.33333333333333,18.666666666666668,142.0,62.0,144.66666666666666,149.33333333333334,144.0,59.333333333333336,84.66666666666667,143.33333333333334,35.333333333333336,121.33333333333331,144.66666666666666,134.66666666666666,75.33333333333333,59.333333333333336,154.66666666666666,92.66666666666669,109.33333333333331,154.66666666666666,32.666666666666664,112.0,177.33333333333334,132.66666666666666,64.0,146.66666666666666,29.33333333333333,97.33333333333331,182.66666666666663,119.33333333333331,133.33333333333334,156.0,126.66666666666669,170.0,166.0,93.33333333333331,98.66666666666669,113.33333333333331,84.66666666666667,176.66666666666666,132.0,156.66666666666666,138.0,88.0,141.33333333333334,188.0,118.0,150.0,132.0,99.33333333333331,118.66666666666669,90.0,60.66666666666666,91.33333333333331,119.33333333333331,96.0,128.66666666666666,113.33333333333331,139.33333333333334,54.66666666666666,91.33333333333331,100.66666666666669,104.66666666666669,41.333333333333336,100.66666666666669,140.66666666666666,140.66666666666666,94.66666666666669,126.0,60.0,44.66666666666666,74.66666666666667,103.33333333333331,186.66666666666663,48.0,110.0,126.0,78.0,46.66666666666666,147.33333333333334,134.0,135.33333333333334,146.66666666666666,126.66666666666669,128.0,63.333333333333336,135.33333333333334,172.0,82.66666666666667,149.33333333333334,141.33333333333334,183.33333333333331,150.0,104.0,168.66666666666666,135.33333333333334,152.66666666666666,170.0,116.66666666666669,112.66666666666669,176.0,84.66666666666667,47.333333333333336,168.0,93.33333333333331,105.33333333333331,108.66666666666669,76.0,108.66666666666669,163.33333333333334,122.66666666666669,178.0,76.0,82.0,171.33333333333334,138.66666666666666,110.0,106.66666666666669,82.66666666666667,86.66666666666667,124.66666666666669,90.0,82.66666666666667,64.0,82.66666666666667,181.33333333333331,122.0,103.33333333333331,161.33333333333334,138.0,147.33333333333334,134.0,116.66666666666669,127.33333333333331,110.66666666666669,88.0,46.0,86.66666666666667,76.66666666666667,80.0,128.66666666666666,90.66666666666669,46.66666666666666,44.0,132.0,52.0,70.66666666666667,100.66666666666669,148.0,82.0,145.33333333333334,160.0,107.33333333333331,164.66666666666666,170.66666666666666,92.66666666666669,138.0,109.33333333333331,136.0,136.66666666666666,122.0,80.66666666666667,70.0,106.66666666666669,168.66666666666666,160.66666666666666,131.33333333333334,108.0,163.33333333333334,102.66666666666669,70.0,83.33333333333333,46.66666666666666,120.66666666666669,85.33333333333333,122.0,185.33333333333331,110.0,132.0,129.33333333333334,114.66666666666669,174.0,145.33333333333334,178.66666666666666,154.66666666666666,62.66666666666666,110.0,102.0,100.0,46.66666666666666,156.0,140.66666666666666,103.33333333333331,89.33333333333333,113.33333333333331,75.33333333333333,116.0,95.33333333333331,44.0,124.0,65.33333333333333,114.66666666666669,94.66666666666669,180.66666666666663,150.66666666666666,33.333333333333336,51.333333333333336,124.66666666666669,84.0,169.33333333333334,64.0,86.0,120.0,22.666666666666668,73.33333333333333,49.333333333333336,167.33333333333334,79.33333333333333,82.66666666666667,151.33333333333334,146.0,113.33333333333331,170.0,61.333333333333336,150.66666666666666,58.0,104.0,108.0,142.66666666666666,179.33333333333334,30.666666666666668,47.333333333333336,154.0,64.0,78.66666666666667,65.33333333333333,134.0,71.33333333333333,151.33333333333334,189.33333333333331,160.0,84.66666666666667,51.333333333333336,124.0,134.0,78.0,148.0,26.0,81.33333333333333,124.66666666666669,152.0,37.333333333333336,94.66666666666669,56.66666666666666,158.0,94.0,110.66666666666669,157.33333333333334,40.0,120.66666666666669,64.66666666666667,99.33333333333331,108.0,119.33333333333331,93.33333333333331,82.66666666666667,140.66666666666666,184.66666666666663,88.0,119.33333333333331,149.33333333333334,111.33333333333331,54.66666666666666,129.33333333333334,184.66666666666663,94.66666666666669,86.66666666666667,103.33333333333331,68.0,132.66666666666666,54.0,114.66666666666669,150.0,96.0,123.33333333333331,154.66666666666666,40.0,24.666666666666668,99.33333333333331,84.66666666666667,195.33333333333331,125.33333333333331,81.33333333333333,112.0,100.0,107.33333333333331,154.66666666666666,131.33333333333334,106.66666666666669,130.66666666666666,148.0,110.0,17.333333333333332,68.0,114.0,76.66666666666667,58.66666666666666,97.33333333333331,155.33333333333334,136.0,91.33333333333331,162.0,98.0,84.66666666666667,52.66666666666666,86.0,125.33333333333331,86.0,183.33333333333331,172.66666666666666,43.333333333333336,126.0,106.0,144.0,152.0,107.33333333333331,28.666666666666668,53.333333333333336,123.33333333333331,89.33333333333333,121.33333333333331,100.66666666666669,135.33333333333334,153.33333333333334,194.66666666666663,61.333333333333336,156.0,37.333333333333336,147.33333333333334,127.33333333333331,166.0,80.66666666666667,135.33333333333334,68.0,60.66666666666666,84.0,75.33333333333333,110.66666666666669,180.0,55.333333333333336,102.66666666666669,157.33333333333334,125.33333333333331,108.0,183.33333333333331,156.0,171.33333333333334,162.66666666666666,34.666666666666664,144.66666666666666,68.0,101.33333333333331,177.33333333333334,148.66666666666666,98.66666666666669,59.333333333333336,78.66666666666667,32.0,113.33333333333331,124.0,64.66666666666667,127.33333333333331,86.66666666666667,120.66666666666669,90.66666666666669,102.0,144.66666666666666,127.33333333333331,25.33333333333333,43.333333333333336,148.66666666666666,173.33333333333334,167.33333333333334,138.0,102.0,139.33333333333334,85.33333333333333,122.66666666666669,148.0,52.0,24.666666666666668,148.0,103.33333333333331,174.66666666666666,120.0,131.33333333333334,137.33333333333334,37.333333333333336,105.33333333333331,104.66666666666669,91.33333333333331,125.33333333333331,121.33333333333331,177.33333333333334,140.66666666666666,140.66666666666666,140.0,135.33333333333334,124.0,149.33333333333334,48.0,48.0,139.33333333333334,106.66666666666669,133.33333333333334,27.33333333333333,158.66666666666666,128.0,72.66666666666667],"xaxis":"x3","yaxis":"y3","type":"histogram"},{"alignmentgroup":"True","boxpoints":"all","fillcolor":"rgba(255,255,255,0)","hoveron":"points","hovertemplate":"Model result=Fail\u003cbr\u003eIntrusion volume (m^3)=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","jitter":0,"legendgroup":"Fail","line":{"color":"rgba(255,255,255,0)"},"marker":{"color":"rgb(229, 134, 6)","symbol":"line-ew-open"},"name":"Fail","offsetgroup":"Fail","showlegend":false,"xaxis":"x2","y":[25783768,2530520,637672,152520,2446952,351096,12484552,11878104,1187608,1928520,7118136,9710168,29011304,2845864,3776792,2800312,1746552,5612024,10157000,404136,2082456,3738984,518888,14438408,10614072,54984,9454344,2175592,25504,10930136,243560,12222936,13515944,7404840,191624,2480888,10893752,180600,7437928,10349080,10190344,1782264,392504,15438536,2381400,5458984,15454696,44248,1309352,23333960,9253880,133512,9472968,70200,3119080,25527432,6168120,6939144,15538472,7536264,19230328,17340248,3306840,3701704,5861992,2541248,22929784,9331400,16019096,8367928,2613032,4014464,27790920,5348920,13954104,9573560,3698520,3151560,1878296,797816,1612568,5759784,2391096,8598616,4513384,11183608,563088,2223384,2369240,1959280,161656,4258104,9921848,10401240,3241704,4961656,123496,368696,1520840,1277368,27243560,454056,5388760,8377960,1527128,248488,12698136,10013016,6240664,12623656,6947688,7547656,208168,10010104,21016296,868424,13720200,11524296,25741624,14019032,3406792,20073368,9218352,14729144,20284568,6640952,5973528,22755208,2260632,92600,18525160,3348136,2953704,5227896,1558632,3538520,15438936,6406120,23474904,1799944,622744,20072824,5917512,5487192,3429096,1917448,1018600,8080888,1413840,2115880,133512,1786408,24303368,6716568,3820664,15132648,4092088,13239128,8787544,5995480,5768312,5093960,2811688,47672,1577576,1365624,1768968,5202968,3003016,423976,249416,9635720,541224,499528,3477080,10774920,2175544,9641544,16944552,5177368,18611864,20663784,3104280,10527544,5364648,10029800,6782520,7578184,400680,560152,4636584,20080152,17061016,2657296,3217928,16366136,3720872,1421752,2422448,386312,6970712,2578088,5225368,26597512,5480120,6085896,8986152,3868648,21928344,12833128,23684360,14328456,579368,3644760,3735672,4166472,406792,15833992,11557816,4395576,2976416,5848488,1205976,5813160,2392440,316360,7202568,825576,6030440,2125032,24651832,14242088,99768,533864,5787896,2465512,20156392,1050600,1377336,6238088,46712,199880,495720,19597976,1967448,788648,13628152,12969336,6064840,19230328,561824,13941800,471000,1122536,4280648,11338408,23983512,105240,415400,11662392,1096520,625544,1041672,9578136,78424,12192912,28361064,16604552,2496408,385720,4251784,4818424,1930392,13065160,67600,470552,8102744,14641960,205672,2676072,531288,12398616,1554352,4266472,14983432,113072,6425368,1099160,2195704,3827368,7115480,1643552,1548200,10771416,26247992,2342664,7075192,13031400,5351640,206520,7564168,26247992,2491784,2517896,4275752,374808,4713656,647128,4401928,13447416,3361128,6292280,15105992,40424,60712,3218616,2283256,31214712,7161000,2242568,1309352,4068168,3736376,10719560,4157336,4636584,7945960,13512296,1060504,16808,991848,5140936,1628744,349448,2591368,11485464,10419720,1232368,14776056,3921560,616536,302488,2547224,8056136,2420952,25123128,21404696,148792,8043272,2013680,12478664,13725032,5068536,47096,81416,7845208,2894248,6029256,3428504,9868888,15000712,30881512,283416,15538472,213624,9371384,7178904,19022776,465800,2239864,1300840,881272,1328328,160600,4052200,24348040,473336,4503704,12061384,8162600,3639400,25755256,12607592,19859992,14744008,121304,10349080,1126152,3576360,23091496,13290584,3376264,574744,2031648,81112,5921960,7319016,213512,8611512,2575016,6860368,2520104,4274584,11843320,8646104,59896,327064,13507832,21445096,19368984,2332536,4440504,11248376,2050024,6519496,13508840,530784,44600,13136680,1602256,22199528,3228360,8542160,10329000,153144,2953480,3806072,2366616,7611528,4714600,23240872,11206424,5862680,7371848,10379192,7319016,13515944,410920,426872,10509144,3693576,9849896,84376,16459496,8774904,1606200],"yaxis":"y2","type":"box"},{"hovertemplate":"Model result=Pass\u003cbr\u003eMean intrusion radius (m)=%{x}\u003cbr\u003eIntrusion volume (m^3)=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Pass","marker":{"color":"rgb(93, 105, 177)","opacity":0.5,"symbol":"diamond"},"mode":"markers","name":"Pass","orientation":"v","showlegend":true,"x":[61.333333333333336,82.66666666666667,109.33333333333331,99.33333333333331,78.0,59.333333333333336,72.0,48.0,85.33333333333333,51.333333333333336,59.333333333333336,36.0,76.0,64.66666666666667,37.333333333333336,71.33333333333333,59.333333333333336,48.0,68.66666666666667,44.66666666666666,42.0,77.33333333333333,66.66666666666667,36.66666666666666,112.0,56.66666666666666,37.333333333333336,36.0,50.66666666666666,30.666666666666668,59.333333333333336,56.0,135.33333333333334,30.0,77.33333333333333,35.333333333333336,67.33333333333333,58.0,80.0,46.66666666666666,66.0,91.33333333333331,88.66666666666667,53.333333333333336,82.66666666666667,45.333333333333336,63.333333333333336,116.66666666666669,104.66666666666669,90.66666666666669,64.0,121.33333333333331,73.33333333333333,79.33333333333333],"xaxis":"x","y":[905256,1294568,1981568,859608,706328,443624,1463848,460488,1679528,320824,693656,176800,371960,1017272,84968,517464,837368,410920,664528,206368,143232,577192,582376,133320,1309352,720600,194968,140968,405760,63816,559728,144680,3924440,112600,943016,152280,870296,552200,753512,300352,1199672,986744,956120,602056,1562056,346888,941976,3211448,3251608,1543392,394312,3304648,802344,538616],"yaxis":"y","type":"scatter"},{"alignmentgroup":"True","bingroup":"x","hovertemplate":"Model result=Pass\u003cbr\u003eMean intrusion radius (m)=%{x}\u003cbr\u003ecount=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"Pass","marker":{"color":"rgb(93, 105, 177)"},"name":"Pass","offsetgroup":"Pass","opacity":0.5,"showlegend":false,"x":[61.333333333333336,82.66666666666667,109.33333333333331,99.33333333333331,78.0,59.333333333333336,72.0,48.0,85.33333333333333,51.333333333333336,59.333333333333336,36.0,76.0,64.66666666666667,37.333333333333336,71.33333333333333,59.333333333333336,48.0,68.66666666666667,44.66666666666666,42.0,77.33333333333333,66.66666666666667,36.66666666666666,112.0,56.66666666666666,37.333333333333336,36.0,50.66666666666666,30.666666666666668,59.333333333333336,56.0,135.33333333333334,30.0,77.33333333333333,35.333333333333336,67.33333333333333,58.0,80.0,46.66666666666666,66.0,91.33333333333331,88.66666666666667,53.333333333333336,82.66666666666667,45.333333333333336,63.333333333333336,116.66666666666669,104.66666666666669,90.66666666666669,64.0,121.33333333333331,73.33333333333333,79.33333333333333],"xaxis":"x3","yaxis":"y3","type":"histogram"},{"alignmentgroup":"True","boxpoints":"all","fillcolor":"rgba(255,255,255,0)","hoveron":"points","hovertemplate":"Model result=Pass\u003cbr\u003eIntrusion volume (m^3)=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","jitter":0,"legendgroup":"Pass","line":{"color":"rgba(255,255,255,0)"},"marker":{"color":"rgb(93, 105, 177)","symbol":"line-ew-open"},"name":"Pass","offsetgroup":"Pass","showlegend":false,"xaxis":"x2","y":[905256,1294568,1981568,859608,706328,443624,1463848,460488,1679528,320824,693656,176800,371960,1017272,84968,517464,837368,410920,664528,206368,143232,577192,582376,133320,1309352,720600,194968,140968,405760,63816,559728,144680,3924440,112600,943016,152280,870296,552200,753512,300352,1199672,986744,956120,602056,1562056,346888,941976,3211448,3251608,1543392,394312,3304648,802344,538616],"yaxis":"y2","type":"box"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"white","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"#C8D4E3","linecolor":"#C8D4E3","minorgridcolor":"#C8D4E3","startlinecolor":"#2a3f5f"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmapgl":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmapgl"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"geo":{"bgcolor":"white","lakecolor":"white","landcolor":"white","showlakes":true,"showland":true,"subunitcolor":"#C8D4E3"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"light"},"paper_bgcolor":"white","plot_bgcolor":"white","polar":{"angularaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""},"bgcolor":"white","radialaxis":{"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"yaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"},"zaxis":{"backgroundcolor":"white","gridcolor":"#DFE8F3","gridwidth":2,"linecolor":"#EBF0F8","showbackground":true,"ticks":"","zerolinecolor":"#EBF0F8"}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"ternary":{"aaxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"baxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""},"bgcolor":"white","caxis":{"gridcolor":"#DFE8F3","linecolor":"#A2B1C6","ticks":""}},"title":{"x":0.05},"xaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#EBF0F8","linecolor":"#EBF0F8","ticks":"","title":{"standoff":15},"zerolinecolor":"#EBF0F8","zerolinewidth":2}}},"xaxis":{"anchor":"y","domain":[0.0,0.7363],"title":{"text":"Mean intrusion radius (m)"}},"yaxis":{"anchor":"x","domain":[0.0,0.7326],"type":"log","title":{"text":"Intrusion volume (m^3)"}},"xaxis2":{"anchor":"y2","domain":[0.7413,1.0],"matches":"x2","showticklabels":false,"showline":false,"ticks":"","showgrid":false},"yaxis2":{"anchor":"x2","domain":[0.0,0.7326],"matches":"y","showticklabels":false,"showgrid":true,"type":"log"},"xaxis3":{"anchor":"y3","domain":[0.0,0.7363],"matches":"x","showticklabels":false,"showgrid":true},"yaxis3":{"anchor":"x3","domain":[0.7426,1.0],"matches":"y3","showticklabels":false,"showline":false,"ticks":"","showgrid":true},"xaxis4":{"anchor":"y4","domain":[0.7413,1.0],"matches":"x2","showticklabels":false,"showgrid":false,"showline":false,"ticks":""},"yaxis4":{"anchor":"x4","domain":[0.7426,1.0],"matches":"y3","showticklabels":false,"showline":false,"ticks":"","showgrid":true},"legend":{"title":{"text":"Model result"},"tracegroupgap":0},"margin":{"t":60},"barmode":"overlay"},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('0cbc3da7-2a7d-44f4-a894-316ceb367540');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };                });            </script>        </div>
+</div>
+</div>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/Value-Chain-Hackers\.github\.io\/Bi-Ronald\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Copyright 2025, Christiaan Verhoef</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>This website is built with <i class="fa-solid fa-heart" title="a heart" aria-label="heart"></i>, <a href="https://github.com/murphyqm/better-basic-dashboards" target="_blank"><i class="fa-brands fa-github" title="GitHub octocat logo" aria-label="github"></i></a>, and <a href="https://quarto.org/" target="_blank">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
