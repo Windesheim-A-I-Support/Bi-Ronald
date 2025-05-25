@@ -77,6 +77,27 @@
     "text": "Row\n\nshow(data, lengthMenu=[10, 20, 50, 100])\n\n\n\n    \n    \n    \n        \n        \n        \n        \n        \n        \n        \n        \n    \n    \n   \n    \n      \n  \n        \n    \n    \n  \n        \n    \n    \n  \n        \n    \n      \n  \n        \n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n\n            \n                \n                \n            \n        \n    \n\n\n    Loading ITables v2.4.0 from the internet...\n    (need help?)"
   },
   {
+    "objectID": "dash5.html",
+    "href": "dash5.html",
+    "title": "Highcharter Dashboard",
+    "section": "",
+    "text": "# Dummy line chart placeholder\nhighchart() %&gt;%\n  hc_chart(type = \"line\") %&gt;%\n  hc_title(text = \"Placeholder Trend (static)\") %&gt;%\n  hc_xAxis(categories = month.abb) %&gt;%\n  hc_add_series(name = \"Trend A\", data = sample(10:100, 12)) %&gt;%\n  hc_add_series(name = \"Trend B\", data = sample(50:120, 12))\n\n\n\n\n\n\n\n\n\ndf %&gt;%\n  arrange(desc(resilience_score)) %&gt;%\n  hchart(\"bar\", hcaes(x = company, y = resilience_score)) %&gt;%\n  hc_title(text = \"Resilience Scores by Company\") %&gt;%\n  hc_yAxis(title = list(text = \"Score\")) %&gt;%\n  hc_xAxis(title = list(text = \"Company\")) %&gt;%\n  hc_colors(\"#4CAF50\")\n\n\n\n\n\n\nhighchart() %&gt;%\n  hc_chart(type = \"pie\") %&gt;%\n  hc_title(text = \"Category Distribution (Placeholder)\") %&gt;%\n  hc_add_series(\n    name = \"Categories\",\n    data = list_parse2(data.frame(\n      name = c(\"Red\", \"Blue\", \"Green\"),\n      y = c(30, 50, 20)\n    ))\n  )\n\n\n\n\n\n\n\n\n\n\n\n\n# Gauge Chart for Selected Company\nhighchart() %&gt;%\n  hc_chart(type = \"solidgauge\") %&gt;%\n  hc_title(text = paste(\"Resilience Score –\", params$company)) %&gt;%\n  hc_pane(\n    center = list(\"50%\", \"85%\"),\n    size = \"140%\",\n    startAngle = -90,\n    endAngle = 90,\n    background = list(\n      backgroundColor = \"#EEE\",\n      innerRadius = \"60%\",\n      outerRadius = \"100%\",\n      shape = \"arc\"\n    )\n  ) %&gt;%\n  hc_yAxis(\n    min = 0,\n    max = 5,\n    title = list(text = \"Score\"),\n    stops = list(\n      list(0.2, \"#DF5353\"),\n      list(0.5, \"#DDDF0D\"),\n      list(0.8, \"#55BF3B\")\n    ),\n    lineWidth = 0,\n    tickInterval = 1,\n    labels = list(y = 16)\n  ) %&gt;%\n  hc_add_series(\n    name = \"Score\",\n    data = list(selected_score),\n    tooltip = list(valueSuffix = \" / 5\")\n  )"
+  },
+  {
+    "objectID": "dash5.html#row",
+    "href": "dash5.html#row",
+    "title": "Highcharter Dashboard",
+    "section": "",
+    "text": "# Dummy line chart placeholder\nhighchart() %&gt;%\n  hc_chart(type = \"line\") %&gt;%\n  hc_title(text = \"Placeholder Trend (static)\") %&gt;%\n  hc_xAxis(categories = month.abb) %&gt;%\n  hc_add_series(name = \"Trend A\", data = sample(10:100, 12)) %&gt;%\n  hc_add_series(name = \"Trend B\", data = sample(50:120, 12))\n\n\n\n\n\n\n\n\n\ndf %&gt;%\n  arrange(desc(resilience_score)) %&gt;%\n  hchart(\"bar\", hcaes(x = company, y = resilience_score)) %&gt;%\n  hc_title(text = \"Resilience Scores by Company\") %&gt;%\n  hc_yAxis(title = list(text = \"Score\")) %&gt;%\n  hc_xAxis(title = list(text = \"Company\")) %&gt;%\n  hc_colors(\"#4CAF50\")\n\n\n\n\n\n\nhighchart() %&gt;%\n  hc_chart(type = \"pie\") %&gt;%\n  hc_title(text = \"Category Distribution (Placeholder)\") %&gt;%\n  hc_add_series(\n    name = \"Categories\",\n    data = list_parse2(data.frame(\n      name = c(\"Red\", \"Blue\", \"Green\"),\n      y = c(30, 50, 20)\n    ))\n  )"
+  },
+  {
+    "objectID": "dash5.html#row-1",
+    "href": "dash5.html#row-1",
+    "title": "Highcharter Dashboard",
+    "section": "",
+    "text": "# Gauge Chart for Selected Company\nhighchart() %&gt;%\n  hc_chart(type = \"solidgauge\") %&gt;%\n  hc_title(text = paste(\"Resilience Score –\", params$company)) %&gt;%\n  hc_pane(\n    center = list(\"50%\", \"85%\"),\n    size = \"140%\",\n    startAngle = -90,\n    endAngle = 90,\n    background = list(\n      backgroundColor = \"#EEE\",\n      innerRadius = \"60%\",\n      outerRadius = \"100%\",\n      shape = \"arc\"\n    )\n  ) %&gt;%\n  hc_yAxis(\n    min = 0,\n    max = 5,\n    title = list(text = \"Score\"),\n    stops = list(\n      list(0.2, \"#DF5353\"),\n      list(0.5, \"#DDDF0D\"),\n      list(0.8, \"#55BF3B\")\n    ),\n    lineWidth = 0,\n    tickInterval = 1,\n    labels = list(y = 16)\n  ) %&gt;%\n  hc_add_series(\n    name = \"Score\",\n    data = list(selected_score),\n    tooltip = list(valueSuffix = \" / 5\")\n  )"
+  },
+  {
     "objectID": "dash03.html",
     "href": "dash03.html",
     "title": "Embedding visualisations in a generic webpage",
