@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Interactive Highcharter Dashboard – Better basic dashboards</title>
+<title>Highcharter Dashboard – Better basic dashboards</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,41 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -71,10 +36,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-226bd0f977fa82dfae4534cac220d79a.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-7271f29f9498218151f3120baddb7363.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-226bd0f977fa82dfae4534cac220d79a.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-d43a2984dbd2709f2f155cabbf9425d1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-7110a493b8813e9034e0d0c0f1785205.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-7110a493b8813e9034e0d0c0f1785205.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-7110a493b8813e9034e0d0c0f1785205.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-dashboard/quarto-dashboard.js"></script>
+<script src="site_libs/quarto-dashboard/stickythead.js"></script>
+<script src="site_libs/quarto-dashboard/datatables.min.js" kdttablesentinel="true"></script>
+<script src="site_libs/quarto-dashboard/pdfmake.min.js" kdttablesentinel="true"></script>
+<script src="site_libs/quarto-dashboard/vfs_fonts.js" kdttablesentinel="true"></script>
+<script src="site_libs/quarto-dashboard/web-components.js" type="module"></script>
+<script src="site_libs/quarto-dashboard/components.js"></script>
+<link href="site_libs/quarto-dashboard/datatables.min.css" rel="stylesheet" kdttablesentinel="true">
 <link href="site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -104,99 +80,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
-
-<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-
-<script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
-
-<script src="site_libs/proj4js-2.3.15/proj4.js"></script>
-
-<link href="site_libs/highcharts-9.3.1/css/motion.css" rel="stylesheet">
-
-<script src="site_libs/highcharts-9.3.1/highcharts.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/highcharts-3d.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/highcharts-more.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/modules/stock.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/modules/map.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/modules/data.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/modules/exporting.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/modules/offline-exporting.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/modules/drilldown.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/modules/item-series.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/modules/overlapping-datalabels.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/modules/annotations.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/modules/export-data.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/modules/funnel.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/modules/heatmap.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/modules/treemap.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/modules/sankey.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/modules/dependency-wheel.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/modules/organization.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/modules/solid-gauge.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/modules/streamgraph.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/modules/sunburst.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/modules/vector.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/modules/wordcloud.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/modules/xrange.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/modules/tilemap.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/modules/venn.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/modules/gantt.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/modules/timeline.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/modules/parallel-coordinates.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/modules/bullet.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/modules/coloraxis.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/modules/dumbbell.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/modules/lollipop.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/modules/series-label.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/plugins/motion.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/custom/reset.js"></script>
-
-<script src="site_libs/highcharts-9.3.1/modules/boost.js"></script>
-
-<script src="site_libs/highchart-binding-0.9.4/highchart.js"></script>
-
 
 
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="quarto-dashboard nav-fixed dashboard-fill fullcontent quarto-light">
+
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -266,453 +155,91 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
       </div> <!-- /container-fluid -->
     </nav>
-</header>
+<header id="quarto-dashboard-header">
+<nav class="navbar navbar-expand-md slim" data-bs-theme="dark">
+  <div class="navbar-container container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-controls="dashboard-collapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>    
+
+
+    <div class="navbar-brand-container">       
+
+      <div class="navbar-title">
+        <div class="navbar-title-text"><a href="#">Highcharter Dashboard</a></div>
+        
+        
+      </div>
+    </div>
+<div id="dashboard-collapse" class="navbar-collapse collapse"><ul class="navbar-nav navbar-nav-scroll me-auto" role="tablist"><li class="nav-item" role="presentation"><a id="tab-example-highcharter-dashboard" class="nav-link active" data-bs-toggle="tab" role="tab" data-bs-target="#example-highcharter-dashboard" data-scrolling="false" href="#example-highcharter-dashboard" aria-controls="example-highcharter-dashboard" aria-selected="true"><span class="nav-link-text">Example Highcharter Dashboard</span></a></li></ul></div></div>
+</nav>
+</header></header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-layout-custom page-navbar quarto-dashboard-content bslib-gap-spacing html-fill-container bslib-page-fill quarto-dashboard-pages">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#row" id="toc-row" class="nav-link active" data-scroll-target="#row">Row</a>
-  <ul class="collapse">
-  <li><a href="#column" id="toc-column" class="nav-link" data-scroll-target="#column">Column</a></li>
-  </ul></li>
-  <li><a href="#row-1" id="toc-row-1" class="nav-link" data-scroll-target="#row-1">Row</a>
-  <ul class="collapse">
-  <li><a href="#column-1" id="toc-column-1" class="nav-link" data-scroll-target="#column-1">Column</a></li>
-  </ul></li>
-  </ul>
-</nav>
-    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Interactive Highcharter Dashboard</h1>
+<p>{r setup} #| include: false # Install if needed: # install.packages(“highcharter”) # install.packages(“dplyr”)</p>
+<p>library(highcharter) library(dplyr)</p>
+<div class="bslib-grid-item html-fill-item tab-content bslib-grid" data-layout="fill" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div id="example-highcharter-dashboard" class="dashboard-page tab-pane show active html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-example-highcharter-dashboard">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 60fr) minmax(3em, 40fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<p>{r} # Basic highchart highchart() %&gt;% hc_chart(type = “line”) %&gt;% hc_title(text = “Monthly Data”) %&gt;% hc_xAxis(categories = month.abb) %&gt;% hc_add_series(name = “Series A”, data = sample(10:100, 12)) %&gt;% hc_add_series(name = “Series B”, data = sample(50:120, 12))</p>
 </div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div><div class="card tabset html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header dashboard-card-no-title bslib-navs-card-title">
+
+<ul class="nav nav-tabs card-header-tabs" role="tablist" data-tabsetid="card-tabset-2"><li class="nav-item" role="presentation"><a href="#card-tabset-2-1" role="tab" data-toggle="tab" data-bs-toggle="tab" data-value="Tab 1" aria-selected="true" class="nav-link active">Tab 1</a></li><li class="nav-item" role="presentation"><a href="#card-tabset-2-2" role="tab" data-toggle="tab" data-bs-toggle="tab" data-value="Tab 2" aria-selected="false" class="nav-link">Tab 2</a></li></ul></div>
 
 
+<div class="tab-content html-fill-item html-fill-container" data-tabset-id="card-tabset-2"><div class="tab-pane active show html-fill-item html-fill-container" role="tabpanel" id="card-tabset-2-1"><div class="card-body html-fill-item html-fill-container">
+<p>{r} #| title: Bar Chart highchart() %&gt;% hc_chart(type = “column”) %&gt;% hc_title(text = “Bar Chart Example”) %&gt;% hc_xAxis(categories = c(“A”, “B”, “C”)) %&gt;% hc_add_series(name = “Values”, data = c(29, 71, 106))</p>
+</div></div><div class="tab-pane html-fill-item html-fill-container" role="tabpanel" id="card-tabset-2-2"><div class="card-body html-fill-item html-fill-container">
+<p>{r} #| title: Pie Chart highchart() %&gt;% hc_chart(type = “pie”) %&gt;% hc_title(text = “Pie Chart Example”) %&gt;% hc_add_series( name = “Share”, data = list_parse2(data.frame( name = c(“Red”, “Blue”, “Green”), y = c(30, 50, 20) )) )</p>
+</div></div></div><bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<p>{r} # Gauge Chart highchart() %&gt;% hc_chart(type = “solidgauge”) %&gt;% hc_title(text = “Resilience Score”) %&gt;% hc_pane( center = list(“50%”, “85%”), size = “140%”, startAngle = -90, endAngle = 90, background = list( backgroundColor = “#EEE”, innerRadius = “60%”, outerRadius = “100%”, shape = “arc” ) ) %&gt;% hc_yAxis( min = 0, max = 5, title = list(text = “Score”), stops = list( list(0.2, “#DF5353”), list(0.5, “#DDDF0D”), list(0.8, “#55BF3B”) ), lineWidth = 0, tickInterval = 1, labels = list(y = 16) ) %&gt;% hc_add_series( name = “Score”, data = list(3.7), tooltip = list(valueSuffix = ” / 5”) )</p>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
+<div id="3ade8a4a-fb1d-4a6c-8409-ac45482d5fc9" class="hidden html-fill-item html-fill-container">
 
-
-</header>
-
-
-<section id="row" class="level2" height="20%">
-<h2 height="20%" class="anchored" data-anchor-id="row">Row</h2>
-<section id="column" class="level3">
-<h3 class="anchored" data-anchor-id="column">Column</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create dropdown with embedded JS logic</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>htmltools<span class="sc">::</span>tags<span class="sc">$</span><span class="fu">select</span>(</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="st">"companyDropdown"</span>,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">onchange =</span> <span class="st">"updateGauge(this.value)"</span>,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lapply</span>(js_data<span class="sc">$</span>company, <span class="cf">function</span>(cmp) {</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    htmltools<span class="sc">::</span>tags<span class="sc">$</span><span class="fu">option</span>(<span class="at">value =</span> cmp, cmp)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display no-overflow-x">
-<select id="companyDropdown" onchange="updateGauge(this.value)">
-<option value="Vattenfall">Vattenfall</option>
-<option value="The Coca-Cola Company">The Coca-Cola Company</option>
-<option value="Suplacon">Suplacon</option>
-<option value="Scania Logistics NL">Scania Logistics NL</option>
-<option value="Rituals">Rituals</option>
-<option value="NEDTECH">NEDTECH</option>
-<option value="Livin' Spas">Livin' Spas</option>
-<option value="Corbion (1)">Corbion (1)</option>
-<option value="Broshuis B.V.">Broshuis B.V.</option>
-<option value="Brink Climate Systems">Brink Climate Systems</option>
-<option value="Bosch Thermotechniek B.V.">Bosch Thermotechniek B.V.</option>
-<option value="Bidfood">Bidfood</option>
-<option value="AVMC">AVMC</option>
-<option value="Avebe">Avebe</option>
-<option value="Ales Metaaltechniek">Ales Metaaltechniek</option>
-<option value="Meubelgoedkoop">Meubelgoedkoop</option>
-<option value="Evofenedex">Evofenedex</option>
-<option value="My-Max">My-Max</option>
-<option value="Mundo Recreatie">Mundo Recreatie</option>
-<option value="Jansen2wielers">Jansen2wielers</option>
-<option value="AWL-Techniek">AWL-Techniek</option>
-<option value="Shangle">Shangle</option>
-<option value="Fonteyn Outdoor Living Mall">Fonteyn Outdoor Living Mall</option>
-<option value="Van Wolfswinkel wonen">Van Wolfswinkel wonen</option>
-<option value="Meubelcare.nl">Meubelcare.nl</option>
-<option value="Bruinhorst Tegels Online">Bruinhorst Tegels Online</option>
-<option value="Hermie.com">Hermie.com</option>
-<option value="Norvixx">Norvixx</option>
-<option value="Coltby">Coltby</option>
-<option value="Blue Sky Inn">Blue Sky Inn</option>
-<option value="Kees Smit tuinmeubelen">Kees Smit tuinmeubelen</option>
-<option value="AP Nederland B.V.">AP Nederland B.V.</option>
-<option value="Teijin Aramid">Teijin Aramid</option>
-<option value="FrieslandCampina">FrieslandCampina</option>
-<option value="Rollecate B.V.">Rollecate B.V.</option>
-<option value="ME-AT Leeuwarden B.V.">ME-AT Leeuwarden B.V.</option>
-<option value="Hiab (Frameworks)">Hiab (Frameworks)</option>
-<option value="De Marne’s Fabrieken B.V.">De Marne’s Fabrieken B.V.</option>
-<option value="Perfetti van Melle">Perfetti van Melle</option>
-<option value="Heuver Bandengroothandel B.V.">Heuver Bandengroothandel B.V.</option>
-<option value="Vadain">Vadain</option>
-<option value="Kruitbosch">Kruitbosch</option>
-<option value="Swinkels Family Brewers">Swinkels Family Brewers</option>
-<option value="Givaudan">Givaudan</option>
-<option value="Spectrum Brands">Spectrum Brands</option>
-<option value="Henkel Global Supply Chain">Henkel Global Supply Chain</option>
-<option value="Vandaglas">Vandaglas</option>
-<option value="Dun Agro B.V.">Dun Agro B.V.</option>
-<option value="Upfield">Upfield</option>
-<option value="Cosun Beet Company">Cosun Beet Company</option>
-<option value="Denkavit">Denkavit</option>
-<option value="Freudenberg Performance Materials">Freudenberg Performance Materials</option>
-<option value="Danone">Danone</option>
-<option value="J&amp;J">J&amp;J</option>
-<option value="LyondellBasell">LyondellBasell</option>
-<option value="CORAM">CORAM</option>
-<option value="Schaeffler Nederland BV">Schaeffler Nederland BV</option>
-<option value="Agrifac Machinery B.V.">Agrifac Machinery B.V.</option>
-<option value="Lightwell B.V.">Lightwell B.V.</option>
-<option value="Radboudumc">Radboudumc</option>
-<option value="Fibrant">Fibrant</option>
-<option value="Axalta Coating Systems GmbH">Axalta Coating Systems GmbH</option>
-<option value="Celanese">Celanese</option>
-<option value="Teleon Surgical">Teleon Surgical</option>
-<option value="Alfa Laval Nijmegen">Alfa Laval Nijmegen</option>
-<option value="Royal Koopmans">Royal Koopmans</option>
-<option value="Reginox B.V.">Reginox B.V.</option>
-<option value="Fast Forward Wheels bv">Fast Forward Wheels bv</option>
-<option value="Kyocera">Kyocera</option>
-<option value="Dow">Dow</option>
-<option value="Samsung Electronics">Samsung Electronics</option>
-<option value="Monta">Monta</option>
-<option value="Vanclaes">Vanclaes</option>
-<option value="Dr. Oetker">Dr. Oetker</option>
-<option value="Pneutec">Pneutec</option>
-<option value="Foot Locker">Foot Locker</option>
-<option value="Directbouw Productie BV">Directbouw Productie BV</option>
-<option value="Medco EP Natuna">Medco EP Natuna</option>
-<option value="BWS Sumatera IV Batam">BWS Sumatera IV Batam</option>
-<option value="Pt Berdikari Karyatama Engineering">Pt Berdikari Karyatama Engineering</option>
-<option value="Mitsubishi power">Mitsubishi power</option>
-<option value="PT Nusantara Regas">PT Nusantara Regas</option>
-<option value="PT. Sam Adi Karya">PT. Sam Adi Karya</option>
-<option value="PT Ineos Aromatics Indonesia">PT Ineos Aromatics Indonesia</option>
-<option value="KPN">KPN</option>
-<option value="Petrokimia Gresik">Petrokimia Gresik</option>
-<option value="PT PETROKIMIA GRESIK">PT PETROKIMIA GRESIK</option>
-<option value="PT Petrokimia Gresik">PT Petrokimia Gresik</option>
-<option value="Henkel">Henkel</option>
-<option value="[Technology Company]">[Technology Company]</option>
-<option value="ZiuZ">ZiuZ</option>
-<option value="Diversey">Diversey</option>
-<option value="Nobian Industrial Chemicals BV">Nobian Industrial Chemicals BV</option>
-<option value="Nissan">Nissan</option>
-<option value="Black Sea Container Lines">Black Sea Container Lines</option>
-<option value="Groupe SEB - WMF">Groupe SEB - WMF</option>
-<option value="Ferroglobe">Ferroglobe</option>
-<option value="Distribuidora">Distribuidora</option>
-<option value="MariAlro">MariAlro</option>
-<option value="Involvation">Involvation</option>
-<option value="Royal Talens">Royal Talens</option>
-<option value="BouWatch">BouWatch</option>
-<option value="Aako B.V.">Aako B.V.</option>
-<option value="DSM Firmenich">DSM Firmenich</option>
-<option value="yongmalogis">yongmalogis</option>
-<option value="lotte global logistics">lotte global logistics</option>
-<option value="AGV International B.V.">AGV International B.V.</option>
-<option value="C. van Heezik">C. van Heezik</option>
-<option value="RHI Magnesita">RHI Magnesita</option>
-<option value="Nexperia Germany">Nexperia Germany</option>
-<option value="Woody International">Woody International</option>
-<option value="ASSA ABLOY Opening Solutions EMEIA">ASSA ABLOY Opening Solutions EMEIA</option>
-<option value="CPS">CPS</option>
-<option value="Recofarma Ind. do Amazonas Ltda.">Recofarma Ind. do Amazonas Ltda.</option>
-<option value="Coca-Cola Philippines">Coca-Cola Philippines</option>
-<option value="Coca-Cola CPS Chile">Coca-Cola CPS Chile</option>
-<option value="Southerly Change Drinks">Southerly Change Drinks</option>
-<option value="Coca-Cola Korea Company">Coca-Cola Korea Company</option>
-<option value="The Coca-Cola Company - In house KO production">The Coca-Cola Company - In house KO production</option>
-<option value="Cola-cola china">Cola-cola china</option>
-<option value="Abbott">Abbott</option>
-<option value="meiji university">meiji university</option>
-<option value="European Aerosols">European Aerosols</option>
-<option value="Auping">Auping</option>
-<option value="Global logistics ag">Global logistics ag</option>
-<option value="Dasko Koel- en Vriestransporten B.V.">Dasko Koel- en Vriestransporten B.V.</option>
-<option value="Alpla Zwolle B.V.">Alpla Zwolle B.V.</option>
-<option value="Hiab Benelux">Hiab Benelux</option>
-<option value="BBA Pompen en Buizen">BBA Pompen en Buizen</option>
-<option value="BBA pompen en buizen">BBA pompen en buizen</option>
-<option value="VDL Apparatenbouw">VDL Apparatenbouw</option>
-<option value="Fabory">Fabory</option>
-<option value="Tyson Food Europe">Tyson Food Europe</option>
-<option value="Saxion Test">Saxion Test</option>
-<option value="Barentsz Ontdekkingshuizen">Barentsz Ontdekkingshuizen</option>
-<option value="Alphatronics BV">Alphatronics BV</option>
-<option value="Outbound BV">Outbound BV</option>
-<option value="Power-Sonic EMEA BV">Power-Sonic EMEA BV</option>
-<option value="Verhoef Access Technology">Verhoef Access Technology</option>
-<option value="Eurosort Systems BV">Eurosort Systems BV</option>
-<option value="Highlite International BV">Highlite International BV</option>
-<option value="Imbema">Imbema</option>
-<option value="C.J. Vianen Flowerexport B.V.">C.J. Vianen Flowerexport B.V.</option>
-<option value="ESKA BV">ESKA BV</option>
-<option value="Schoonheidssalon@Christel">Schoonheidssalon@Christel</option>
-<option value="Applied Medical">Applied Medical</option>
-<option value="CoxGeelen BV">CoxGeelen BV</option>
-<option value="Legrand">Legrand</option>
-<option value="Go-Tan">Go-Tan</option>
-<option value="Bribus BV">Bribus BV</option>
-<option value="Curium Pharma">Curium Pharma</option>
-<option value="HVC Groep">HVC Groep</option>
-<option value="Karl Lagerfeld">Karl Lagerfeld</option>
-<option value="Eichholtz">Eichholtz</option>
-<option value="Stamhuis">Stamhuis</option>
-<option value="spirotech bv">spirotech bv</option>
-<option value="Van Heck Badkamers">Van Heck Badkamers</option>
-<option value="Dresz International BV">Dresz International BV</option>
-<option value="Isero BV">Isero BV</option>
-<option value="Allied Motion">Allied Motion</option>
-<option value="Jumbo Supermarkten">Jumbo Supermarkten</option>
-<option value="Quooker">Quooker</option>
-<option value="Zuiver BV">Zuiver BV</option>
-<option value="VlastuinCDI">VlastuinCDI</option>
-<option value="Allied Motion Dordrecht B.V.">Allied Motion Dordrecht B.V.</option>
-<option value="Isero. B.V.">Isero. B.V.</option>
-<option value="Orbia Building &amp; Infrastructure (Wavin)">Orbia Building &amp; Infrastructure (Wavin)</option>
-<option value="Boermarke">Boermarke</option>
-<option value="Heer en meester">Heer en meester</option>
-<option value="Klaas licht en lampen">Klaas licht en lampen</option>
-<option value="Hans Grohe ESS">Hans Grohe ESS</option>
-<option value="Mondria advies">Mondria advies</option>
-<option value="Form International">Form International</option>
-<option value="Unibouw">Unibouw</option>
-<option value="E.J.Bos diervoeding">E.J.Bos diervoeding</option>
-<option value="Hooghoudt B.V.">Hooghoudt B.V.</option>
-<option value="Holland and barrett">Holland and barrett</option>
-<option value="Tempress">Tempress</option>
-<option value="Paardekooper">Paardekooper</option>
-<option value="Njoy">Njoy</option>
-<option value="Viatris">Viatris</option>
-<option value="CelaVIta / McCain">CelaVIta / McCain</option>
-<option value="Van Remmen UV Technology">Van Remmen UV Technology</option>
-<option value="Easy Drain Sanitary Solutions">Easy Drain Sanitary Solutions</option>
-<option value="bol.">bol.</option>
-<option value="Scapino Retail BV">Scapino Retail BV</option>
-<option value="Aarnink Kunststof kozijnen fabriek">Aarnink Kunststof kozijnen fabriek</option>
-<option value="JDE Peets">JDE Peets</option>
-<option value="Loohuis Installatiegroep">Loohuis Installatiegroep</option>
-<option value="Somers Kantoor- en Garderobemeubilair B.V.">Somers Kantoor- en Garderobemeubilair B.V.</option>
-<option value="ESS">ESS</option>
-<option value="Somers Kantoor- en Garderobemeubilair BV">Somers Kantoor- en Garderobemeubilair BV</option>
-<option value="KME. Netherlands BV">KME. Netherlands BV</option>
-<option value="Farm Frites International B.V.">Farm Frites International B.V.</option>
-<option value="DSV Zaden">DSV Zaden</option>
-<option value="Tectum Group">Tectum Group</option>
-<option value="Louwman Group">Louwman Group</option>
-<option value="O'Neill Europe BV">O'Neill Europe BV</option>
-<option value="Royal FloraHolland">Royal FloraHolland</option>
-<option value="Dille&amp;Kamille">Dille&amp;Kamille</option>
-<option value="Shell Chemicals">Shell Chemicals</option>
-<option value="Bme">Bme</option>
-<option value="Alfen">Alfen</option>
-<option value="Dsg">Dsg</option>
-<option value="UC Group">UC Group</option>
-<option value="Bejo Zaden">Bejo Zaden</option>
-<option value="Moonen Packaging">Moonen Packaging</option>
-<option value="Sunshine Group">Sunshine Group</option>
-<option value="Vibrantz  Color Solutions Europe BV">Vibrantz  Color Solutions Europe BV</option>
-<option value="DNP">DNP</option>
-<option value="TANITA Europe B.V.">TANITA Europe B.V.</option>
-<option value="Thetford">Thetford</option>
-<option value="hbm machines">hbm machines</option>
-<option value="Thermo Fisher Scientific">Thermo Fisher Scientific</option>
-<option value="Vreugdenhil Diary Foods">Vreugdenhil Diary Foods</option>
-<option value="Nunhems">Nunhems</option>
-<option value="NSK EDC B.V.">NSK EDC B.V.</option>
-<option value="Seabourne Logistics">Seabourne Logistics</option>
-<option value="Terra Natura International">Terra Natura International</option>
-<option value="Coca-Cola Europacific Partners">Coca-Cola Europacific Partners</option>
-<option value="Leolux Furniture Group">Leolux Furniture Group</option>
-<option value="GBfoods/GranFood">GBfoods/GranFood</option>
-<option value="MSD BV">MSD BV</option>
-<option value="Koppert BV">Koppert BV</option>
-<option value="Farm Frites">Farm Frites</option>
-<option value="Natec">Natec</option>
-<option value="Blink Charging">Blink Charging</option>
-<option value="Mosadex">Mosadex</option>
-<option value="Curium Netherlands B.V.">Curium Netherlands B.V.</option>
-<option value="CleanLease">CleanLease</option>
-<option value="SushiPoint Harderwijk">SushiPoint Harderwijk</option>
-<option value="GE Healthcare">GE Healthcare</option>
-<option value="Amgen">Amgen</option>
-<option value="Fujifilm Europe B.V.">Fujifilm Europe B.V.</option>
-<option value="Bonduelle">Bonduelle</option>
-<option value="Abbott labs">Abbott labs</option>
-<option value="yer">yer</option>
-<option value="aristeio">aristeio</option>
-<option value="PS">PS</option>
-<option value="Uve Fruits">Uve Fruits</option>
-<option value="Ms Supply Chain Support">Ms Supply Chain Support</option>
-<option value="HAVI">HAVI</option>
-<option value="Harbe B.V.">Harbe B.V.</option>
-<option value="Promeco">Promeco</option>
-<option value="ACN">ACN</option>
-<option value="Tribus">Tribus</option>
-<option value="GC">GC</option>
-<option value="FUJIFILM Europe B.V.">FUJIFILM Europe B.V.</option>
-<option value="Fujifilm Healthcare Europe GmbH">Fujifilm Healthcare Europe GmbH</option>
-<option value="Royal Brinkman">Royal Brinkman</option>
-<option value="Magna Tyres">Magna Tyres</option>
-<option value="Thales">Thales</option>
-<option value="Renolit">Renolit</option>
-<option value="NVT">NVT</option>
-<option value="Port of Twente Logistic Association">Port of Twente Logistic Association</option>
-<option value="BOS GmbH &amp; Co. KG">BOS GmbH &amp; Co. KG</option>
-<option value="ForFarmers">ForFarmers</option>
-<option value="The Greenery">The Greenery</option>
-<option value="TCCC SCR2 EMEA 2024 TEAM4">TCCC SCR2 EMEA 2024 TEAM4</option>
-<option value="TCCC SCR2 EMEA 2024 Team4">TCCC SCR2 EMEA 2024 Team4</option>
-<option value="Flier Systems">Flier Systems</option>
-<option value="TESTING Company">TESTING Company</option>
-<option value="TESTING Company9">TESTING Company9</option>
-<option value="VDL ETG Almelo">VDL ETG Almelo</option>
-<option value="Applied Medical Europe b.v.">Applied Medical Europe b.v.</option>
-<option value="Xilontech Pvt Ltd">Xilontech Pvt Ltd</option>
-<option value="Corbion (2)">Corbion (2)</option>
-<option value="Teijin Aramid BV">Teijin Aramid BV</option>
-<option value="Teijin Aramid B.V.">Teijin Aramid B.V.</option>
-<option value="ESC">ESC</option>
-<option value="Welkoop">Welkoop</option>
-<option value="Retus">Retus</option>
-<option value="SHPP">SHPP</option>
-<option value="MSD Animal Health">MSD Animal Health</option>
-<option value="MSD">MSD</option>
-<option value="c. steenvoorden b.v.">c. steenvoorden b.v.</option>
-<option value="AbbVie">AbbVie</option>
-<option value="Abbvie">Abbvie</option>
-<option value="Banks Holdings Ltd.">Banks Holdings Ltd.</option>
-<option value="Merck">Merck</option>
-<option value="De Monchy International BV">De Monchy International BV</option>
-<option value="Pon.Bike">Pon.Bike</option>
-<option value="BSH huishoudapparaten BV">BSH huishoudapparaten BV</option>
-<option value="Ikazia ziekenhuis">Ikazia ziekenhuis</option>
-<option value="technische unie">technische unie</option>
-<option value="Pon.bike">Pon.bike</option>
-<option value="Vecos Europe BV">Vecos Europe BV</option>
-<option value="BSH Huishoudapparaten BV">BSH Huishoudapparaten BV</option>
-<option value="Fastenal Europe">Fastenal Europe</option>
-<option value="Dedeman">Dedeman</option>
-<option value="Vecos">Vecos</option>
-<option value="Kelly Deli">Kelly Deli</option>
-<option value="Ames">Ames</option>
-<option value="Modula">Modula</option>
-<option value="Atos">Atos</option>
-<option value="24 ICE">24 ICE</option>
-<option value="enercon">enercon</option>
-<option value="Morgan Sindall Construction">Morgan Sindall Construction</option>
-<option value="RPP Group">RPP Group</option>
-<option value="PersoneelSelectief">PersoneelSelectief</option>
-<option value="ASML">ASML</option>
-<option value="The Pod Company">The Pod Company</option>
-<option value="Deutsche Bahn Cargo Romania">Deutsche Bahn Cargo Romania</option>
-<option value="Bluesolution SRL">Bluesolution SRL</option>
-<option value="Districon">Districon</option>
-<option value="Tap &amp; van Hoff notarissen">Tap &amp; van Hoff notarissen</option>
-<option value="Vepa">Vepa</option>
-<option value="Huisartsenpraktijk Vechtrijk">Huisartsenpraktijk Vechtrijk</option>
-<option value="Salsa Shop">Salsa Shop</option>
-<option value="van wijk nederland bv">van wijk nederland bv</option>
-<option value="Huisartsenpraktijk Vechtrijk b.v.">Huisartsenpraktijk Vechtrijk b.v.</option>
-<option value="Boot groningen">Boot groningen</option>
-<option value="-">-</option>
-<option value="Radboud Universiteit">Radboud Universiteit</option>
-<option value="Enercon">Enercon</option>
-<option value="AGILEA">AGILEA</option>
-<option value="All Round shipping BV">All Round shipping BV</option>
-<option value="Grundfos">Grundfos</option>
-<option value="TECO CDC B.V">TECO CDC B.V</option>
-</select>
 </div>
 </div>
-</section>
-</section>
-<section id="row-1" class="level2" height="80%">
-<h2 height="80%" class="anchored" data-anchor-id="row-1">Row</h2>
-<section id="column-1" class="level3">
-<h3 class="anchored" data-anchor-id="column-1">Column</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial gauge (will be updated via JS)</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">highchart</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_chart</span>(<span class="at">type =</span> <span class="st">"solidgauge"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_title</span>(<span class="at">text =</span> <span class="st">"Resilience Score"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_pane</span>(</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">center =</span> <span class="fu">list</span>(<span class="st">"50%"</span>, <span class="st">"85%"</span>),</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="st">"140%"</span>,</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">startAngle =</span> <span class="sc">-</span><span class="dv">90</span>,</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">endAngle =</span> <span class="dv">90</span>,</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">background =</span> <span class="fu">list</span>(</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">backgroundColor =</span> <span class="st">"#EEE"</span>,</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">innerRadius =</span> <span class="st">"60%"</span>,</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">outerRadius =</span> <span class="st">"100%"</span>,</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">shape =</span> <span class="st">"arc"</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_yAxis</span>(</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">min =</span> <span class="dv">0</span>,</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="dv">5</span>,</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"Score"</span>),</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">stops =</span> <span class="fu">list</span>(</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="fl">0.2</span>, <span class="st">"#DF5353"</span>),</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="fl">0.5</span>, <span class="st">"#DDDF0D"</span>),</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>      <span class="fu">list</span>(<span class="fl">0.8</span>, <span class="st">"#55BF3B"</span>)</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">lineWidth =</span> <span class="dv">0</span>,</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">tickInterval =</span> <span class="dv">1</span>,</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">list</span>(<span class="at">y =</span> <span class="dv">16</span>)</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hc_add_series</span>(</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Score"</span>,</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">list</span>(js_data<span class="sc">$</span>resilience_score[<span class="dv">1</span>]),</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">tooltip =</span> <span class="fu">list</span>(<span class="at">valueSuffix =</span> <span class="st">" / 5"</span>)</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  htmlwidgets<span class="sc">::</span><span class="fu">onRender</span>(</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sprintf</span>(<span class="st">"</span></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="st">      function(el, x) {</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="st">        window.companyScores = %s;</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="st">        window.chart = this;</span></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="st">        window.updateGauge = function(selectedCompany) {</span></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="st">          const match = companyScores.find(c =&gt; c.name === selectedCompany);</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="st">          if (match) {</span></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="st">            chart.series[0].setData([match.y]);</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="st">            chart.setTitle({ text: 'Resilience Score – ' + match.name });</span></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="st">          }</span></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="st">        };</span></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="st">      }</span></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="st">    "</span>, jsonlite<span class="sc">::</span><span class="fu">toJSON</span>(js_data_list, <span class="at">auto_unbox =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="highchart html-widget html-fill-item" id="htmlwidget-77911bc3cf87853b238c" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-77911bc3cf87853b238c">{"x":{"hc_opts":{"chart":{"reflow":true,"type":"solidgauge"},"title":{"text":"Resilience Score"},"yAxis":{"title":{"text":"Score"},"min":0,"max":5,"stops":[[0.2,"#DF5353"],[0.5,"#DDDF0D"],[0.8,"#55BF3B"]],"lineWidth":0,"tickInterval":1,"labels":{"y":16}},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0},"treemap":{"layoutAlgorithm":"squarified"}},"pane":{"center":["50%","85%"],"size":"140%","startAngle":-90,"endAngle":90,"background":{"backgroundColor":"#EEE","innerRadius":"60%","outerRadius":"100%","shape":"arc"}},"series":[{"name":"Score","data":[3.39],"tooltip":{"valueSuffix":" / 5"}}]},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadCSV":"Download CSV","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","downloadXLS":"Download XLS","drillUpText":"◁ Back to {series.name}","exitFullscreen":"Exit from full screen","exportData":{"annotationHeader":"Annotations","categoryDatetimeHeader":"DateTime","categoryHeader":"Category"},"hideData":"Hide data table","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbolMagnitude":1000,"numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"shortWeekdays":["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],"thousandsSep":" ","viewData":"View data table","viewFullscreen":"View in full screen","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":{"render":[{"code":"\n      function(el, x) {\n        window.companyScores = [{\"name\":\"Vattenfall\",\"y\":3.39},{\"name\":\"The Coca-Cola Company\",\"y\":3.9287},{\"name\":\"Suplacon\",\"y\":2.8356},{\"name\":\"Scania Logistics NL\",\"y\":2.9561},{\"name\":\"Rituals\",\"y\":3.0333},{\"name\":\"NEDTECH\",\"y\":3.0911},{\"name\":\"Livin' Spas\",\"y\":3.2222},{\"name\":\"Corbion (1)\",\"y\":2.8933},{\"name\":\"Broshuis B.V.\",\"y\":2.9589},{\"name\":\"Brink Climate Systems\",\"y\":2.4833},{\"name\":\"Bosch Thermotechniek B.V.\",\"y\":2.78},{\"name\":\"Bidfood\",\"y\":3.2089},{\"name\":\"AVMC\",\"y\":2.9306},{\"name\":\"Avebe\",\"y\":2.5689},{\"name\":\"Ales Metaaltechniek\",\"y\":3.2683},{\"name\":\"Meubelgoedkoop\",\"y\":2.9517},{\"name\":\"Evofenedex\",\"y\":2.05},{\"name\":\"My-Max\",\"y\":3.4683},{\"name\":\"Mundo Recreatie\",\"y\":3.5428},{\"name\":\"Jansen2wielers\",\"y\":2.8011},{\"name\":\"AWL-Techniek\",\"y\":2.2828},{\"name\":\"Shangle\",\"y\":3.1839},{\"name\":\"Fonteyn Outdoor Living Mall\",\"y\":2.9006},{\"name\":\"Van Wolfswinkel wonen\",\"y\":3.3556},{\"name\":\"Meubelcare.nl\",\"y\":3.3278},{\"name\":\"Bruinhorst Tegels Online\",\"y\":3.0876},{\"name\":\"Hermie.com\",\"y\":3.5944},{\"name\":\"Norvixx\",\"y\":3.1744},{\"name\":\"Coltby\",\"y\":3.5472},{\"name\":\"Blue Sky Inn\",\"y\":3.4994},{\"name\":\"Kees Smit tuinmeubelen\",\"y\":2.9967},{\"name\":\"AP Nederland B.V.\",\"y\":3.1806},{\"name\":\"Teijin Aramid\",\"y\":3.0833},{\"name\":\"FrieslandCampina\",\"y\":2.9241},{\"name\":\"Rollecate B.V.\",\"y\":3.2017},{\"name\":\"ME-AT Leeuwarden B.V.\",\"y\":2.613},{\"name\":\"Hiab (Frameworks)\",\"y\":3.053},{\"name\":\"De Marne’s Fabrieken B.V.\",\"y\":3.1094},{\"name\":\"Perfetti van Melle\",\"y\":3.0635},{\"name\":\"Heuver Bandengroothandel B.V.\",\"y\":3.2794},{\"name\":\"Vadain\",\"y\":2.2611},{\"name\":\"Kruitbosch\",\"y\":2.6628},{\"name\":\"Swinkels Family Brewers\",\"y\":3.1956},{\"name\":\"Givaudan\",\"y\":3.1359},{\"name\":\"Spectrum Brands\",\"y\":2.7689},{\"name\":\"Henkel Global Supply Chain\",\"y\":3.0574},{\"name\":\"Vandaglas\",\"y\":2.6465},{\"name\":\"Dun Agro B.V.\",\"y\":3.2311},{\"name\":\"Upfield\",\"y\":3.1472},{\"name\":\"Cosun Beet Company\",\"y\":3.3806},{\"name\":\"Denkavit\",\"y\":2.6006},{\"name\":\"Freudenberg Performance Materials\",\"y\":3.0617},{\"name\":\"Danone\",\"y\":2.9731},{\"name\":\"J&J\",\"y\":2.7402},{\"name\":\"LyondellBasell\",\"y\":2.6269},{\"name\":\"CORAM\",\"y\":2.8894},{\"name\":\"Schaeffler Nederland BV\",\"y\":2.3178},{\"name\":\"Agrifac Machinery B.V.\",\"y\":3.3361},{\"name\":\"Lightwell B.V.\",\"y\":3.1122},{\"name\":\"Radboudumc\",\"y\":2.2143},{\"name\":\"Fibrant\",\"y\":3.3711},{\"name\":\"Axalta Coating Systems GmbH\",\"y\":3.4117},{\"name\":\"Celanese\",\"y\":3.0283},{\"name\":\"Teleon Surgical\",\"y\":2.5472},{\"name\":\"Alfa Laval Nijmegen\",\"y\":3.135},{\"name\":\"Royal Koopmans\",\"y\":2.4209},{\"name\":\"Reginox B.V.\",\"y\":3.4378},{\"name\":\"Fast Forward Wheels bv\",\"y\":3.1967},{\"name\":\"Kyocera\",\"y\":3.0444},{\"name\":\"Dow\",\"y\":3.3369},{\"name\":\"Samsung Electronics\",\"y\":4.2606},{\"name\":\"Monta\",\"y\":3.1444},{\"name\":\"Vanclaes\",\"y\":2.2189},{\"name\":\"Dr. Oetker\",\"y\":2.9894},{\"name\":\"Pneutec\",\"y\":2.7065},{\"name\":\"Foot Locker\",\"y\":3.7926},{\"name\":\"Directbouw Productie BV\",\"y\":1.988},{\"name\":\"Medco EP Natuna\",\"y\":3.9322},{\"name\":\"BWS Sumatera IV Batam\",\"y\":2.6838},{\"name\":\"Pt Berdikari Karyatama Engineering\",\"y\":1.7937},{\"name\":\"Mitsubishi power\",\"y\":4.5161},{\"name\":\"PT Nusantara Regas\",\"y\":2.9741},{\"name\":\"PT. Sam Adi Karya\",\"y\":3.8844},{\"name\":\"PT Ineos Aromatics Indonesia\",\"y\":3.3072},{\"name\":\"KPN\",\"y\":2.4811},{\"name\":\"Petrokimia Gresik\",\"y\":3.445},{\"name\":\"PT PETROKIMIA GRESIK\",\"y\":3.6454},{\"name\":\"PT Petrokimia Gresik\",\"y\":3.6185},{\"name\":\"Henkel\",\"y\":2.6},{\"name\":\"[Technology Company]\",\"y\":4.3194},{\"name\":\"ZiuZ\",\"y\":2.8407},{\"name\":\"Diversey\",\"y\":2.6131},{\"name\":\"Nobian Industrial Chemicals BV\",\"y\":3.6156},{\"name\":\"Nissan\",\"y\":2.6572},{\"name\":\"Black Sea Container Lines\",\"y\":4.2444},{\"name\":\"Groupe SEB - WMF\",\"y\":2.9806},{\"name\":\"Ferroglobe\",\"y\":2.1943},{\"name\":\"Distribuidora\",\"y\":2.9972},{\"name\":\"MariAlro\",\"y\":3.6731},{\"name\":\"Involvation\",\"y\":3.9228},{\"name\":\"Royal Talens\",\"y\":2.965},{\"name\":\"BouWatch\",\"y\":3.8724},{\"name\":\"Aako B.V.\",\"y\":2.3006},{\"name\":\"DSM Firmenich\",\"y\":2.7183},{\"name\":\"yongmalogis\",\"y\":4.3322},{\"name\":\"lotte global logistics\",\"y\":4.6461},{\"name\":\"AGV International B.V.\",\"y\":3.6578},{\"name\":\"C. van Heezik\",\"y\":2.9872},{\"name\":\"RHI Magnesita\",\"y\":2.7483},{\"name\":\"Nexperia Germany\",\"y\":3.8474},{\"name\":\"Woody International\",\"y\":3.8261},{\"name\":\"ASSA ABLOY Opening Solutions EMEIA\",\"y\":2.6556},{\"name\":\"CPS\",\"y\":3.0857},{\"name\":\"Recofarma Ind. do Amazonas Ltda.\",\"y\":1.5589},{\"name\":\"Coca-Cola Philippines\",\"y\":3.4711},{\"name\":\"Coca-Cola CPS Chile\",\"y\":3.4894},{\"name\":\"Southerly Change Drinks\",\"y\":2.8952},{\"name\":\"Coca-Cola Korea Company\",\"y\":3.8961},{\"name\":\"The Coca-Cola Company - In house KO production\",\"y\":3.2335},{\"name\":\"Cola-cola china\",\"y\":4.0628},{\"name\":\"Abbott\",\"y\":3.1083},{\"name\":\"meiji university\",\"y\":2.0761},{\"name\":\"European Aerosols\",\"y\":2.9057},{\"name\":\"Auping\",\"y\":3.45},{\"name\":\"Global logistics ag\",\"y\":2.8361},{\"name\":\"Dasko Koel- en Vriestransporten B.V.\",\"y\":3.963},{\"name\":\"Alpla Zwolle B.V.\",\"y\":3.6667},{\"name\":\"Hiab Benelux\",\"y\":2.6456},{\"name\":\"BBA Pompen en Buizen\",\"y\":2.7093},{\"name\":\"BBA pompen en buizen\",\"y\":2.4769},{\"name\":\"VDL Apparatenbouw\",\"y\":3.0728},{\"name\":\"Fabory\",\"y\":2.7694},{\"name\":\"Tyson Food Europe\",\"y\":2.4717},{\"name\":\"Saxion Test\",\"y\":3.3572},{\"name\":\"Barentsz Ontdekkingshuizen\",\"y\":2.93},{\"name\":\"Alphatronics BV\",\"y\":3.3928},{\"name\":\"Outbound BV\",\"y\":2.3891},{\"name\":\"Power-Sonic EMEA BV\",\"y\":2.74},{\"name\":\"Verhoef Access Technology\",\"y\":2.7383},{\"name\":\"Eurosort Systems BV\",\"y\":2.945},{\"name\":\"Highlite International BV\",\"y\":2.4372},{\"name\":\"Imbema\",\"y\":2.8187},{\"name\":\"C.J. Vianen Flowerexport B.V.\",\"y\":2.9924},{\"name\":\"ESKA BV\",\"y\":2.9096},{\"name\":\"Schoonheidssalon@Christel\",\"y\":3.4796},{\"name\":\"Applied Medical\",\"y\":3.4296},{\"name\":\"CoxGeelen BV\",\"y\":2.4711},{\"name\":\"Legrand\",\"y\":3.2043},{\"name\":\"Go-Tan\",\"y\":2.7681},{\"name\":\"Bribus BV\",\"y\":3.3711},{\"name\":\"Curium Pharma\",\"y\":2.6989},{\"name\":\"HVC Groep\",\"y\":2.9411},{\"name\":\"Karl Lagerfeld\",\"y\":2.562},{\"name\":\"Eichholtz\",\"y\":2.7672},{\"name\":\"Stamhuis\",\"y\":2.9426},{\"name\":\"spirotech bv\",\"y\":3.228},{\"name\":\"Van Heck Badkamers\",\"y\":2.8213},{\"name\":\"Dresz International BV\",\"y\":2.2657},{\"name\":\"Isero BV\",\"y\":2.7404},{\"name\":\"Allied Motion\",\"y\":2.8789},{\"name\":\"Jumbo Supermarkten\",\"y\":3.2267},{\"name\":\"Quooker\",\"y\":3.3694},{\"name\":\"Zuiver BV\",\"y\":2.4087},{\"name\":\"VlastuinCDI\",\"y\":2.6944},{\"name\":\"Allied Motion Dordrecht B.V.\",\"y\":3.4269},{\"name\":\"Isero. B.V.\",\"y\":3.2391},{\"name\":\"Orbia Building & Infrastructure (Wavin)\",\"y\":3.495},{\"name\":\"Boermarke\",\"y\":2.7209},{\"name\":\"Heer en meester\",\"y\":3.32},{\"name\":\"Klaas licht en lampen\",\"y\":1.6389},{\"name\":\"Hans Grohe ESS\",\"y\":2.9028},{\"name\":\"Mondria advies\",\"y\":3.0228},{\"name\":\"Form International\",\"y\":1.9157},{\"name\":\"Unibouw\",\"y\":2.6719},{\"name\":\"E.J.Bos diervoeding\",\"y\":3.548},{\"name\":\"Hooghoudt B.V.\",\"y\":2.6128},{\"name\":\"Holland and barrett\",\"y\":3.0919},{\"name\":\"Tempress\",\"y\":2.2056},{\"name\":\"Paardekooper\",\"y\":1.8633},{\"name\":\"Njoy\",\"y\":3.8433},{\"name\":\"Viatris\",\"y\":2.8026},{\"name\":\"CelaVIta / McCain\",\"y\":3.0806},{\"name\":\"Van Remmen UV Technology\",\"y\":3.2417},{\"name\":\"Easy Drain Sanitary Solutions\",\"y\":3.138},{\"name\":\"bol.\",\"y\":3.3339},{\"name\":\"Scapino Retail BV\",\"y\":4.4083},{\"name\":\"Aarnink Kunststof kozijnen fabriek\",\"y\":2.8157},{\"name\":\"JDE Peets\",\"y\":3.0106},{\"name\":\"Loohuis Installatiegroep\",\"y\":3.3283},{\"name\":\"Somers Kantoor- en Garderobemeubilair B.V.\",\"y\":1.7426},{\"name\":\"ESS\",\"y\":2.9176},{\"name\":\"Somers Kantoor- en Garderobemeubilair BV\",\"y\":2.0583},{\"name\":\"KME. Netherlands BV\",\"y\":2.6583},{\"name\":\"Farm Frites International B.V.\",\"y\":2.9133},{\"name\":\"DSV Zaden\",\"y\":3.05},{\"name\":\"Tectum Group\",\"y\":3.4028},{\"name\":\"Louwman Group\",\"y\":3.1217},{\"name\":\"O'Neill Europe BV\",\"y\":2.7433},{\"name\":\"Royal FloraHolland\",\"y\":2.8417},{\"name\":\"Dille&Kamille\",\"y\":3.1122},{\"name\":\"Shell Chemicals\",\"y\":2.5407},{\"name\":\"Bme\",\"y\":2.8639},{\"name\":\"Alfen\",\"y\":2.9922},{\"name\":\"Dsg\",\"y\":2.7507},{\"name\":\"UC Group\",\"y\":1.6009},{\"name\":\"Bejo Zaden\",\"y\":2.2631},{\"name\":\"Moonen Packaging\",\"y\":2.3889},{\"name\":\"Sunshine Group\",\"y\":3.0322},{\"name\":\"Vibrantz  Color Solutions Europe BV\",\"y\":2.5365},{\"name\":\"DNP\",\"y\":2.1433},{\"name\":\"TANITA Europe B.V.\",\"y\":2.1438},{\"name\":\"Thetford\",\"y\":2.4917},{\"name\":\"hbm machines\",\"y\":2.2315},{\"name\":\"Thermo Fisher Scientific\",\"y\":3.2685},{\"name\":\"Vreugdenhil Diary Foods\",\"y\":2.6267},{\"name\":\"Nunhems\",\"y\":2.3491},{\"name\":\"NSK EDC B.V.\",\"y\":2.6361},{\"name\":\"Seabourne Logistics\",\"y\":2.805},{\"name\":\"Terra Natura International\",\"y\":2.4526},{\"name\":\"Coca-Cola Europacific Partners\",\"y\":3.7778},{\"name\":\"Leolux Furniture Group\",\"y\":1.9444},{\"name\":\"GBfoods/GranFood\",\"y\":3.8287},{\"name\":\"MSD BV\",\"y\":2.7939},{\"name\":\"Koppert BV\",\"y\":2.1817},{\"name\":\"Farm Frites\",\"y\":2.6456},{\"name\":\"Natec\",\"y\":3.2506},{\"name\":\"Blink Charging\",\"y\":2.6567},{\"name\":\"Mosadex\",\"y\":2.6806},{\"name\":\"Curium Netherlands B.V.\",\"y\":2.8606},{\"name\":\"CleanLease\",\"y\":2.7089},{\"name\":\"SushiPoint Harderwijk\",\"y\":3.7585},{\"name\":\"GE Healthcare\",\"y\":2.8685},{\"name\":\"Amgen\",\"y\":2.6581},{\"name\":\"Fujifilm Europe B.V.\",\"y\":2.9759},{\"name\":\"Bonduelle\",\"y\":2.6333},{\"name\":\"Abbott labs\",\"y\":3.2483},{\"name\":\"yer\",\"y\":2.8183},{\"name\":\"aristeio\",\"y\":1.4772},{\"name\":\"PS\",\"y\":1.9356},{\"name\":\"Uve Fruits\",\"y\":1.8311},{\"name\":\"Ms Supply Chain Support\",\"y\":2.7722},{\"name\":\"HAVI\",\"y\":3.188},{\"name\":\"Harbe B.V.\",\"y\":1.3528},{\"name\":\"Promeco\",\"y\":3.2628},{\"name\":\"ACN\",\"y\":3.0454},{\"name\":\"Tribus\",\"y\":3.0746},{\"name\":\"GC\",\"y\":2.1861},{\"name\":\"FUJIFILM Europe B.V.\",\"y\":2.541},{\"name\":\"Fujifilm Healthcare Europe GmbH\",\"y\":3.4824},{\"name\":\"Royal Brinkman\",\"y\":2.7833},{\"name\":\"Magna Tyres\",\"y\":3.0167},{\"name\":\"Thales\",\"y\":3.2611},{\"name\":\"Renolit\",\"y\":3.0356},{\"name\":\"NVT\",\"y\":3.1306},{\"name\":\"Port of Twente Logistic Association\",\"y\":2.0833},{\"name\":\"BOS GmbH & Co. KG\",\"y\":3.3431},{\"name\":\"ForFarmers\",\"y\":2.9926},{\"name\":\"The Greenery\",\"y\":2.5667},{\"name\":\"TCCC SCR2 EMEA 2024 TEAM4\",\"y\":3.1767},{\"name\":\"TCCC SCR2 EMEA 2024 Team4\",\"y\":3.1928},{\"name\":\"Flier Systems\",\"y\":3.2789},{\"name\":\"TESTING Company\",\"y\":5},{\"name\":\"TESTING Company9\",\"y\":3.3077},{\"name\":\"VDL ETG Almelo\",\"y\":2.7604},{\"name\":\"Applied Medical Europe b.v.\",\"y\":2.9452},{\"name\":\"Xilontech Pvt Ltd\",\"y\":2.9228},{\"name\":\"Corbion (2)\",\"y\":3.1324},{\"name\":\"Teijin Aramid BV\",\"y\":2.2794},{\"name\":\"Teijin Aramid B.V.\",\"y\":2.5128},{\"name\":\"ESC\",\"y\":2.7822},{\"name\":\"Welkoop\",\"y\":2.6235},{\"name\":\"Retus\",\"y\":3.5385},{\"name\":\"SHPP\",\"y\":3.0656},{\"name\":\"MSD Animal Health\",\"y\":2.7091},{\"name\":\"MSD\",\"y\":2.56},{\"name\":\"c. steenvoorden b.v.\",\"y\":3.0174},{\"name\":\"AbbVie\",\"y\":2.8942},{\"name\":\"Abbvie\",\"y\":3.038},{\"name\":\"Banks Holdings Ltd.\",\"y\":2.1819},{\"name\":\"Merck\",\"y\":2.4921},{\"name\":\"De Monchy International BV\",\"y\":2.54},{\"name\":\"Pon.Bike\",\"y\":3.4228},{\"name\":\"BSH huishoudapparaten BV\",\"y\":3.2996},{\"name\":\"Ikazia ziekenhuis\",\"y\":2.8991},{\"name\":\"technische unie\",\"y\":2.7761},{\"name\":\"Pon.bike\",\"y\":2.6715},{\"name\":\"Vecos Europe BV\",\"y\":2.8713},{\"name\":\"BSH Huishoudapparaten BV\",\"y\":2.4746},{\"name\":\"Fastenal Europe\",\"y\":3.0722},{\"name\":\"Dedeman\",\"y\":3.3437},{\"name\":\"Vecos\",\"y\":3.4393},{\"name\":\"Kelly Deli\",\"y\":3.9467},{\"name\":\"Ames\",\"y\":3.4644},{\"name\":\"Modula\",\"y\":3.0787},{\"name\":\"Atos\",\"y\":4.3544},{\"name\":\"24 ICE\",\"y\":3.2961},{\"name\":\"enercon\",\"y\":2.8289},{\"name\":\"Morgan Sindall Construction\",\"y\":3.4917},{\"name\":\"RPP Group\",\"y\":1.8956},{\"name\":\"PersoneelSelectief\",\"y\":2.8178},{\"name\":\"ASML\",\"y\":3.0557},{\"name\":\"The Pod Company\",\"y\":2.5815},{\"name\":\"Deutsche Bahn Cargo Romania\",\"y\":3.0539},{\"name\":\"Bluesolution SRL\",\"y\":3.2878},{\"name\":\"Districon\",\"y\":2.8095},{\"name\":\"Tap & van Hoff notarissen\",\"y\":2.0244},{\"name\":\"Vepa\",\"y\":3.4544},{\"name\":\"Huisartsenpraktijk Vechtrijk\",\"y\":2.5481},{\"name\":\"Salsa Shop\",\"y\":3.7322},{\"name\":\"van wijk nederland bv\",\"y\":2.8711},{\"name\":\"Huisartsenpraktijk Vechtrijk b.v.\",\"y\":3.2574},{\"name\":\"Boot groningen\",\"y\":3.1467},{\"name\":\"-\",\"y\":3.0126},{\"name\":\"Radboud Universiteit\",\"y\":2.587},{\"name\":\"Enercon\",\"y\":3.7672},{\"name\":\"AGILEA\",\"y\":2.2322},{\"name\":\"All Round shipping BV\",\"y\":2.4048},{\"name\":\"Grundfos\",\"y\":3.7123},{\"name\":\"TECO CDC B.V\",\"y\":2.3631}];\n        window.chart = this;\n        window.updateGauge = function(selectedCompany) {\n          const match = companyScores.find(c => c.name === selectedCompany);\n          if (match) {\n            chart.series[0].setData([match.y]);\n            chart.setTitle({ text: 'Resilience Score – ' + match.name });\n          }\n        };\n      }\n    ","data":null}]}}</script>
+</div>
+</div>
 </div>
 </div>
 
 
-</section>
-</section>
-
-</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1127,6 +654,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </footer>
 
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (_event) {
+  if (window.bslib.Card) {
+    window.bslib.Card.initializeAllCards();
+  }
+}); 
+</script>
+  
 
 
 
