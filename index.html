@@ -133,9 +133,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#building-better-dashboards" id="toc-building-better-dashboards" class="nav-link active" data-scroll-target="#building-better-dashboards">Building better dashboards</a>
+  <li><a href="#building-better-dashboards-for-resilience-projects" id="toc-building-better-dashboards-for-resilience-projects" class="nav-link active" data-scroll-target="#building-better-dashboards-for-resilience-projects">Building Better Dashboards for Resilience Projects</a>
   <ul class="collapse">
-  <li><a href="#common-issues-with-webapp-design" id="toc-common-issues-with-webapp-design" class="nav-link" data-scroll-target="#common-issues-with-webapp-design">Common issues with webapp design</a></li>
+  <li><a href="#common-challenges-in-dashboard-design" id="toc-common-challenges-in-dashboard-design" class="nav-link" data-scroll-target="#common-challenges-in-dashboard-design">Common Challenges in Dashboard Design</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -146,35 +146,34 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="building-better-dashboards" class="level1">
-<h1>Building better dashboards</h1>
-<p>Webapps and dashboards are becoming an ever more popular way to present and share the results of data science projects. While dashboards can be a great way to communicate findings, they also present a range of challenges when it comes to accessible UI design.</p>
-<section id="common-issues-with-webapp-design" class="level2">
-<h2 class="anchored" data-anchor-id="common-issues-with-webapp-design">Common issues with webapp design</h2>
+<section id="building-better-dashboards-for-resilience-projects" class="level1">
+<h1>Building Better Dashboards for Resilience Projects</h1>
+<p>Interactive dashboards are an increasingly powerful way to share insights from sustainability and resilience research. With tools like <strong>Quarto</strong>, we can integrate R and Python seamlessly to deliver rich, interactive, and reproducible visualizations. However, turning research data into accessible, user-friendly dashboards comes with its own set of challenges.</p>
+<section id="common-challenges-in-dashboard-design" class="level2">
+<h2 class="anchored" data-anchor-id="common-challenges-in-dashboard-design">Common Challenges in Dashboard Design</h2>
 <ul>
-<li>Researchers are not web/UX designers, and have to “muddle through” when it comes to making decisions about colour schemes and navigation.
+<li>Researchers are not trained UI/UX designers. Decisions about layout, navigation, and color schemes are often improvised.
 <ul>
-<li>Web accessibility requirements and how to implement features that meet these requirements are often not covered in framework documentation or tutorials.</li>
+<li>Accessibility best practices are rarely covered in standard tutorials or framework documentation, leaving important aspects of inclusive design overlooked.</li>
 </ul></li>
-<li>Frameworks designed to allow easy porting of research analysis into webapps often use languages not specifically designed for web design (e.g.&nbsp;Python, R), making it sometimes difficult to customise variables required for good web accessibility.</li>
-<li>Implementation of custom theming and css files can be varied across different frameworks (Shiny for R and Python, Dash, Streamlit), making it challenging to enforce a standard theme across a range of different web apps (for example, from a single research group).</li>
-<li>Hosting of interactive webapps is expensive and difficult to budget for due to cloud subscription models.</li>
-<li>Navigation of interactive webapps is more chalenging that a static web page as often times <em>back</em> and <em>forward</em> browser keys do not work as intended.</li>
+<li>Tools like R and Python offer great analytical power but aren’t natively built for designing web interfaces, making accessibility customization (e.g., keyboard navigation, color contrast) harder to implement.</li>
+<li>Applying a consistent theme (using CSS or SCSS) across different tools like <strong>Shiny</strong>, <strong>Dash</strong>, or <strong>Streamlit</strong> is error-prone and often tool-specific, making uniform branding across dashboards difficult.</li>
+<li>Hosting interactive apps can be prohibitively expensive, especially with cloud-based pay-as-you-go pricing models.</li>
+<li>Navigation within dynamic dashboards can break browser behaviors (like the back and forward buttons), leading to usability issues.</li>
 </ul>
-<p>While almost every issue around branding and accessibility can be met with some custom css and html, I wanted to put together some easy-to-implement tools for people building simple webapps in order to make customising appearance that little bit easier.</p>
+<p>Although these limitations can be solved with custom HTML and CSS, our goal here is to simplify that process for those building <strong>clean, accessible dashboards</strong> for resilience data — without needing to become full-stack developers.</p>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Who is this useful for
+Who Should Use This
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Hopefully this resource will be useful to you if you are building your first webapp, or if you have built a simple webapp before and struggled to apply consistent theming to it with custom css.</p>
-<p>Additionally, this should be useful to anyone (or any group) that needs to produce multiple web apps with a similar look/branding, but is using a range of different tools (so both R and Python, for example).</p>
-<p>So far, this resource mainly deals with basic webapps that can be rendered statically (so some minor interactivity in-browser); however, Quarto allows for fully-developed interactivity with packages like Shiny, so in the future I might develop this further to show how you can build a full dashboard/webapp and containerise it for hosting.</p>
+<p>This guide is for: - Researchers building their <strong>first Quarto dashboard</strong> and unsure how to manage layout, theming, or responsiveness. - Teams who need to <strong>maintain visual consistency</strong> across multiple dashboards or reports, even when switching between R and Python. - Educators and applied scientists working with <strong>supply chain, sustainability, or policy-related data</strong> who want to focus on analysis — not front-end code.</p>
+<p>We focus first on <strong>static and semi-interactive dashboards</strong> that can be hosted freely, and later show how to scale to full interactive apps with Shiny or Python backends. Future updates will explore how to <strong>containerize</strong> these dashboards for scalable, version-controlled deployment.</p>
 </div>
 </div>
 
