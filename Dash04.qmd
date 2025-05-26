@@ -1,0 +1,98 @@
+---
+title: "Highcharter Dashboard"
+format:
+  dashboard:
+    theme: flatly
+---
+
+```{r setup}
+#| include: false
+# Install if needed:
+# install.packages("highcharter")
+# install.packages("dplyr")
+
+library(highcharter)
+library(dplyr)
+```
+
+# Example Highcharter Dashboard
+
+## Row {height=60%}
+
+### Column
+
+```{r}
+# Basic highchart
+highchart() %>%
+  hc_chart(type = "line") %>%
+  hc_title(text = "Monthly Data") %>%
+  hc_xAxis(categories = month.abb) %>%
+  hc_add_series(name = "Series A", data = sample(10:100, 12)) %>%
+  hc_add_series(name = "Series B", data = sample(50:120, 12))
+```
+
+### Column {.tabset}
+
+```{r}
+#| title: Bar Chart
+highchart() %>%
+  hc_chart(type = "column") %>%
+  hc_title(text = "Bar Chart Example") %>%
+  hc_xAxis(categories = c("A", "B", "C")) %>%
+  hc_add_series(name = "Values", data = c(29, 71, 106))
+```
+
+```{r}
+#| title: Pie Chart
+highchart() %>%
+  hc_chart(type = "pie") %>%
+  hc_title(text = "Pie Chart Example") %>%
+  hc_add_series(
+    name = "Share",
+    data = list_parse2(data.frame(
+      name = c("Red", "Blue", "Green"),
+      y = c(30, 50, 20)
+    ))
+  )
+```
+
+## Row {height=40%}
+
+### Column
+
+```{r}
+# Gauge Chart
+highchart() %>%
+  hc_chart(type = "solidgauge") %>%
+  hc_title(text = "Resilience Score") %>%
+  hc_pane(
+    center = list("50%", "85%"),
+    size = "140%",
+    startAngle = -90,
+    endAngle = 90,
+    background = list(
+      backgroundColor = "#EEE",
+      innerRadius = "60%",
+      outerRadius = "100%",
+      shape = "arc"
+    )
+  ) %>%
+  hc_yAxis(
+    min = 0,
+    max = 5,
+    title = list(text = "Score"),
+    stops = list(
+      list(0.2, "#DF5353"),
+      list(0.5, "#DDDF0D"),
+      list(0.8, "#55BF3B")
+    ),
+    lineWidth = 0,
+    tickInterval = 1,
+    labels = list(y = 16)
+  ) %>%
+  hc_add_series(
+    name = "Score",
+    data = list(3.7),
+    tooltip = list(valueSuffix = " / 5")
+  )
+```

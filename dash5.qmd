@@ -1,0 +1,113 @@
+---
+title: "Interactive Highcharter Dashboard"
+format:
+  html:
+    dashboard:
+      theme: flatly
+---
+
+```{r setup}
+#| include: false
+library(highcharter)
+library(dplyr)
+library(readxl)
+library(htmlwidgets)
+
+# Load Excel
+df <- read_excel("data/Resilience - MasterDatabase.xlsx", sheet = "MasterData", col_names = FALSE)
+names(df) <- as.character(df[2, ])
+df <- df[-c(1, 2), ]
+
+# Clean and prepare
+df <- df %>%
+  rename(
+    company = `Company name:`,
+    resilience_score = `Overall SCRes`
+  ) %>%
+  mutate(
+    resilience_score = as.numeric(resilience_score)
+  ) %>%
+  filter(!is.na(company), !is.na(resilience_score)) %>%
+  distinct(company, .keep_all = TRUE)
+
+# Prepare JS-friendly data
+js_data <- df %>%
+  select(company, resilience_score)
+
+# Make JavaScript dataset
+js_data_list <- lapply(seq_len(nrow(js_data)), function(i) {
+  list(name = js_data$company[i], y = js_data$resilience_score[i])
+})
+```
+
+## Row {height=20%}
+
+### Column
+
+```{r}
+# Create dropdown with embedded JS logic
+htmltools::tags$select(
+  id = "companyDropdown",
+  onchange = "updateGauge(this.value)",
+  lapply(js_data$company, function(cmp) {
+    htmltools::tags$option(value = cmp, cmp)
+  })
+)
+```
+
+## Row {height=80%}
+
+### Column
+
+```{r}
+# Initial gauge (will be updated via JS)
+highchart() %>%
+  hc_chart(type = "solidgauge") %>%
+  hc_title(text = "Resilience Score") %>%
+  hc_pane(
+    center = list("50%", "85%"),
+    size = "140%",
+    startAngle = -90,
+    endAngle = 90,
+    background = list(
+      backgroundColor = "#EEE",
+      innerRadius = "60%",
+      outerRadius = "100%",
+      shape = "arc"
+    )
+  ) %>%
+  hc_yAxis(
+    min = 0,
+    max = 5,
+    title = list(text = "Score"),
+    stops = list(
+      list(0.2, "#DF5353"),
+      list(0.5, "#DDDF0D"),
+      list(0.8, "#55BF3B")
+    ),
+    lineWidth = 0,
+    tickInterval = 1,
+    labels = list(y = 16)
+  ) %>%
+  hc_add_series(
+    name = "Score",
+    data = list(js_data$resilience_score[1]),
+    tooltip = list(valueSuffix = " / 5")
+  ) %>%
+  htmlwidgets::onRender(
+    sprintf("
+      function(el, x) {
+        window.companyScores = %s;
+        window.chart = this;
+        window.updateGauge = function(selectedCompany) {
+          const match = companyScores.find(c => c.name === selectedCompany);
+          if (match) {
+            chart.series[0].setData([match.y]);
+            chart.setTitle({ text: 'Resilience Score – ' + match.name });
+          }
+        };
+      }
+    ", jsonlite::toJSON(js_data_list, auto_unbox = TRUE))
+  )
+```
+

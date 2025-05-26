@@ -6,18 +6,28 @@ website:
   title: "Better basic dashboards"
   navbar:
     left:
+      - href: dash01.qmd
+        text: Dashboard 1
+      - href: dash02.qmd
+        text: Dashboard 2
+      - href: dash03.qmd
+        text: Dashboard 3
+      - href: Dash04.qmd
+        text: Dashboard 4
+      - href: dash5.qmd
+        text: dash5
+      - href: ExampleDash01.qmd
+        text: Example Dash 1
+      - href: ExampleDash02.qmd
+        text: Example Dash 2
+      - href: ExampleDash03.qmd
+        text: Example Dash 3
       - href: about.qmd
         text: Getting Started
       - href: using-quarto.qmd
         text: Guidance for Quarto
       - href: resources.qmd
         text: Resources
-      - href: dash01.qmd
-        text: Example Dash 1
-      - href: dash02.qmd
-        text: Example Dash 2
-      - href: dash03.qmd
-        text: Example Dash 3
   page-footer:
     background: secondary
     left: Copyright 2025, Christiaan Verhoef

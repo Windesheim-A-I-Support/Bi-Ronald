@@ -1,0 +1,120 @@
+# Embedding visualisations in a generic webpage
+
+Of course, you can also just embed visualisations in a generic Quarto html document, without using their dashboard layout. There are some great options available when working with the [article layout](https://quarto.org/docs/authoring/article-layout.html) option, that can allow you to create an engaging and interactive data story.
+
+```{python}
+
+#| echo: false
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
+import plotly.express as px
+from itables import show
+
+data = pd.read_csv("figs/filtered_data.csv")
+display_data = pd.read_csv("figs/filtered_data.csv")
+data["Unique/Non-unique axis"] = data['uni']/data["non-uni"]
+
+zoning_bins = [-np.inf, 89.5, np.inf]
+zoning_labels = ["Fail", "Pass"]
+data["zoning"] = pd.cut(data.percent_geochem_preserved,zoning_bins, labels=zoning_labels)
+
+rounding_bins = [-np.inf, 39.5, np.inf]
+rounding_labels = ["Fail", "Pass"]
+data["rounding"] = pd.cut(data.percent_rounded,rounding_bins, labels=zoning_labels)
+
+data["Result"] = (data["zoning"]=="Pass") * (data["rounding"]=="Pass")
+data.Result= data.Result.replace({True: "Pass", False: "Fail"})
+```
+
+## Source data
+
+This data is from the paper *Reconciling fast and slow cooling during planetary formation as recorded in the main group pallasites*, Earth and Planetary Science Letters, Volume 618, 2023, by M. Murphy Quinlan, A.M. Walker, and C.J. Davies
+
+[![](https://zenodo.org/badge/DOI/10.1016/j.epsl.2023.118284.svg)](https://doi.org/10.1016/j.epsl.2023.118284)
+
+## Embedded html figures
+
+:::{.column-body-outset}
+![This is an embedded html figure built with Bokeh](figs/three_panel_plot.html){width=1000 height=500}
+:::
+
+Interactive html figures, for example those made with the [Bokeh library](https://bokeh.org/) can be embedded as figures. Make sure to set the figure width and height when exporting from Bokeh, and to use sensible dimensions when adding the figure. The figure above is set into a column environment.
+
+## Using libraries to create figures embedded in the document
+
+You can also create plots on render with libraries such as [Plotly Express](https://plotly.com/python/plotly-express/) which again allow limited interactivity without the need of a server. The main difference between using the Quarto website layout instead of a dashboard layout is that by default, the website will show the code being used.
+
+For example:
+
+::: {.panel-tabset}
+
+## Plot
+
+```{python}
+
+fig = px.scatter(data, x="avg_r", y="actual_volume",color="Result",symbol="Result",
+                marginal_x="histogram",marginal_y="rug",log_y=True,
+                color_discrete_sequence=px.colors.qualitative.Vivid, opacity=0.5,
+                labels={
+                     "avg_r": "Mean intrusion radius (m)",
+                     "actual_volume": "Intrusion volume (m^3)",
+                     "Result": "Model result"
+                 },).update_layout(
+    template='plotly_white'
+)
+
+fig.show()
+```
+
+## Data
+
+```{python}
+show(display_data, lengthMenu=[10, 20, 50, 100])
+```
+
+:::
+
+In the case of wanting to share a finished piece of data communication, this might not be desirable. This is easily remedied by passing the argument `#| echo: false` to the code block. This can also be set for the entire page, leading to output like below:
+
+::: {.panel-tabset}
+
+## Plot
+
+```{python}
+#| echo: false
+
+fig = px.scatter(data, x="avg_r", y="actual_volume",color="Result",symbol="Result",
+                marginal_x="histogram",marginal_y="rug",log_y=True,
+                color_discrete_sequence=px.colors.qualitative.Vivid, opacity=0.5,
+                labels={
+                     "avg_r": "Mean intrusion radius (m)",
+                     "actual_volume": "Intrusion volume (m^3)",
+                     "Result": "Model result"
+                 },).update_layout(
+    template='plotly_white'
+)
+
+fig.show()
+```
+
+## Data
+
+```{python}
+#| echo: false
+show(display_data, lengthMenu=[10, 20, 50, 100])
+```
+
+:::
+
+### Pros and Cons
+
+This might not have the usual look of organised cards as you have come to expect from a dashboard, but can give a very clean and professional appearance to your data story relatively quickly. Certain features are only available through the dashboard layout option, such as the value cards in [Example Dash 2: Data breakdown](dash02.qmd#data-breakdown)
+
+You might need to do some experimentation to discover what layout best suits your data and the message you are trying to convey.
+
+* Do you expect users to mainly visit the site via computer or mobile phone?
+* How much interactivity do you require vs. how much text content do you anticipate?
+* What format are your figures in, and are they better showcased by either layout?
+* Which layout allows you to follow better accessibility practice?

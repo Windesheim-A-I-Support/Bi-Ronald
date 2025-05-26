@@ -69,6 +69,22 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="site_libs/core-js-2.5.3/shim.min.js"></script>
+
+<script src="site_libs/react-18.2.0/react.min.js"></script>
+
+<script src="site_libs/react-18.2.0/react-dom.min.js"></script>
+
+<script src="site_libs/reactwidget-2.0.0/react-tools.js"></script>
+
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<link href="site_libs/reactable-0.4.4/reactable.css" rel="stylesheet">
+
+<script src="site_libs/reactable-binding-0.4.4/reactable.js"></script>
+
 
 
 </head>
@@ -94,6 +110,38 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
+    <a class="nav-link" href="./dash01.html"> 
+<span class="menu-text">Dashboard 1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./dash02.html"> 
+<span class="menu-text">Dashboard 2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./dash03.html"> 
+<span class="menu-text">Dashboard 3</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./Dash04.html"> 
+<span class="menu-text">Dashboard 4</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./dash5.html"> 
+<span class="menu-text">dash5</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./ExampleDash01.html"> 
+<span class="menu-text">Example Dash 1</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./ExampleDash02.html"> 
+<span class="menu-text">Example Dash 2</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./ExampleDash03.html"> 
+<span class="menu-text">Example Dash 3</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
 <span class="menu-text">Getting Started</span></a>
   </li>  
@@ -104,18 +152,6 @@ ul.task-list li input[type="checkbox"] {
   <li class="nav-item">
     <a class="nav-link" href="./resources.html"> 
 <span class="menu-text">Resources</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./dash01.html"> 
-<span class="menu-text">Example Dash 1</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./dash02.html"> 
-<span class="menu-text">Example Dash 2</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./dash03.html"> 
-<span class="menu-text">Example Dash 3</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -133,9 +169,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#building-better-dashboards" id="toc-building-better-dashboards" class="nav-link active" data-scroll-target="#building-better-dashboards">Building better dashboards</a>
+  <li><a href="#from-survey-to-insight-automating-resilience-reporting" id="toc-from-survey-to-insight-automating-resilience-reporting" class="nav-link active" data-scroll-target="#from-survey-to-insight-automating-resilience-reporting">From Survey to Insight: Automating Resilience Reporting</a>
   <ul class="collapse">
-  <li><a href="#common-issues-with-webapp-design" id="toc-common-issues-with-webapp-design" class="nav-link" data-scroll-target="#common-issues-with-webapp-design">Common issues with webapp design</a></li>
+  <li><a href="#why-this-matters" id="toc-why-this-matters" class="nav-link" data-scroll-target="#why-this-matters">💡 Why This Matters</a></li>
+  <li><a href="#who-this-is-for" id="toc-who-this-is-for" class="nav-link" data-scroll-target="#who-this-is-for">👥 Who This Is For</a></li>
+  <li><a href="#system-status-tracker" id="toc-system-status-tracker" class="nav-link" data-scroll-target="#system-status-tracker">📋 System Status Tracker</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -146,35 +184,40 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="building-better-dashboards" class="level1">
-<h1>Building better dashboards</h1>
-<p>Webapps and dashboards are becoming an ever more popular way to present and share the results of data science projects. While dashboards can be a great way to communicate findings, they also present a range of challenges when it comes to accessible UI design.</p>
-<section id="common-issues-with-webapp-design" class="level2">
-<h2 class="anchored" data-anchor-id="common-issues-with-webapp-design">Common issues with webapp design</h2>
+<section id="from-survey-to-insight-automating-resilience-reporting" class="level1">
+<h1>From Survey to Insight: Automating Resilience Reporting</h1>
+<p>I’m Christiaan Verhoef, researcher at Windesheim and founder of Value Chain Hackers.<br>
+This project is about more than dashboards — it’s about building an end-to-end system that empowers companies and researchers alike to measure, understand, and communicate <strong>supply chain resilience</strong>.</p>
+<p>We’re building a pipeline that begins with a simple online <strong>survey</strong>, processes the data into a real-time <strong>dashboard</strong>, and outputs a tailored <strong>report per company</strong> — all using open source tools like Quarto, R, Python, and Supabase.</p>
+<p>No more manual copy-pasting, no more unstructured spreadsheets. Just a clean system:<br>
+<strong>Survey in → Clean Data → Live Visuals → Company PDF Out.</strong></p>
+<hr>
+<section id="why-this-matters" class="level2">
+<h2 class="anchored" data-anchor-id="why-this-matters">💡 Why This Matters</h2>
 <ul>
-<li>Researchers are not web/UX designers, and have to “muddle through” when it comes to making decisions about colour schemes and navigation.
-<ul>
-<li>Web accessibility requirements and how to implement features that meet these requirements are often not covered in framework documentation or tutorials.</li>
-</ul></li>
-<li>Frameworks designed to allow easy porting of research analysis into webapps often use languages not specifically designed for web design (e.g.&nbsp;Python, R), making it sometimes difficult to customise variables required for good web accessibility.</li>
-<li>Implementation of custom theming and css files can be varied across different frameworks (Shiny for R and Python, Dash, Streamlit), making it challenging to enforce a standard theme across a range of different web apps (for example, from a single research group).</li>
-<li>Hosting of interactive webapps is expensive and difficult to budget for due to cloud subscription models.</li>
-<li>Navigation of interactive webapps is more chalenging that a static web page as often times <em>back</em> and <em>forward</em> browser keys do not work as intended.</li>
+<li>Many companies want to understand their position in the supply chain — but lack a structured tool to measure it.</li>
+<li>Researchers have the models and expertise, but no scalable, affordable way to deliver tailored results.</li>
+<li>Dashboards often look great — but don’t generate trust if they’re not actionable, consistent, or company-specific.</li>
 </ul>
-<p>While almost every issue around branding and accessibility can be met with some custom css and html, I wanted to put together some easy-to-implement tools for people building simple webapps in order to make customising appearance that little bit easier.</p>
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Who is this useful for
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Hopefully this resource will be useful to you if you are building your first webapp, or if you have built a simple webapp before and struggled to apply consistent theming to it with custom css.</p>
-<p>Additionally, this should be useful to anyone (or any group) that needs to produce multiple web apps with a similar look/branding, but is using a range of different tools (so both R and Python, for example).</p>
-<p>So far, this resource mainly deals with basic webapps that can be rendered statically (so some minor interactivity in-browser); however, Quarto allows for fully-developed interactivity with packages like Shiny, so in the future I might develop this further to show how you can build a full dashboard/webapp and containerise it for hosting.</p>
+<p>We’re solving this by linking survey tools (like <code>n8n</code> or Framaforms) directly to a data pipeline, and then rendering per-company dashboards and PDF reports through Quarto.</p>
+<p>This site is the heart of that system.</p>
+<hr>
+</section>
+<section id="who-this-is-for" class="level2">
+<h2 class="anchored" data-anchor-id="who-this-is-for">👥 Who This Is For</h2>
+<p>This project supports: - <strong>Researchers</strong> looking to automate data intake, analysis, and reporting - <strong>Consultants &amp; universities</strong> working with multiple stakeholders in sustainability or supply chains - <strong>SMEs and corporates</strong> participating in the resilience scan who want fast, clear feedback</p>
+<p>Our goal is to make it effortless to: - Fill out a guided questionnaire<br>
+- Get instant insights on a shared dashboard<br>
+- Receive a branded PDF report tailored to your answers</p>
+<p>All fully self-hosted and open source.</p>
+<hr>
+</section>
+<section id="system-status-tracker" class="level2">
+<h2 class="anchored" data-anchor-id="system-status-tracker">📋 System Status Tracker</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div class="reactable html-widget html-fill-item" id="htmlwidget-84665c64efe55659bbf1" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-84665c64efe55659bbf1">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"Step":[1,2,3,4,5,6,7,8,9,10,11],"Task":["Set up self-hosted survey form","Connect form to live data source","Create cleaning & validation script","Update dashboard to load live data","Design company-specific filters","Create automated report template (Quarto)","Configure per-company PDF rendering","Trigger report generation on submission","Add PDF download links per company","Style dashboards & reports (SCSS)","Add version control to data and reports"],"Status":["⏳ In Progress","⏳ In Progress","⏳ In Progress","✅ Done","❌ To Do","❌ To Do","❌ To Do","❌ To Do","❌ To Do","⏳ In Progress","❌ To Do"],"Responsible":["Christiaan / Dev","Dev","Dev","Dev","Dev","Dev / Christiaan","Dev","Dev","Dev","Christiaan","Dev"],"Notes":["Use n8n, Framaforms, or Supabase input","Excel mock loaded; full webhook not yet linked","Standardization started: numeric coercion & NA drop","Live Excel → Dashboard pipeline working","`filter(company == \"XXX\")` logic pending","`report.qmd` template per org to be drafted","Use Quarto multi-render or looping for output","n8n trigger or cron not yet implemented","Manual export only; embed links still needed","SCSS applied in dashboards","Track changes in survey+output, optionally Git"]},"columns":[{"id":"Step","name":"Step","type":"numeric"},{"id":"Task","name":"Task","type":"character"},{"id":"Status","name":"Status","type":"character","html":true,"style":[{"background":"#f0ad4e","color":"white","fontWeight":"bold","textAlign":"center"},{"background":"#f0ad4e","color":"white","fontWeight":"bold","textAlign":"center"},{"background":"#f0ad4e","color":"white","fontWeight":"bold","textAlign":"center"},{"background":"#5cb85c","color":"white","fontWeight":"bold","textAlign":"center"},{"background":"#d9534f","color":"white","fontWeight":"bold","textAlign":"center"},{"background":"#d9534f","color":"white","fontWeight":"bold","textAlign":"center"},{"background":"#d9534f","color":"white","fontWeight":"bold","textAlign":"center"},{"background":"#d9534f","color":"white","fontWeight":"bold","textAlign":"center"},{"background":"#d9534f","color":"white","fontWeight":"bold","textAlign":"center"},{"background":"#f0ad4e","color":"white","fontWeight":"bold","textAlign":"center"},{"background":"#d9534f","color":"white","fontWeight":"bold","textAlign":"center"}]},{"id":"Responsible","name":"Responsible","type":"character"},{"id":"Notes","name":"Notes","type":"character"}],"filterable":true,"searchable":true,"defaultPageSize":11,"highlight":true,"bordered":true,"striped":true,"dataKey":"ea08f68f64d162322f6b4ec762765d74"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 
@@ -255,7 +298,7 @@ Who is this useful for
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/Value-Chain-Hackers\.github\.io\/Bi-Ronald\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

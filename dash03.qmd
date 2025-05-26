@@ -1,38 +1,34 @@
 # Embedding visualisations in a generic webpage
 
-Of course, you can also just embed visualisations in a generic Quarto html document, without using their dashboard layout. There are some great options available when working with the [article layout](https://quarto.org/docs/authoring/article-layout.html) option, that can allow you to create an engaging and interactive data story.
+Ofcourse we can just embed visualisations
 
 ```{python}
-
 #| echo: false
 import numpy as np
-import matplotlib.pyplot as plt
 import pandas as pd
-import seaborn as sns
 import plotly.express as px
 from itables import show
 
-data = pd.read_csv("figs/filtered_data.csv")
-display_data = pd.read_csv("figs/filtered_data.csv")
-data["Unique/Non-unique axis"] = data['uni']/data["non-uni"]
+# Load and prepare Excel data
+df = pd.read_excel("./data/Resilience - MasterDatabase.xlsx", sheet_name="MasterData", header=None)
+df.columns = df.iloc[1]
+df = df.drop([0, 1]).reset_index(drop=True)
 
-zoning_bins = [-np.inf, 89.5, np.inf]
-zoning_labels = ["Fail", "Pass"]
-data["zoning"] = pd.cut(data.percent_geochem_preserved,zoning_bins, labels=zoning_labels)
+# Rename and clean columns
+df = df.rename(columns={
+    "Overall SCRes": "resilience_score",
+    "Size (number of employees)": "company_size"
+})
+df["resilience_score"] = pd.to_numeric(df["resilience_score"], errors="coerce")
+df = df.dropna(subset=["resilience_score", "company_size"])
+df["Result"] = df["resilience_score"].apply(lambda x: "Pass" if x >= 3.5 else "Fail")
 
-rounding_bins = [-np.inf, 39.5, np.inf]
-rounding_labels = ["Fail", "Pass"]
-data["rounding"] = pd.cut(data.percent_rounded,rounding_bins, labels=zoning_labels)
-
-data["Result"] = (data["zoning"]=="Pass") * (data["rounding"]=="Pass")
-data.Result= data.Result.replace({True: "Pass", False: "Fail"})
+display_data = df[["company_size", "resilience_score", "Result"]]
 ```
 
 ## Source data
 
-This data is from the paper *Reconciling fast and slow cooling during planetary formation as recorded in the main group pallasites*, Earth and Planetary Science Letters, Volume 618, 2023, by M. Murphy Quinlan, A.M. Walker, and C.J. Davies
-
-[![](https://zenodo.org/badge/DOI/10.1016/j.epsl.2023.118284.svg)](https://doi.org/10.1016/j.epsl.2023.118284)
+This data is from the Value Chain Hackers supply chain resilience survey conducted across multiple organizations in Europe. It reflects reported values of company size and calculated resilience scores.
 
 ## Embedded html figures
 
@@ -40,60 +36,28 @@ This data is from the paper *Reconciling fast and slow cooling during planetary 
 ![This is an embedded html figure built with Bokeh](figs/three_panel_plot.html){width=1000 height=500}
 :::
 
-Interactive html figures, for example those made with the [Bokeh library](https://bokeh.org/) can be embedded as figures. Make sure to set the figure width and height when exporting from Bokeh, and to use sensible dimensions when adding the figure. The figure above is set into a column environment.
-
 ## Using libraries to create figures embedded in the document
 
-You can also create plots on render with libraries such as [Plotly Express](https://plotly.com/python/plotly-express/) which again allow limited interactivity without the need of a server. The main difference between using the Quarto website layout instead of a dashboard layout is that by default, the website will show the code being used.
-
-For example:
-
-::: {.panel-tabset}
-
-## Plot
-
-```{python}
-
-fig = px.scatter(data, x="avg_r", y="actual_volume",color="Result",symbol="Result",
-                marginal_x="histogram",marginal_y="rug",log_y=True,
-                color_discrete_sequence=px.colors.qualitative.Vivid, opacity=0.5,
-                labels={
-                     "avg_r": "Mean intrusion radius (m)",
-                     "actual_volume": "Intrusion volume (m^3)",
-                     "Result": "Model result"
-                 },).update_layout(
-    template='plotly_white'
-)
-
-fig.show()
-```
-
-## Data
-
-```{python}
-show(display_data, lengthMenu=[10, 20, 50, 100])
-```
-
-:::
-
-In the case of wanting to share a finished piece of data communication, this might not be desirable. This is easily remedied by passing the argument `#| echo: false` to the code block. This can also be set for the entire page, leading to output like below:
-
 ::: {.panel-tabset}
 
 ## Plot
 
 ```{python}
 #| echo: false
-
-fig = px.scatter(data, x="avg_r", y="actual_volume",color="Result",symbol="Result",
-                marginal_x="histogram",marginal_y="rug",log_y=True,
-                color_discrete_sequence=px.colors.qualitative.Vivid, opacity=0.5,
-                labels={
-                     "avg_r": "Mean intrusion radius (m)",
-                     "actual_volume": "Intrusion volume (m^3)",
-                     "Result": "Model result"
-                 },).update_layout(
-    template='plotly_white'
+fig = px.box(
+    display_data,
+    x="company_size",
+    y="resilience_score",
+    color="Result",
+    title="Resilience Score by Company Size",
+    labels={
+        "company_size": "Company Size",
+        "resilience_score": "Resilience Score",
+        "Result": "Threshold Classification"
+    },
+    color_discrete_sequence=px.colors.qualitative.Set2
+).update_layout(
+    template="plotly_white"
 )
 
 fig.show()
@@ -103,7 +67,7 @@ fig.show()
 
 ```{python}
 #| echo: false
-show(display_data, lengthMenu=[10, 20, 50, 100])
+show(display_data, lengthMenu=[10, 20, 50])
 ```
 
 :::

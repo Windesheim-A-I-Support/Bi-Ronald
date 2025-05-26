@@ -1,26 +1,111 @@
-# Building better dashboards
+# From Survey to Insight: Automating Resilience Reporting
 
-Webapps and dashboards are becoming an ever more popular way to present and share the results of data science projects. While dashboards can be a great way to communicate findings, they also present a range of challenges when it comes to accessible UI design.
+I'm Christiaan Verhoef, researcher at Windesheim and founder of Value Chain Hackers.  
+This project is about more than dashboards — it's about building an end-to-end system that empowers companies and researchers alike to measure, understand, and communicate **supply chain resilience**.
 
-## Common issues with webapp design
+We’re building a pipeline that begins with a simple online **survey**, processes the data into a real-time **dashboard**, and outputs a tailored **report per company** — all using open source tools like Quarto, R, Python, and Supabase.
 
-* Researchers are not web/UX designers, and have to "muddle through" when it comes to making decisions about colour schemes and navigation.
-    + Web accessibility requirements and how to implement features that meet these requirements are often not covered in framework documentation or tutorials.
-* Frameworks designed to allow easy porting of research analysis into webapps often use languages not specifically designed for web design (e.g. Python, R), making it sometimes difficult to customise variables required for good web accessibility.
-* Implementation of custom theming and css files can be varied across different frameworks (Shiny for R and Python, Dash, Streamlit), making it challenging to enforce a standard theme across a range of different web apps (for example, from a single research group).
-* Hosting of interactive webapps is expensive and difficult to budget for due to cloud subscription models.
-* Navigation of interactive webapps is more chalenging that a static web page as often times *back* and *forward* browser keys do not work as intended.
+No more manual copy-pasting, no more unstructured spreadsheets. Just a clean system:  
+**Survey in → Clean Data → Live Visuals → Company PDF Out.**
 
-While almost every issue around branding and accessibility can be met with some custom css and html, I wanted to put together some easy-to-implement tools for people building simple webapps in order to make customising appearance that little bit easier.
+---
 
-::: {.callout-note icon=false}
+## 💡 Why This Matters
 
-## Who is this useful for
+- Many companies want to understand their position in the supply chain — but lack a structured tool to measure it.
+- Researchers have the models and expertise, but no scalable, affordable way to deliver tailored results.
+- Dashboards often look great — but don’t generate trust if they’re not actionable, consistent, or company-specific.
 
-Hopefully this resource will be useful to you if you are building your first webapp, or if you have built a simple webapp before and struggled to apply consistent theming to it with custom css.
+We're solving this by linking survey tools (like `n8n` or Framaforms) directly to a data pipeline, and then rendering per-company dashboards and PDF reports through Quarto.
 
-Additionally, this should be useful to anyone (or any group) that needs to produce multiple web apps with a similar look/branding, but is using a range of different tools (so both R and Python, for example).
+This site is the heart of that system.
 
-So far, this resource mainly deals with basic webapps that can be rendered statically (so some minor interactivity in-browser); however, Quarto allows for fully-developed interactivity with packages like Shiny, so in the future I might develop this further to show how you can build a full dashboard/webapp and containerise it for hosting.
+---
 
-:::
+## 👥 Who This Is For
+
+This project supports:
+- **Researchers** looking to automate data intake, analysis, and reporting
+- **Consultants & universities** working with multiple stakeholders in sustainability or supply chains
+- **SMEs and corporates** participating in the resilience scan who want fast, clear feedback
+
+Our goal is to make it effortless to:
+- Fill out a guided questionnaire  
+- Get instant insights on a shared dashboard  
+- Receive a branded PDF report tailored to your answers  
+
+All fully self-hosted and open source.
+
+---
+
+## 📋 System Status Tracker
+
+```{r}
+#| echo: false
+library(reactable)
+library(htmltools)
+
+todo <- data.frame(
+  Step = 1:11,
+  Task = c(
+    "Set up self-hosted survey form",
+    "Connect form to live data source",
+    "Create cleaning & validation script",
+    "Update dashboard to load live data",
+    "Design company-specific filters",
+    "Create automated report template (Quarto)",
+    "Configure per-company PDF rendering",
+    "Trigger report generation on submission",
+    "Add PDF download links per company",
+    "Style dashboards & reports (SCSS)",
+    "Add version control to data and reports"
+  ),
+  Status = c(
+    "⏳ In Progress", 
+    "⏳ In Progress", 
+    "⏳ In Progress", 
+    "✅ Done", 
+    "❌ To Do", 
+    "❌ To Do", 
+    "❌ To Do", 
+    "❌ To Do", 
+    "❌ To Do", 
+    "⏳ In Progress", 
+    "❌ To Do"
+  ),
+  Responsible = c(
+    "Christiaan / Dev", "Dev", "Dev", "Dev", "Dev",
+    "Dev / Christiaan", "Dev", "Dev", "Dev", "Christiaan", "Dev"
+  ),
+  Notes = c(
+    "Use n8n, Framaforms, or Supabase input",
+    "Excel mock loaded; full webhook not yet linked",
+    "Standardization started: numeric coercion & NA drop",
+    "Live Excel → Dashboard pipeline working",
+    "`filter(company == \"XXX\")` logic pending",
+    "`report.qmd` template per org to be drafted",
+    "Use Quarto multi-render or looping for output",
+    "n8n trigger or cron not yet implemented",
+    "Manual export only; embed links still needed",
+    "SCSS applied in dashboards",
+    "Track changes in survey+output, optionally Git"
+  )
+)
+
+reactable(
+  todo,
+  searchable = TRUE,
+  filterable = TRUE,
+  striped = TRUE,
+  bordered = TRUE,
+  highlight = TRUE,
+  defaultPageSize = 11,
+  columns = list(
+    Status = colDef(html = TRUE, style = function(value) {
+      bg <- if (grepl("✅", value)) "#5cb85c" else if (grepl("⏳", value)) "#f0ad4e" else "#d9534f"
+      list(background = bg, color = "white", fontWeight = "bold", textAlign = "center")
+    })
+  )
+)
+
+```
