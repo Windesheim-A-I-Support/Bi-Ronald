@@ -1,0 +1,28 @@
+---
+title: "Sustainability Report"
+author: "Automated System"
+format: pdf
+params:
+  file: "acme.csv"
+---
+
+```{r setup, include=FALSE}
+library(readr)
+library(knitr)
+
+# Read data
+data <- read_csv(file.path("data", params$file))
+company <- data$company[1]
+score <- data$score[1]
+comment <- data$comment[1]
+```
+
+# 🏢 Company: `r company`
+
+## ♻️ Sustainability Score: `r score`
+
+> `r comment`
+
+---
+
+_Report generated automatically by your open-source reporting engine._

@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  mailpit:
+    image: axllent/mailpit
+    container_name: mailpit
+    ports:
+      - "1025:1025"   # SMTP
+      - "8025:8025"   # Web UI
+
+  reportgen:
+    build: .
+    container_name: reportgen
+    depends_on:
+      - mailpit
+    volumes:
+      - ./data:/workspace/data
+      - ./reports:/workspace/reports
+      - ./msmtprc:/root/.msmtprc   # ✅ Needed for email
+    environment:
+      - EMAIL_TO=demo@localhost
+    entrypoint: ["/bin/bash", "./render_send.sh"]
